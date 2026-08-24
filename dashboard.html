@@ -769,6 +769,12 @@
         </div>
     </div>
 
+    <!-- ═══════════════ FIREBASE CDN SCRIPTS ═══════════════ -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
+
     <script>
         /* ═══════════════════════════════════════════
            TRANSLATION SYSTEM (Dashboard)
@@ -1341,18 +1347,49 @@
         }
 
         /* ═══════════════════════════════════════════
-           APP LOGIC
+           APP LOGIC (Firebase-powered)
            ═══════════════════════════════════════════ */
 
-        let farmer = JSON.parse(localStorage.getItem('kisanSeedFarmer'));
+        let farmer = null;
 
-        if (!farmer) {
-            alert('Please create a farmer account first.');
-            window.location.href = 'index.html';
-        } else {
-            // Populate dynamic data
-            displayFarmerData();
-        }
+        // Auth guard: check if user is logged in
+        auth.onAuthStateChanged(async function(user) {
+            if (!user) {
+                // Not logged in — redirect to login page
+                window.location.href = 'index.html';
+                return;
+            }
+
+            try {
+                // Load farmer profile from Firestore
+                const doc = await db.collection('farmers').doc(user.uid).get();
+                if (doc.exists) {
+                    farmer = doc.data();
+                    farmer.uid = user.uid;
+                    localStorage.setItem('kisanSeedFarmer', JSON.stringify(farmer));
+                    displayFarmerData();
+                } else {
+                    // No profile — fallback to localStorage
+                    farmer = JSON.parse(localStorage.getItem('kisanSeedFarmer'));
+                    if (farmer) {
+                        displayFarmerData();
+                    } else {
+                        alert('Please create a farmer account first.');
+                        window.location.href = 'index.html';
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading profile:', error);
+                // Fallback to localStorage
+                farmer = JSON.parse(localStorage.getItem('kisanSeedFarmer'));
+                if (farmer) {
+                    displayFarmerData();
+                } else {
+                    alert('Please create a farmer account first.');
+                    window.location.href = 'index.html';
+                }
+            }
+        });
 
         function displayFarmerData() {
             document.getElementById('welcomeName').innerText = farmer.name;
@@ -1402,7 +1439,7 @@
             document.getElementById('editModal').classList.remove('active');
         }
 
-        function saveProfile(e) {
+        async function saveProfile(e) {
             e.preventDefault();
 
             const updated = {
@@ -1433,12 +1470,30 @@
                 return;
             }
 
-            // Save
-            localStorage.setItem('kisanSeedFarmer', JSON.stringify(updated));
-            farmer = updated;
-            displayFarmerData();
-            closeEditModal();
-            alert('Profile updated successfully!');
+            try {
+                // Save to Firestore
+                const user = auth.currentUser;
+                if (user) {
+                    updated.uid = user.uid;
+                    updated.updatedAt = firebase.firestore.FieldValue.serverTimestamp();
+                    await db.collection('farmers').doc(user.uid).set(updated, { merge: true });
+                }
+
+                // Also save to localStorage
+                localStorage.setItem('kisanSeedFarmer', JSON.stringify(updated));
+                farmer = updated;
+                displayFarmerData();
+                closeEditModal();
+                alert('✅ Profile updated successfully!');
+            } catch (error) {
+                console.error('Save error:', error);
+                // Fallback: save to localStorage only
+                localStorage.setItem('kisanSeedFarmer', JSON.stringify(updated));
+                farmer = updated;
+                displayFarmerData();
+                closeEditModal();
+                alert('Profile saved locally. Cloud sync will retry later.');
+            }
         }
 
         // ── Close modal on overlay click ──
@@ -1455,7 +1510,12 @@
 
         function education() { window.location.href = 'seed-education.html'; }
 
-        function logout() {
+        async function logout() {
+            try {
+                await auth.signOut();
+            } catch (e) {
+                console.error('Sign out error:', e);
+            }
             localStorage.removeItem('kisanSeedFarmer');
             window.location.href = 'index.html';
         }

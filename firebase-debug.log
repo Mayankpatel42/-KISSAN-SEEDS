@@ -1,0 +1,106 @@
+[debug] [2026-08-24T16:02:14.582Z] ----------------------------------------------------------------------
+[debug] [2026-08-24T16:02:14.585Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\mayan\AppData\Local\npm-cache\_npx\ba4f1959e38407b5\node_modules\firebase-tools\lib\bin\firebase.js login 4/0ATsMZqA2g9hBE_1zPKzp-rUebjfaYaVXBK3KSPeDm2pwaFGLCXpMs2rQRi__geduUbZCMA
+[debug] [2026-08-24T16:02:14.586Z] CLI Version:   15.28.1
+[debug] [2026-08-24T16:02:14.586Z] Platform:      win32
+[debug] [2026-08-24T16:02:14.586Z] Node Version:  v24.12.0
+[debug] [2026-08-24T16:02:14.586Z] Detected Agent: antigravity
+[debug] [2026-08-24T16:02:14.586Z] Time:          Mon Aug 24 2026 21:32:14 GMT+0530 (India Standard Time)
+[debug] [2026-08-24T16:02:14.586Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-08-24T16:02:14.620Z] >>> [apiv2][query] POST https://accounts.google.com/o/oauth2/token [none]
+[debug] [2026-08-24T16:02:14.620Z] >>> [apiv2][body] POST https://accounts.google.com/o/oauth2/token [omitted]
+[debug] [2026-08-24T16:02:14.798Z] <<< [apiv2][status] POST https://accounts.google.com/o/oauth2/token 200
+[debug] [2026-08-24T16:02:14.798Z] <<< [apiv2][body] POST https://accounts.google.com/o/oauth2/token [omitted]
+[info] +  Success! Logged in as buzzer0704@gmail.com 
+[debug] [2026-08-24T16:02:20.008Z] Error: Timed out.
+    at Timeout._onTimeout (C:\Users\mayan\AppData\Local\npm-cache\_npx\ba4f1959e38407b5\node_modules\firebase-tools\lib\utils.js:296:49)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2026-08-24T16:02:36.378Z] ----------------------------------------------------------------------
+[debug] [2026-08-24T16:02:36.381Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\mayan\AppData\Local\npm-cache\_npx\ba4f1959e38407b5\node_modules\firebase-tools\lib\bin\firebase.js projects:create kissan-seeds-app --display-name KISSAN SEEDS
+[debug] [2026-08-24T16:02:36.382Z] CLI Version:   15.28.1
+[debug] [2026-08-24T16:02:36.382Z] Platform:      win32
+[debug] [2026-08-24T16:02:36.382Z] Node Version:  v24.12.0
+[debug] [2026-08-24T16:02:36.382Z] Detected Agent: antigravity
+[debug] [2026-08-24T16:02:36.382Z] Time:          Mon Aug 24 2026 21:32:36 GMT+0530 (India Standard Time)
+[debug] [2026-08-24T16:02:36.383Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-08-24T16:02:36.434Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-08-24T16:02:36.435Z] > authorizing via signed-in user (buzzer0704@gmail.com)
+[debug] [2026-08-24T16:02:36.461Z] Checked if tokens are valid: true, expires at: 1787590933799
+[debug] [2026-08-24T16:02:36.461Z] Checked if tokens are valid: true, expires at: 1787590933799
+[debug] [2026-08-24T16:02:36.463Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2026-08-24T16:02:36.463Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"kissan-seeds-app","name":"KISSAN SEEDS"}
+[debug] [2026-08-24T16:02:38.213Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 200
+[debug] [2026-08-24T16:02:38.214Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"name":"operations/create_project.global.7398849780801112837"}
+[debug] [2026-08-24T16:02:38.215Z] Checked if tokens are valid: true, expires at: 1787590933799
+[debug] [2026-08-24T16:02:38.215Z] Checked if tokens are valid: true, expires at: 1787590933799
+[debug] [2026-08-24T16:02:38.215Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.7398849780801112837 [none]
+[debug] [2026-08-24T16:02:39.772Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.7398849780801112837 200
+[debug] [2026-08-24T16:02:39.773Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.7398849780801112837 {"name":"operations/create_project.global.7398849780801112837"}
+[debug] [2026-08-24T16:02:40.287Z] [Project Creation Poller] Retrying task index 0
+[debug] [2026-08-24T16:02:40.288Z] Checked if tokens are valid: true, expires at: 1787590933799
+[debug] [2026-08-24T16:02:40.288Z] Checked if tokens are valid: true, expires at: 1787590933799
+[debug] [2026-08-24T16:02:40.289Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.7398849780801112837 [none]
+[debug] [2026-08-24T16:02:40.613Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.7398849780801112837 200
+[debug] [2026-08-24T16:02:40.613Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.7398849780801112837 {"name":"operations/create_project.global.7398849780801112837"}
+[debug] [2026-08-24T16:02:41.619Z] [Project Creation Poller] Retrying task index 0
+[debug] [2026-08-24T16:02:41.620Z] Checked if tokens are valid: true, expires at: 1787590933799
+[debug] [2026-08-24T16:02:41.620Z] Checked if tokens are valid: true, expires at: 1787590933799
+[debug] [2026-08-24T16:02:41.621Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.7398849780801112837 [none]
+[debug] [2026-08-24T16:02:42.069Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.7398849780801112837 200
+[debug] [2026-08-24T16:02:42.069Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.7398849780801112837 {"name":"operations/create_project.global.7398849780801112837","metadata":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.ProjectCreationStatus","gettable":true,"ready":true},"done":true,"response":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.Project","projectNumber":"335233631906","projectId":"kissan-seeds-app","lifecycleState":"ACTIVE","name":"KISSAN SEEDS","createTime":"2026-08-24T16:02:38.207Z"}}
+[debug] [2026-08-24T16:02:42.070Z] Checked if tokens are valid: true, expires at: 1787590933799
+[debug] [2026-08-24T16:02:42.071Z] Checked if tokens are valid: true, expires at: 1787590933799
+[debug] [2026-08-24T16:02:42.071Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1beta1/projects/kissan-seeds-app:addFirebase [none]
+[debug] [2026-08-24T16:02:43.494Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1beta1/projects/kissan-seeds-app:addFirebase 403
+[debug] [2026-08-24T16:02:43.494Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1beta1/projects/kissan-seeds-app:addFirebase {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2026-08-24T16:02:43.496Z] Request to https://firebase.googleapis.com/v1beta1/projects/kissan-seeds-app:addFirebase had HTTP Error: 403, The caller does not have permission
+[debug] [2026-08-24T16:02:43.659Z] FirebaseError: Request to https://firebase.googleapis.com/v1beta1/projects/kissan-seeds-app:addFirebase had HTTP Error: 403, The caller does not have permission
+    at responseToError (C:\Users\mayan\AppData\Local\npm-cache\_npx\ba4f1959e38407b5\node_modules\firebase-tools\lib\responseToError.js:53:12)
+    at RetryOperation._fn (C:\Users\mayan\AppData\Local\npm-cache\_npx\ba4f1959e38407b5\node_modules\firebase-tools\lib\apiv2.js:415:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[error] 
+[error] Error: Failed to add Firebase to Google Cloud Platform project. See firebase-debug.log for more info.
+[debug] [2026-08-24T16:02:57.133Z] ----------------------------------------------------------------------
+[debug] [2026-08-24T16:02:57.136Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\mayan\AppData\Local\npm-cache\_npx\ba4f1959e38407b5\node_modules\firebase-tools\lib\bin\firebase.js projects:create kissan-seeds-2026 --display-name KISSAN SEEDS
+[debug] [2026-08-24T16:02:57.136Z] CLI Version:   15.28.1
+[debug] [2026-08-24T16:02:57.136Z] Platform:      win32
+[debug] [2026-08-24T16:02:57.137Z] Node Version:  v24.12.0
+[debug] [2026-08-24T16:02:57.137Z] Detected Agent: antigravity
+[debug] [2026-08-24T16:02:57.137Z] Time:          Mon Aug 24 2026 21:32:57 GMT+0530 (India Standard Time)
+[debug] [2026-08-24T16:02:57.137Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-08-24T16:02:57.151Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-08-24T16:02:57.151Z] > authorizing via signed-in user (buzzer0704@gmail.com)
+[debug] [2026-08-24T16:02:57.170Z] Checked if tokens are valid: true, expires at: 1787590933799
+[debug] [2026-08-24T16:02:57.171Z] Checked if tokens are valid: true, expires at: 1787590933799
+[debug] [2026-08-24T16:02:57.173Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2026-08-24T16:02:57.173Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"kissan-seeds-2026","name":"KISSAN SEEDS"}
+[debug] [2026-08-24T16:02:58.829Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 200
+[debug] [2026-08-24T16:02:58.830Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"name":"operations/create_project.global.6850942129937728555"}
+[debug] [2026-08-24T16:02:58.831Z] Checked if tokens are valid: true, expires at: 1787590933799
+[debug] [2026-08-24T16:02:58.831Z] Checked if tokens are valid: true, expires at: 1787590933799
+[debug] [2026-08-24T16:02:58.832Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.6850942129937728555 [none]
+[debug] [2026-08-24T16:03:00.485Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.6850942129937728555 200
+[debug] [2026-08-24T16:03:00.485Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.6850942129937728555 {"name":"operations/create_project.global.6850942129937728555"}
+[debug] [2026-08-24T16:03:00.997Z] [Project Creation Poller] Retrying task index 0
+[debug] [2026-08-24T16:03:00.998Z] Checked if tokens are valid: true, expires at: 1787590933799
+[debug] [2026-08-24T16:03:00.998Z] Checked if tokens are valid: true, expires at: 1787590933799
+[debug] [2026-08-24T16:03:00.998Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.6850942129937728555 [none]
+[debug] [2026-08-24T16:03:01.629Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.6850942129937728555 200
+[debug] [2026-08-24T16:03:01.629Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.6850942129937728555 {"name":"operations/create_project.global.6850942129937728555","metadata":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.ProjectCreationStatus","gettable":true,"ready":true},"done":true,"response":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.Project","projectNumber":"384787628126","projectId":"kissan-seeds-2026","lifecycleState":"ACTIVE","name":"KISSAN SEEDS","createTime":"2026-08-24T16:02:58.821Z"}}
+[debug] [2026-08-24T16:03:01.630Z] Checked if tokens are valid: true, expires at: 1787590933799
+[debug] [2026-08-24T16:03:01.630Z] Checked if tokens are valid: true, expires at: 1787590933799
+[debug] [2026-08-24T16:03:01.631Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1beta1/projects/kissan-seeds-2026:addFirebase [none]
+[debug] [2026-08-24T16:03:03.288Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1beta1/projects/kissan-seeds-2026:addFirebase 403
+[debug] [2026-08-24T16:03:03.288Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1beta1/projects/kissan-seeds-2026:addFirebase {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2026-08-24T16:03:03.290Z] Request to https://firebase.googleapis.com/v1beta1/projects/kissan-seeds-2026:addFirebase had HTTP Error: 403, The caller does not have permission
+[debug] [2026-08-24T16:03:03.457Z] FirebaseError: Request to https://firebase.googleapis.com/v1beta1/projects/kissan-seeds-2026:addFirebase had HTTP Error: 403, The caller does not have permission
+    at responseToError (C:\Users\mayan\AppData\Local\npm-cache\_npx\ba4f1959e38407b5\node_modules\firebase-tools\lib\responseToError.js:53:12)
+    at RetryOperation._fn (C:\Users\mayan\AppData\Local\npm-cache\_npx\ba4f1959e38407b5\node_modules\firebase-tools\lib\apiv2.js:415:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[error] 
+[error] Error: Failed to add Firebase to Google Cloud Platform project. See firebase-debug.log for more info.
