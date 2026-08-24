@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KisanSeed - Dashboard</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f8f1;
+            color: #173d20;
+        }
+
+        /* HEADER */
+        header {
+            height: 72px;
+            background: white;
+            border-bottom: 1px solid #dce8d8;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #16843b;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .logo h1 {
+            color: #126b30;
+            font-size: 24px;
+        }
+
+        .logo p {
+            color: #728074;
+            font-size: 11px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .language-select {
+            padding: 8px 14px;
+            border-radius: 25px;
+            border: 1px solid #b8d3b1;
+            background: white;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            color: #1d4a2a;
+            outline: none;
+            min-width: 110px;
+        }
+
+        .language-select:focus {
+            border-color: #16843b;
+            box-shadow: 0 0 0 3px rgba(22, 132, 59, 0.15);
+        }
+
+        .logout {
+            padding: 9px 16px;
+            border: none;
+            border-radius: 20px;
+            background: #eef5eb;
+            color: #17652f;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+
+        .logout:hover {
+            background: #dcead6;
+        }
+
+        /* LAYOUT */
+        .layout {
+            display: flex;
+            min-height: calc(100vh - 72px);
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 230px;
+            background: #17652f;
+            color: white;
+            padding: 25px 15px;
+            flex-shrink: 0;
+        }
+
+        .farmer-mini {
+            text-align: center;
+            padding-bottom: 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .avatar {
+            width: 70px;
+            height: 70px;
+            background: #dff2d7;
+            color: #17652f;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: auto auto 10px;
+            font-size: 32px;
+        }
+
+        .farmer-mini h3 {
+            font-size: 16px;
+            word-break: break-word;
+        }
+
+        .farmer-mini p {
+            font-size: 12px;
+            opacity: .75;
+            margin-top: 5px;
+        }
+
+        .menu {
+            margin-top: 25px;
+        }
+
+        .menu-item {
+            display: block;
+            padding: 13px 15px;
+            margin-bottom: 7px;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .menu-item:hover,
+        .menu-item.active {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* CONTENT */
+        .content {
+            flex: 1;
+            padding: 35px 5%;
+            overflow-y: auto;
+        }
+
+        .welcome {
+            margin-bottom: 28px;
+        }
+
+        .welcome h2 {
+            font-size: 30px;
+            color: #155b2c;
+            margin-bottom: 7px;
+        }
+
+        .welcome p {
+            color: #718071;
+        }
+
+        /* SUMMARY */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .summary-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 5px 18px rgba(40, 90, 40, .06);
+        }
+
+        .summary-icon {
+            width: 42px;
+            height: 42px;
+            background: #e3f3dd;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .summary-card p {
+            color: #7a887c;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .summary-card h3 {
+            margin-top: 5px;
+            color: #17652f;
+            font-size: 18px;
+        }
+
+        /* PROFILE */
+        .profile-card {
+            background: white;
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(40, 90, 40, .07);
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-header h3 {
+            color: #17652f;
+        }
+
+        .edit-profile-btn {
+            background: #eaf5e5;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            color: #17652f;
+            font-weight: 600;
+            font-size: 13px;
+            transition: background 0.2s;
+        }
+
+        .edit-profile-btn:hover {
+            background: #d4e8cc;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .profile-item {
+            background: #f6faf4;
+            border-radius: 12px;
+            padding: 15px;
+        }
+
+        .profile-item .label {
+            color: #819083;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .profile-item .value {
+            color: #173d20;
+            font-weight: bold;
+            font-size: 15px;
+            word-break: break-word;
+        }
+
+        /* ACTIONS */
+        .actions {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .action-card {
+            background: white;
+            border-radius: 18px;
+            padding: 22px;
+            box-shadow: 0 5px 20px rgba(40, 90, 40, .07);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .action-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 28px rgba(40, 90, 40, .12);
+        }
+
+        .action-icon {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .action-card h3 {
+            color: #17652f;
+            margin-bottom: 7px;
+            font-size: 18px;
+        }
+
+        .action-card p {
+            color: #758278;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .action-button {
+            margin-top: 15px;
+            border: none;
+            background: #16843b;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+            font-size: 14px;
+        }
+
+        .action-button:hover {
+            background: #137233;
+        }
+
+        /* EDIT MODAL */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 200;
+            padding: 20px;
+            backdrop-filter: blur(2px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-box {
+            background: white;
+            max-width: 700px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-box h2 {
+            color: #17652f;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-box .close-modal {
+            font-size: 28px;
+            cursor: pointer;
+            color: #999;
+            padding: 0 10px;
+        }
+
+        .modal-box .close-modal:hover {
+            color: #c0392b;
+        }
+
+        .modal-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .modal-form-grid .full {
+            grid-column: 1 / -1;
+        }
+
+        .modal-form-grid label {
+            font-weight: 600;
+            color: #2a5a35;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .modal-form-grid input,
+        .modal-form-grid select {
+            padding: 10px 14px;
+            border: 1px solid #cbdcca;
+            border-radius: 10px;
+            font-size: 15px;
+            width: 100%;
+            outline: none;
+        }
+
+        .modal-form-grid input:focus,
+        .modal-form-grid select:focus {
+            border-color: #16843b;
+            box-shadow: 0 0 0 3px rgba(22, 132, 59, 0.12);
+        }
+
+        .save-profile-btn {
+            width: 100%;
+            padding: 14px;
+            background: #16843b;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 17px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.2s;
+        }
+
+        .save-profile-btn:hover {
+            background: #137233;
+        }
+
+        @media(max-width:1050px) {
+
+            .summary-grid,
+            .profile-grid,
+            .actions {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media(max-width:700px) {
+            .sidebar {
+                display: none;
+            }
+            .content {
+                padding: 25px 15px;
+            }
+            .summary-grid,
+            .profile-grid,
+            .actions {
+                grid-template-columns: 1fr;
+            }
+            header {
+                height: auto;
+                padding: 12px 4%;
+            }
+            .header-actions {
+                width: 100%;
+                justify-content: flex-end;
+            }
+            .modal-form-grid {
+                grid-template-columns: 1fr;
+            }
+            .modal-form-grid .full {
+                grid-column: auto;
+            }
+        }
+
+        @media(max-width:420px) {
+            .logo h1 {
+                font-size: 18px;
+            }
+            .logo p {
+                font-size: 10px;
+            }
+            .language-select {
+                min-width: 90px;
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+            .logout {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">
+            <div class="logo-icon">🌱</div>
+            <div>
+                <h1 data-i18n="appName">KisanSeed</h1>
+                <p data-i18n="tagline">Right Seed • Right Knowledge • Right Expert</p>
+            </div>
+        </div>
+
+        <div class="header-actions">
+            <select class="language-select" id="langSelect" onchange="switchLanguage(this.value)">
+                <option value="hi">हिंदी</option>
+                <option value="en" selected>English</option>
+                <option value="mr">मराठी</option>
+                <option value="pa">ਪੰਜਾਬੀ</option>
+                <option value="gu">ગુજરાતી</option>
+                <option value="ta">தமிழ்</option>
+                <option value="te">తెలుగు</option>
+                <option value="kn">ಕನ್ನಡ</option>
+                <option value="ml">മലയാളം</option>
+                <option value="bn">বাংলা</option>
+                <option value="or">ଓଡ଼ିଆ</option>
+                <option value="ur">اردو</option>
+            </select>
+            <button class="logout" onclick="logout()" data-i18n="logout">Logout</button>
+        </div>
+    </header>
+
+    <div class="layout">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="farmer-mini">
+                <div class="avatar">👨‍🌾</div>
+                <h3 id="sideName">Farmer</h3>
+                <p id="sideLocation">India</p>
+            </div>
+
+            <div class="menu">
+                <div class="menu-item active" data-i18n="menuDashboard">🏠 Dashboard</div>
+                <div class="menu-item" onclick="findSeeds()" data-i18n="menuFindSeed">🌱 Find Right Seed</div>
+                <div class="menu-item" onclick="verifySeed()" data-i18n="menuVerifySeed">🔍 Verify Seed</div>
+                <div class="menu-item" onclick="plantDoctor()" data-i18n="menuPlantDoctor">👨‍🌾 Plant Doctor</div>
+                <div class="menu-item" onclick="education()" data-i18n="menuEducation">📚 Seed Education</div>
+            </div>
+        </aside>
+
+        <!-- CONTENT -->
+        <main class="content">
+
+            <div class="welcome">
+                <h2>
+                    <span data-i18n="welcomePrefix">Welcome,</span>
+                    <span id="welcomeName">Farmer</span>
+                    👋
+                </h2>
+                <p data-i18n="welcomeSub">Your personalized farming dashboard</p>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <div class="summary-icon">🌾</div>
+                    <p data-i18n="summaryCrop">Main Crop</p>
+                    <h3 id="crop">-</h3>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-icon">🌱</div>
+                    <p data-i18n="summaryFarmArea">Farm Area</p>
+                    <h3 id="land">-</h3>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-icon">🌍</div>
+                    <p data-i18n="summarySoil">Soil Type</p>
+                    <h3 id="soil">-</h3>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-icon">💧</div>
+                    <p data-i18n="summaryIrrigation">Irrigation</p>
+                    <h3 id="irrigation">-</h3>
+                </div>
+            </div>
+
+            <!-- PROFILE -->
+            <div class="profile-card">
+                <div class="section-header">
+                    <h3 data-i18n="profileTitle">👨‍🌾 Farmer Details</h3>
+                    <button class="edit-profile-btn" onclick="openEditModal()" data-i18n="editBtn">✎ Edit Profile</button>
+                </div>
+
+                <div class="profile-grid">
+                    <div class="profile-item">
+                        <div class="label" data-i18n="labelName">Full Name</div>
+                        <div class="value" id="name">-</div>
+                    </div>
+                    <div class="profile-item">
+                        <div class="label" data-i18n="labelMobile">Mobile</div>
+                        <div class="value" id="mobile">-</div>
+                    </div>
+                    <div class="profile-item">
+                        <div class="label" data-i18n="labelState">State</div>
+                        <div class="value" id="state">-</div>
+                    </div>
+                    <div class="profile-item">
+                        <div class="label" data-i18n="labelDistrict">District</div>
+                        <div class="value" id="district">-</div>
+                    </div>
+                    <div class="profile-item">
+                        <div class="label" data-i18n="labelVillage">Village</div>
+                        <div class="value" id="village">-</div>
+                    </div>
+                    <div class="profile-item">
+                        <div class="label" data-i18n="labelPincode">PIN Code</div>
+                        <div class="value" id="pincode">-</div>
+                    </div>
+                    <div class="profile-item">
+                        <div class="label" data-i18n="labelLandArea">Land Area</div>
+                        <div class="value" id="landArea">-</div>
+                    </div>
+                    <div class="profile-item">
+                        <div class="label" data-i18n="labelSoilType">Soil</div>
+                        <div class="value" id="soilDetail">-</div>
+                    </div>
+                    <div class="profile-item">
+                        <div class="label" data-i18n="labelIrrigation">Irrigation</div>
+                        <div class="value" id="irrigationDetail">-</div>
+                    </div>
+                    <div class="profile-item">
+                        <div class="label" data-i18n="labelCrop">Main Crop</div>
+                        <div class="value" id="cropDetail">-</div>
+                    </div>
+                    <div class="profile-item">
+                        <div class="label" data-i18n="labelExperience">Farming Experience</div>
+                        <div class="value" id="experience">-</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SERVICES -->
+            <div class="section-header">
+                <h3 data-i18n="servicesTitle">🌱 KisanSeed Services</h3>
+            </div>
+
+            <div class="actions">
+                <div class="action-card" onclick="findSeeds()">
+                    <div class="action-icon">🌱</div>
+                    <h3 data-i18n="serviceSeedTitle">Find Right Seed</h3>
+                    <p data-i18n="serviceSeedDesc">Get personalized seed recommendations for your farm.</p>
+                    <button class="action-button" data-i18n="serviceSeedBtn">Find Seeds →</button>
+                </div>
+
+                <div class="action-card" onclick="verifySeed()">
+                    <div class="action-icon">🔍</div>
+                    <h3 data-i18n="serviceVerifyTitle">Verify Seed</h3>
+                    <p data-i18n="serviceVerifyDesc">Check seed batch and certification information.</p>
+                    <button class="action-button" data-i18n="serviceVerifyBtn">Verify →</button>
+                </div>
+
+                <div class="action-card" onclick="plantDoctor()">
+                    <div class="action-icon">👨‍🌾</div>
+                    <h3 data-i18n="serviceDoctorTitle">Plant Doctor</h3>
+                    <p data-i18n="serviceDoctorDesc">Find a nearby agricultural expert for your crop.</p>
+                    <button class="action-button" data-i18n="serviceDoctorBtn">Find Expert →</button>
+                </div>
+
+                <div class="action-card" onclick="education()">
+                    <div class="action-icon">📚</div>
+                    <h3 data-i18n="serviceEduTitle">Seed Education</h3>
+                    <p data-i18n="serviceEduDesc">Learn about improved, hybrid, GM and gene-edited seeds.</p>
+                    <button class="action-button" data-i18n="serviceEduBtn">Learn →</button>
+                </div>
+            </div>
+
+        </main>
+
+    </div>
+
+    <!-- EDIT PROFILE MODAL -->
+    <div class="modal-overlay" id="editModal">
+        <div class="modal-box">
+            <h2>
+                <span data-i18n="editProfileTitle">✎ Edit Farmer Profile</span>
+                <span class="close-modal" onclick="closeEditModal()">×</span>
+            </h2>
+            <form id="editForm" onsubmit="saveProfile(event)">
+                <div class="modal-form-grid">
+                    <div class="form-group">
+                        <label data-i18n="labelName">Full Name *</label>
+                        <input id="editName" required>
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="labelMobile">Mobile *</label>
+                        <input id="editMobile" type="tel" maxlength="10" required>
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="labelState">State *</label>
+                        <select id="editState" required>
+                            <option value="">Select State</option>
+                            <option>Bihar</option><option>Uttar Pradesh</option><option>Maharashtra</option>
+                            <option>Punjab</option><option>Haryana</option><option>Rajasthan</option>
+                            <option>Gujarat</option><option>Madhya Pradesh</option><option>West Bengal</option>
+                            <option>Odisha</option><option>Tamil Nadu</option><option>Karnataka</option>
+                            <option>Telangana</option><option>Andhra Pradesh</option><option>Kerala</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="labelDistrict">District *</label>
+                        <input id="editDistrict" required>
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="labelVillage">Village *</label>
+                        <input id="editVillage" required>
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="labelPincode">PIN Code</label>
+                        <input id="editPincode" maxlength="6">
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="labelFarmSize">Farm Size *</label>
+                        <div style="display:flex; gap:8px;">
+                            <input id="editLandArea" type="number" step="0.01" required style="flex:2;">
+                            <select id="editLandUnit" style="flex:1; padding:10px; border:1px solid #cbdcca; border-radius:10px; background:white;">
+                                <option>Acre</option><option>Hectare</option><option>Bigha</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="labelSoilType">Soil Type</label>
+                        <select id="editSoil">
+                            <option value="">Select Soil</option>
+                            <option>Alluvial Soil</option><option>Black Soil</option><option>Red Soil</option>
+                            <option>Loamy Soil</option><option>Sandy Soil</option><option>Clay Soil</option>
+                            <option>Don't Know</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="labelIrrigation">Irrigation *</label>
+                        <select id="editIrrigation" required>
+                            <option value="">Select</option>
+                            <option>Fully Irrigated</option><option>Partially Irrigated</option><option>Rainfed</option>
+                        </select>
+                    </div>
+                    <div class="form-group full">
+                        <label data-i18n="labelCrop">Main Crop</label>
+                        <select id="editCrop">
+                            <option value="">Select Crop</option>
+                            <option>Wheat</option><option>Rice</option><option>Maize</option><option>Potato</option>
+                            <option>Tomato</option><option>Cotton</option><option>Sugarcane</option>
+                            <option>Pulses</option><option>Oilseeds</option><option>Vegetables</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group full">
+                        <label data-i18n="labelExperience">Farming Experience</label>
+                        <select id="editExperience">
+                            <option>Less than 5 years</option><option>5–10 years</option>
+                            <option>10–20 years</option><option>More than 20 years</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="save-profile-btn" type="submit" data-i18n="saveBtn">💾 Save Profile</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        /* ═══════════════════════════════════════════
+           TRANSLATION SYSTEM (Dashboard)
+           ═══════════════════════════════════════════ */
+
+        const translations = {
+            en: {
+                appName: 'KisanSeed',
+                tagline: 'Right Seed • Right Knowledge • Right Expert',
+                logout: 'Logout',
+                menuDashboard: '🏠 Dashboard',
+                menuFindSeed: '🌱 Find Right Seed',
+                menuVerifySeed: '🔍 Verify Seed',
+                menuPlantDoctor: '👨‍🌾 Plant Doctor',
+                menuEducation: '📚 Seed Education',
+                welcomePrefix: 'Welcome,',
+                welcomeSub: 'Your personalized farming dashboard',
+                summaryCrop: 'Main Crop',
+                summaryFarmArea: 'Farm Area',
+                summarySoil: 'Soil Type',
+                summaryIrrigation: 'Irrigation',
+                profileTitle: '👨‍🌾 Farmer Details',
+                editBtn: '✎ Edit Profile',
+                labelName: 'Full Name',
+                labelMobile: 'Mobile',
+                labelState: 'State',
+                labelDistrict: 'District',
+                labelVillage: 'Village',
+                labelPincode: 'PIN Code',
+                labelLandArea: 'Land Area',
+                labelSoilType: 'Soil',
+                labelIrrigation: 'Irrigation',
+                labelCrop: 'Main Crop',
+                labelExperience: 'Farming Experience',
+                servicesTitle: '🌱 KisanSeed Services',
+                serviceSeedTitle: 'Find Right Seed',
+                serviceSeedDesc: 'Get personalized seed recommendations for your farm.',
+                serviceSeedBtn: 'Find Seeds →',
+                serviceVerifyTitle: 'Verify Seed',
+                serviceVerifyDesc: 'Check seed batch and certification information.',
+                serviceVerifyBtn: 'Verify →',
+                serviceDoctorTitle: 'Plant Doctor',
+                serviceDoctorDesc: 'Find a nearby agricultural expert for your crop.',
+                serviceDoctorBtn: 'Find Expert →',
+                serviceEduTitle: 'Seed Education',
+                serviceEduDesc: 'Learn about improved, hybrid, GM and gene-edited seeds.',
+                serviceEduBtn: 'Learn →',
+                editProfileTitle: '✎ Edit Farmer Profile',
+                saveBtn: '💾 Save Profile',
+            },
+            hi: {
+                appName: 'किसानसीड',
+                tagline: 'सही बीज • सही ज्ञान • सही विशेषज्ञ',
+                logout: 'लॉगआउट',
+                menuDashboard: '🏠 डैशबोर्ड',
+                menuFindSeed: '🌱 सही बीज खोजें',
+                menuVerifySeed: '🔍 बीज सत्यापित करें',
+                menuPlantDoctor: '👨‍🌾 प्लांट डॉक्टर',
+                menuEducation: '📚 बीज शिक्षा',
+                welcomePrefix: 'स्वागत है,',
+                welcomeSub: 'आपका व्यक्तिगत खेती डैशबोर्ड',
+                summaryCrop: 'मुख्य फसल',
+                summaryFarmArea: 'खेत का क्षेत्रफल',
+                summarySoil: 'मिट्टी का प्रकार',
+                summaryIrrigation: 'सिंचाई',
+                profileTitle: '👨‍🌾 किसान विवरण',
+                editBtn: '✎ प्रोफ़ाइल संपादित करें',
+                labelName: 'पूरा नाम',
+                labelMobile: 'मोबाइल',
+                labelState: 'राज्य',
+                labelDistrict: 'ज़िला',
+                labelVillage: 'गाँव',
+                labelPincode: 'पिन कोड',
+                labelLandArea: 'भूमि क्षेत्र',
+                labelSoilType: 'मिट्टी',
+                labelIrrigation: 'सिंचाई',
+                labelCrop: 'मुख्य फसल',
+                labelExperience: 'खेती का अनुभव',
+                servicesTitle: '🌱 किसानसीड सेवाएँ',
+                serviceSeedTitle: 'सही बीज खोजें',
+                serviceSeedDesc: 'अपने खेत के लिए व्यक्तिगत बीज सिफारिशें प्राप्त करें।',
+                serviceSeedBtn: 'बीज खोजें →',
+                serviceVerifyTitle: 'बीज सत्यापित करें',
+                serviceVerifyDesc: 'बीज बैच और प्रमाणन जानकारी जाँचें।',
+                serviceVerifyBtn: 'सत्यापित करें →',
+                serviceDoctorTitle: 'प्लांट डॉक्टर',
+                serviceDoctorDesc: 'अपनी फसल के लिए निकटवर्ती कृषि विशेषज्ञ खोजें।',
+                serviceDoctorBtn: 'विशेषज्ञ खोजें →',
+                serviceEduTitle: 'बीज शिक्षा',
+                serviceEduDesc: 'उन्नत, संकर, जीएम और जीन-संपादित बीजों के बारे में जानें।',
+                serviceEduBtn: 'सीखें →',
+                editProfileTitle: '✎ किसान प्रोफ़ाइल संपादित करें',
+                saveBtn: '💾 प्रोफ़ाइल सहेजें',
+            },
+            mr: {
+                appName: 'किसानसीड',
+                tagline: 'योग्य बीज • योग्य ज्ञान • योग्य तज्ज्ञ',
+                logout: 'लॉगआउट',
+                menuDashboard: '🏠 डॅशबोर्ड',
+                menuFindSeed: '🌱 योग्य बीज शोधा',
+                menuVerifySeed: '🔍 बीज सत्यापित करा',
+                menuPlantDoctor: '👨‍🌾 प्लांट डॉक्टर',
+                menuEducation: '📚 बीज शिक्षण',
+                welcomePrefix: 'स्वागत आहे,',
+                welcomeSub: 'तुमचा वैयक्तिक शेती डॅशबोर्ड',
+                summaryCrop: 'मुख्य पीक',
+                summaryFarmArea: 'शेत क्षेत्र',
+                summarySoil: 'माती प्रकार',
+                summaryIrrigation: 'सिंचन',
+                profileTitle: '👨‍🌾 शेतकरी तपशील',
+                editBtn: '✎ प्रोफाइल संपादित करा',
+                labelName: 'पूर्ण नाव',
+                labelMobile: 'मोबाइल',
+                labelState: 'राज्य',
+                labelDistrict: 'जिल्हा',
+                labelVillage: 'गाव',
+                labelPincode: 'पिन कोड',
+                labelLandArea: 'जमीन क्षेत्र',
+                labelSoilType: 'माती',
+                labelIrrigation: 'सिंचन',
+                labelCrop: 'मुख्य पीक',
+                labelExperience: 'शेती अनुभव',
+                servicesTitle: '🌱 किसानसीड सेवा',
+                serviceSeedTitle: 'योग्य बीज शोधा',
+                serviceSeedDesc: 'तुमच्या शेतासाठी वैयक्तिक बीज शिफारसी मिळवा.',
+                serviceSeedBtn: 'बीज शोधा →',
+                serviceVerifyTitle: 'बीज सत्यापित करा',
+                serviceVerifyDesc: 'बीज बॅच आणि प्रमाणपत्र माहिती तपासा.',
+                serviceVerifyBtn: 'सत्यापित करा →',
+                serviceDoctorTitle: 'प्लांट डॉक्टर',
+                serviceDoctorDesc: 'तुमच्या पिकासाठी जवळील कृषी तज्ज्ञ शोधा.',
+                serviceDoctorBtn: 'तज्ज्ञ शोधा →',
+                serviceEduTitle: 'बीज शिक्षण',
+                serviceEduDesc: 'सुधारित, संकर, जीएम आणि जीन-संपादित बीजांबद्दल जाणून घ्या.',
+                serviceEduBtn: 'शिका →',
+                editProfileTitle: '✎ शेतकरी प्रोफाइल संपादित करा',
+                saveBtn: '💾 प्रोफाइल जतन करा',
+            },
+            pa: {
+                appName: 'ਕਿਸਾਨਸੀਡ',
+                tagline: 'ਸਹੀ ਬੀਜ • ਸਹੀ ਗਿਆਨ • ਸਹੀ ਮਾਹਿਰ',
+                logout: 'ਲੌਗਆਉਟ',
+                menuDashboard: '🏠 ਡੈਸ਼ਬੋਰਡ',
+                menuFindSeed: '🌱 ਸਹੀ ਬੀਜ ਲੱਭੋ',
+                menuVerifySeed: '🔍 ਬੀਜ ਪ੍ਰਮਾਣਿਤ ਕਰੋ',
+                menuPlantDoctor: '👨‍🌾 ਪਲਾਂਟ ਡਾਕਟਰ',
+                menuEducation: '📚 ਬੀਜ ਸਿੱਖਿਆ',
+                welcomePrefix: 'ਜੀ ਆਇਆਂ ਨੂੰ,',
+                welcomeSub: 'ਤੁਹਾਡਾ ਨਿੱਜੀ ਖੇਤੀ ਡੈਸ਼ਬੋਰਡ',
+                summaryCrop: 'ਮੁੱਖ ਫ਼ਸਲ',
+                summaryFarmArea: 'ਖੇਤ ਦਾ ਰਕਬਾ',
+                summarySoil: 'ਮਿੱਟੀ ਦੀ ਕਿਸਮ',
+                summaryIrrigation: 'ਸਿੰਚਾਈ',
+                profileTitle: '👨‍🌾 ਕਿਸਾਨ ਵੇਰਵੇ',
+                editBtn: '✎ ਪ੍ਰੋਫਾਈਲ ਸੋਧੋ',
+                labelName: 'ਪੂਰਾ ਨਾਮ',
+                labelMobile: 'ਮੋਬਾਈਲ',
+                labelState: 'ਰਾਜ',
+                labelDistrict: 'ਜ਼ਿਲ੍ਹਾ',
+                labelVillage: 'ਪਿੰਡ',
+                labelPincode: 'ਪਿੰਨ ਕੋਡ',
+                labelLandArea: 'ਭੂਮੀ ਰਕਬਾ',
+                labelSoilType: 'ਮਿੱਟੀ',
+                labelIrrigation: 'ਸਿੰਚਾਈ',
+                labelCrop: 'ਮੁੱਖ ਫ਼ਸਲ',
+                labelExperience: 'ਖੇਤੀ ਅਨੁਭਵ',
+                servicesTitle: '🌱 ਕਿਸਾਨਸੀਡ ਸੇਵਾਵਾਂ',
+                serviceSeedTitle: 'ਸਹੀ ਬੀਜ ਲੱਭੋ',
+                serviceSeedDesc: 'ਆਪਣੇ ਖੇਤ ਲਈ ਨਿੱਜੀ ਬੀਜ ਸਿਫ਼ਾਰਸ਼ਾਂ ਪ੍ਰਾਪਤ ਕਰੋ।',
+                serviceSeedBtn: 'ਬੀਜ ਲੱਭੋ →',
+                serviceVerifyTitle: 'ਬੀਜ ਪ੍ਰਮਾਣਿਤ ਕਰੋ',
+                serviceVerifyDesc: 'ਬੀਜ ਬੈਚ ਅਤੇ ਪ੍ਰਮਾਣੀਕਰਣ ਜਾਣਕਾਰੀ ਜਾਂਚੋ।',
+                serviceVerifyBtn: 'ਪ੍ਰਮਾਣਿਤ ਕਰੋ →',
+                serviceDoctorTitle: 'ਪਲਾਂਟ ਡਾਕਟਰ',
+                serviceDoctorDesc: 'ਆਪਣੀ ਫ਼ਸਲ ਲਈ ਨੇੜਲਾ ਖੇਤੀ ਮਾਹਿਰ ਲੱਭੋ।',
+                serviceDoctorBtn: 'ਮਾਹਿਰ ਲੱਭੋ →',
+                serviceEduTitle: 'ਬੀਜ ਸਿੱਖਿਆ',
+                serviceEduDesc: 'ਸੁਧਰੇ, ਹਾਈਬ੍ਰਿਡ, ਜੀ.ਐਮ. ਅਤੇ ਜੀਨ-ਸੰਪਾਦਿਤ ਬੀਜਾਂ ਬਾਰੇ ਸਿੱਖੋ।',
+                serviceEduBtn: 'ਸਿੱਖੋ →',
+                editProfileTitle: '✎ ਕਿਸਾਨ ਪ੍ਰੋਫਾਈਲ ਸੋਧੋ',
+                saveBtn: '💾 ਪ੍ਰੋਫਾਈਲ ਸੇਵ ਕਰੋ',
+            },
+            gu: {
+                appName: 'કિસાનસીડ',
+                tagline: 'સાચું બીજ • સાચું જ્ઞાન • સાચો નિષ્ણાત',
+                logout: 'લૉગઆઉટ',
+                menuDashboard: '🏠 ડેશબોર્ડ',
+                menuFindSeed: '🌱 યોગ્ય બીજ શોધો',
+                menuVerifySeed: '🔍 બીજ ચકાસો',
+                menuPlantDoctor: '👨‍🌾 પ્લાન્ટ ડૉક્ટર',
+                menuEducation: '📚 બીજ શિક્ષણ',
+                welcomePrefix: 'સ્વાગત છે,',
+                welcomeSub: 'તમારું વ્યક્તિગત ખેતી ડેશબોર્ડ',
+                summaryCrop: 'મુખ્ય પાક',
+                summaryFarmArea: 'ખેતર વિસ્તાર',
+                summarySoil: 'માટી પ્રકાર',
+                summaryIrrigation: 'સિંચાઈ',
+                profileTitle: '👨‍🌾 ખેડૂત વિગતો',
+                editBtn: '✎ પ્રોફાઇલ સંપાદિત કરો',
+                labelName: 'પૂરું નામ',
+                labelMobile: 'મોબાઇલ',
+                labelState: 'રાજ્ય',
+                labelDistrict: 'જિલ્લો',
+                labelVillage: 'ગામ',
+                labelPincode: 'પિન કોડ',
+                labelLandArea: 'જમીન વિસ્તાર',
+                labelSoilType: 'માટી',
+                labelIrrigation: 'સિંચાઈ',
+                labelCrop: 'મુખ્ય પાક',
+                labelExperience: 'ખેતી અનુભવ',
+                servicesTitle: '🌱 કિસાનસીડ સેવાઓ',
+                serviceSeedTitle: 'યોગ્ય બીજ શોધો',
+                serviceSeedDesc: 'તમારા ખેતર માટે વ્યક્તિગત બીજ ભલામણો મેળવો.',
+                serviceSeedBtn: 'બીજ શોધો →',
+                serviceVerifyTitle: 'બીજ ચકાસો',
+                serviceVerifyDesc: 'બીજ બેચ અને પ્રમાણપત્ર માહિતી તપાસો.',
+                serviceVerifyBtn: 'ચકાસો →',
+                serviceDoctorTitle: 'પ્લાન્ટ ડૉક્ટર',
+                serviceDoctorDesc: 'તમારા પાક માટે નજીકના કૃષિ નિષ્ણાત શોધો.',
+                serviceDoctorBtn: 'નિષ્ણાત શોધો →',
+                serviceEduTitle: 'બીજ શિક્ષણ',
+                serviceEduDesc: 'સુધારેલા, સંકર, જીએમ અને જીન-સંપાદિત બીજ વિશે શીખો.',
+                serviceEduBtn: 'શીખો →',
+                editProfileTitle: '✎ ખેડૂત પ્રોફાઇલ સંપાદિત કરો',
+                saveBtn: '💾 પ્રોફાઇલ સાચવો',
+            },
+            ta: {
+                appName: 'கிசான்சீட்',
+                tagline: 'சரியான விதை • சரியான அறிவு • சரியான நிபுணர்',
+                logout: 'வெளியேறு',
+                menuDashboard: '🏠 டாஷ்போர்டு',
+                menuFindSeed: '🌱 சரியான விதையைக் கண்டுபிடி',
+                menuVerifySeed: '🔍 விதையைச் சரிபார்',
+                menuPlantDoctor: '👨‍🌾 பிளாண்ட் டாக்டர்',
+                menuEducation: '📚 விதை கல்வி',
+                welcomePrefix: 'வரவேற்கிறோம்,',
+                welcomeSub: 'உங்கள் தனிப்பயனாக்கப்பட்ட விவசாய டாஷ்போர்டு',
+                summaryCrop: 'முக்கிய பயிர்',
+                summaryFarmArea: 'பண்ணை பரப்பு',
+                summarySoil: 'மண் வகை',
+                summaryIrrigation: 'நீர்ப்பாசனம்',
+                profileTitle: '👨‍🌾 விவசாயி விவரங்கள்',
+                editBtn: '✎ சுயவிவரத்தை திருத்து',
+                labelName: 'முழு பெயர்',
+                labelMobile: 'மொபைல்',
+                labelState: 'மாநிலம்',
+                labelDistrict: 'மாவட்டம்',
+                labelVillage: 'கிராமம்',
+                labelPincode: 'பின் குறியீடு',
+                labelLandArea: 'நில பரப்பு',
+                labelSoilType: 'மண்',
+                labelIrrigation: 'நீர்ப்பாசனம்',
+                labelCrop: 'முக்கிய பயிர்',
+                labelExperience: 'விவசாய அனுபவம்',
+                servicesTitle: '🌱 கிசான்சீட் சேவைகள்',
+                serviceSeedTitle: 'சரியான விதையைக் கண்டுபிடி',
+                serviceSeedDesc: 'உங்கள் பண்ணைக்கு தனிப்பயனாக்கப்பட்ட விதை பரிந்துரைகளைப் பெறுங்கள்.',
+                serviceSeedBtn: 'விதையைக் கண்டுபிடி →',
+                serviceVerifyTitle: 'விதையைச் சரிபார்',
+                serviceVerifyDesc: 'விதை தொகுதி மற்றும் சான்றிதழ் தகவலை சரிபார்க்கவும்.',
+                serviceVerifyBtn: 'சரிபார் →',
+                serviceDoctorTitle: 'பிளாண்ட் டாக்டர்',
+                serviceDoctorDesc: 'உங்கள் பயிருக்கு அருகிலுள்ள விவசாய நிபுணரைக் கண்டுபிடிக்கவும்.',
+                serviceDoctorBtn: 'நிபுணரைக் கண்டுபிடி →',
+                serviceEduTitle: 'விதை கல்வி',
+                serviceEduDesc: 'மேம்படுத்தப்பட்ட, கலப்பின, ஜிஎம் மற்றும் மரபணு-திருத்தப்பட்ட விதைகளைப் பற்றி அறிக.',
+                serviceEduBtn: 'கற்க →',
+                editProfileTitle: '✎ விவசாயி சுயவிவரத்தை திருத்து',
+                saveBtn: '💾 சுயவிவரத்தை சேமி',
+            },
+            te: {
+                appName: 'కిసాన్సీడ్',
+                tagline: 'సరైన విత్తనం • సరైన జ్ఞానం • సరైన నిపుణుడు',
+                logout: 'లాగౌట్',
+                menuDashboard: '🏠 డాష్బోర్డ్',
+                menuFindSeed: '🌱 సరైన విత్తనాన్ని కనుగొనండి',
+                menuVerifySeed: '🔍 విత్తనాన్ని ధృవీకరించండి',
+                menuPlantDoctor: '👨‍🌾 ప్లాంట్ డాక్టర్',
+                menuEducation: '📚 విత్తన విద్య',
+                welcomePrefix: 'స్వాగతం,',
+                welcomeSub: 'మీ వ్యక్తిగత వ్యవసాయ డాష్బోర్డ్',
+                summaryCrop: 'ప్రధాన పంట',
+                summaryFarmArea: 'పొలం విస్తీర్ణం',
+                summarySoil: 'నేల రకం',
+                summaryIrrigation: 'నీరు త్రాగుట',
+                profileTitle: '👨‍🌾 రైతు వివరాలు',
+                editBtn: '✎ ప్రొఫైల్ సవరించు',
+                labelName: 'పూర్తి పేరు',
+                labelMobile: 'మొబైల్',
+                labelState: 'రాష్ట్రం',
+                labelDistrict: 'జిల్లా',
+                labelVillage: 'గ్రామం',
+                labelPincode: 'పిన్ కోడ్',
+                labelLandArea: 'భూమి విస్తీర్ణం',
+                labelSoilType: 'నేల',
+                labelIrrigation: 'నీరు త్రాగుట',
+                labelCrop: 'ప్రధాన పంట',
+                labelExperience: 'వ్యవసాయ అనుభవం',
+                servicesTitle: '🌱 కిసాన్సీడ్ సేవలు',
+                serviceSeedTitle: 'సరైన విత్తనాన్ని కనుగొనండి',
+                serviceSeedDesc: 'మీ పొలం కోసం వ్యక్తిగత విత్తన సిఫార్సులను పొందండి.',
+                serviceSeedBtn: 'విత్తనాలను కనుగొనండి →',
+                serviceVerifyTitle: 'విత్తనాన్ని ధృవీకరించండి',
+                serviceVerifyDesc: 'విత్తన బ్యాచ్ మరియు సర్టిఫికేషన్ సమాచారాన్ని తనిఖీ చేయండి.',
+                serviceVerifyBtn: 'ధృవీకరించండి →',
+                serviceDoctorTitle: 'ప్లాంట్ డాక్టర్',
+                serviceDoctorDesc: 'మీ పంట కోసం సమీప వ్యవసాయ నిపుణుడిని కనుగొనండి.',
+                serviceDoctorBtn: 'నిపుణుడిని కనుగొనండి →',
+                serviceEduTitle: 'విత్తన విద్య',
+                serviceEduDesc: 'మెరుగైన, సంకర, జిఎం మరియు జీన్-ఎడిటెడ్ విత్తనాల గురించి తెలుసుకోండి.',
+                serviceEduBtn: 'నేర్చుకోండి →',
+                editProfileTitle: '✎ రైతు ప్రొఫైల్ సవరించు',
+                saveBtn: '💾 ప్రొఫైల్ సేవ్ చేయండి',
+            },
+            kn: {
+                appName: 'ಕಿಸಾನ್ಸೀಡ್',
+                tagline: 'ಸರಿಯಾದ ಬೀಜ • ಸರಿಯಾದ ಜ್ಞಾನ • ಸರಿಯಾದ ತಜ್ಞ',
+                logout: 'ಲಾಗ್ಔಟ್',
+                menuDashboard: '🏠 ಡ್ಯಾಶ್ಬೋರ್ಡ್',
+                menuFindSeed: '🌱 ಸರಿಯಾದ ಬೀಜವನ್ನು ಹುಡುಕಿ',
+                menuVerifySeed: '🔍 ಬೀಜವನ್ನು ಪರಿಶೀಲಿಸಿ',
+                menuPlantDoctor: '👨‍🌾 ಪ್ಲಾಂಟ್ ಡಾಕ್ಟರ್',
+                menuEducation: '📚 ಬೀಜ ಶಿಕ್ಷಣ',
+                welcomePrefix: 'ಸ್ವಾಗತ,',
+                welcomeSub: 'ನಿಮ್ಮ ವೈಯಕ್ತಿಕ ಕೃಷಿ ಡ್ಯಾಶ್ಬೋರ್ಡ್',
+                summaryCrop: 'ಮುಖ್ಯ ಬೆಳೆ',
+                summaryFarmArea: 'ಹೊಲದ ಪ್ರದೇಶ',
+                summarySoil: 'ಮಣ್ಣಿನ ವಿಧ',
+                summaryIrrigation: 'ನೀರಾವರಿ',
+                profileTitle: '👨‍🌾 ರೈತ ವಿವರಗಳು',
+                editBtn: '✎ ಪ್ರೊಫೈಲ್ ಸಂಪಾದಿಸಿ',
+                labelName: 'ಪೂರ್ಣ ಹೆಸರು',
+                labelMobile: 'ಮೊಬೈಲ್',
+                labelState: 'ರಾಜ್ಯ',
+                labelDistrict: 'ಜಿಲ್ಲೆ',
+                labelVillage: 'ಗ್ರಾಮ',
+                labelPincode: 'ಪಿನ್ ಕೋಡ್',
+                labelLandArea: 'ಭೂಮಿ ಪ್ರದೇಶ',
+                labelSoilType: 'ಮಣ್ಣು',
+                labelIrrigation: 'ನೀರಾವರಿ',
+                labelCrop: 'ಮುಖ್ಯ ಬೆಳೆ',
+                labelExperience: 'ಕೃಷಿ ಅನುಭವ',
+                servicesTitle: '🌱 ಕಿಸಾನ್ಸೀಡ್ ಸೇವೆಗಳು',
+                serviceSeedTitle: 'ಸರಿಯಾದ ಬೀಜವನ್ನು ಹುಡುಕಿ',
+                serviceSeedDesc: 'ನಿಮ್ಮ ಹೊಲಕ್ಕೆ ವೈಯಕ್ತಿಕ ಬೀಜ ಶಿಫಾರಸುಗಳನ್ನು ಪಡೆಯಿರಿ.',
+                serviceSeedBtn: 'ಬೀಜಗಳನ್ನು ಹುಡುಕಿ →',
+                serviceVerifyTitle: 'ಬೀಜವನ್ನು ಪರಿಶೀಲಿಸಿ',
+                serviceVerifyDesc: 'ಬೀಜ ಬ್ಯಾಚ್ ಮತ್ತು ಪ್ರಮಾಣೀಕರಣ ಮಾಹಿತಿಯನ್ನು ಪರಿಶೀಲಿಸಿ.',
+                serviceVerifyBtn: 'ಪರಿಶೀಲಿಸಿ →',
+                serviceDoctorTitle: 'ಪ್ಲಾಂಟ್ ಡಾಕ್ಟರ್',
+                serviceDoctorDesc: 'ನಿಮ್ಮ ಬೆಳೆಗೆ ಹತ್ತಿರದ ಕೃಷಿ ತಜ್ಞರನ್ನು ಹುಡುಕಿ.',
+                serviceDoctorBtn: 'ತಜ್ಞರನ್ನು ಹುಡುಕಿ →',
+                serviceEduTitle: 'ಬೀಜ ಶಿಕ್ಷಣ',
+                serviceEduDesc: 'ಸುಧಾರಿತ, ಸಂಕರ, ಜಿಎಂ ಮತ್ತು ಜೀನ್-ಸಂಪಾದಿತ ಬೀಜಗಳ ಬಗ್ಗೆ ತಿಳಿಯಿರಿ.',
+                serviceEduBtn: 'ಕಲಿಯಿರಿ →',
+                editProfileTitle: '✎ ರೈತ ಪ್ರೊಫೈಲ್ ಸಂಪಾದಿಸಿ',
+                saveBtn: '💾 ಪ್ರೊಫೈಲ್ ಉಳಿಸಿ',
+            },
+            ml: {
+                appName: 'കിസാൻസീഡ്',
+                tagline: 'ശരിയായ വിത്ത് • ശരിയായ അറിവ് • ശരിയായ വിദഗ്ധൻ',
+                logout: 'ലോഗ്ഔട്ട്',
+                menuDashboard: '🏠 ഡാഷ്ബോർഡ്',
+                menuFindSeed: '🌱 ശരിയായ വിത്ത് കണ്ടെത്തുക',
+                menuVerifySeed: '🔍 വിത്ത് പരിശോധിക്കുക',
+                menuPlantDoctor: '👨‍🌾 പ്ലാന്റ് ഡോക്ടർ',
+                menuEducation: '📚 വിത്ത് വിദ്യാഭ്യാസം',
+                welcomePrefix: 'സ്വാഗതം,',
+                welcomeSub: 'നിങ്ങളുടെ വ്യക്തിഗത കൃഷി ഡാഷ്ബോർഡ്',
+                summaryCrop: 'പ്രധാന വിള',
+                summaryFarmArea: 'ഫാം ഏരിയ',
+                summarySoil: 'മണ്ണിന്റെ തരം',
+                summaryIrrigation: 'ജലസേചനം',
+                profileTitle: '👨‍🌾 കർഷക വിവരങ്ങൾ',
+                editBtn: '✎ പ്രൊഫൈൽ തിരുത്തുക',
+                labelName: 'പൂർണ്ണ പേര്',
+                labelMobile: 'മൊബൈൽ',
+                labelState: 'സംസ്ഥാനം',
+                labelDistrict: 'ജില്ല',
+                labelVillage: 'ഗ്രാമം',
+                labelPincode: 'പിൻ കോഡ്',
+                labelLandArea: 'ഭൂമി വിസ്തീർണ്ണം',
+                labelSoilType: 'മണ്ണ്',
+                labelIrrigation: 'ജലസേചനം',
+                labelCrop: 'പ്രധാന വിള',
+                labelExperience: 'കൃഷി പരിചയം',
+                servicesTitle: '🌱 കിസാൻസീഡ് സേവനങ്ങൾ',
+                serviceSeedTitle: 'ശരിയായ വിത്ത് കണ്ടെത്തുക',
+                serviceSeedDesc: 'നിങ്ങളുടെ ഫാമിന് വ്യക്തിഗത വിത്ത് ശുപാർശകൾ നേടുക.',
+                serviceSeedBtn: 'വിത്ത് കണ്ടെത്തുക →',
+                serviceVerifyTitle: 'വിത്ത് പരിശോധിക്കുക',
+                serviceVerifyDesc: 'വിത്ത് ബാച്ചും സർട്ടിഫിക്കേഷൻ വിവരങ്ങളും പരിശോധിക്കുക.',
+                serviceVerifyBtn: 'പരിശോധിക്കുക →',
+                serviceDoctorTitle: 'പ്ലാന്റ് ഡോക്ടർ',
+                serviceDoctorDesc: 'നിങ്ങളുടെ വിളയ്ക്ക് സമീപമുള്ള കാർഷിക വിദഗ്ധനെ കണ്ടെത്തുക.',
+                serviceDoctorBtn: 'വിദഗ്ധനെ കണ്ടെത്തുക →',
+                serviceEduTitle: 'വിത്ത് വിദ്യാഭ്യാസം',
+                serviceEduDesc: 'മെച്ചപ്പെട്ട, ഹൈബ്രിഡ്, ജിഎം, ജീൻ-എഡിറ്റ് ചെയ്ത വിത്തുകളെക്കുറിച്ച് അറിയുക.',
+                serviceEduBtn: 'പഠിക്കുക →',
+                editProfileTitle: '✎ കർഷക പ്രൊഫൈൽ തിരുത്തുക',
+                saveBtn: '💾 പ്രൊഫൈൽ സംരക്ഷിക്കുക',
+            },
+            bn: {
+                appName: 'কিসানসীড',
+                tagline: 'সঠিক বীজ • সঠিক জ্ঞান • সঠিক বিশেষজ্ঞ',
+                logout: 'লগআউট',
+                menuDashboard: '🏠 ড্যাশবোর্ড',
+                menuFindSeed: '🌱 সঠিক বীজ খুঁজুন',
+                menuVerifySeed: '🔍 বীজ যাচাই করুন',
+                menuPlantDoctor: '👨‍🌾 প্ল্যান্ট ডক্টর',
+                menuEducation: '📚 বীজ শিক্ষা',
+                welcomePrefix: 'স্বাগতম,',
+                welcomeSub: 'আপনার ব্যক্তিগতকৃত চাষ ড্যাশবোর্ড',
+                summaryCrop: 'প্রধান ফসল',
+                summaryFarmArea: 'খামার এলাকা',
+                summarySoil: 'মাটির ধরণ',
+                summaryIrrigation: 'সেচ',
+                profileTitle: '👨‍🌾 কৃষক বিবরণ',
+                editBtn: '✎ প্রোফাইল সম্পাদনা করুন',
+                labelName: 'পুরো নাম',
+                labelMobile: 'মোবাইল',
+                labelState: 'রাজ্য',
+                labelDistrict: 'জেলা',
+                labelVillage: 'গ্রাম',
+                labelPincode: 'পিন কোড',
+                labelLandArea: 'জমি এলাকা',
+                labelSoilType: 'মাটি',
+                labelIrrigation: 'সেচ',
+                labelCrop: 'প্রধান ফসল',
+                labelExperience: 'চাষের অভিজ্ঞতা',
+                servicesTitle: '🌱 কিসানসীড পরিষেবা',
+                serviceSeedTitle: 'সঠিক বীজ খুঁজুন',
+                serviceSeedDesc: 'আপনার খামারের জন্য ব্যক্তিগতকৃত বীজ সুপারিশ পান।',
+                serviceSeedBtn: 'বীজ খুঁজুন →',
+                serviceVerifyTitle: 'বীজ যাচাই করুন',
+                serviceVerifyDesc: 'বীজ ব্যাচ এবং শংসাপত্রের তথ্য পরীক্ষা করুন।',
+                serviceVerifyBtn: 'যাচাই করুন →',
+                serviceDoctorTitle: 'প্ল্যান্ট ডক্টর',
+                serviceDoctorDesc: 'আপনার ফসলের জন্য নিকটবর্তী কৃষি বিশেষজ্ঞ খুঁজুন।',
+                serviceDoctorBtn: 'বিশেষজ্ঞ খুঁজুন →',
+                serviceEduTitle: 'বীজ শিক্ষা',
+                serviceEduDesc: 'উন্নত, হাইব্রিড, জিএম এবং জিন-সম্পাদিত বীজ সম্পর্কে জানুন।',
+                serviceEduBtn: 'শিখুন →',
+                editProfileTitle: '✎ কৃষক প্রোফাইল সম্পাদনা করুন',
+                saveBtn: '💾 প্রোফাইল সংরক্ষণ করুন',
+            },
+            or: {
+                appName: 'କିସାନସୀଡ୍',
+                tagline: 'ଠିକ୍ ବୀଜ • ଠିକ୍ ଜ୍ଞାନ • ଠିକ୍ ବିଶେଷଜ୍ଞ',
+                logout: 'ଲଗଆଉଟ୍',
+                menuDashboard: '🏠 ଡ୍ୟାଶବୋର୍ଡ',
+                menuFindSeed: '🌱 ଠିକ୍ ବୀଜ ଖୋଜନ୍ତୁ',
+                menuVerifySeed: '🔍 ବୀଜ ଯାଞ୍ଚ କରନ୍ତୁ',
+                menuPlantDoctor: '👨‍🌾 ପ୍ଲାଣ୍ଟ ଡାକ୍ତର',
+                menuEducation: '📚 ବୀଜ ଶିକ୍ଷା',
+                welcomePrefix: 'ସ୍ଵାଗତ,',
+                welcomeSub: 'ଆପଣଙ୍କର ବ୍ୟକ୍ତିଗତ ଚାଷ ଡ୍ୟାଶବୋର୍ଡ',
+                summaryCrop: 'ମୁଖ୍ୟ ଫସଲ',
+                summaryFarmArea: 'ଖେତ କ୍ଷେତ୍ର',
+                summarySoil: 'ମାଟି ପ୍ରକାର',
+                summaryIrrigation: 'ସିଞ୍ଚନ',
+                profileTitle: '👨‍🌾 ଚାଷୀ ବିବରଣୀ',
+                editBtn: '✎ ପ୍ରୋଫାଇଲ୍ ସମ୍ପାଦନ କରନ୍ତୁ',
+                labelName: 'ପୂର୍ଣ୍ଣ ନାମ',
+                labelMobile: 'ମୋବାଇଲ୍',
+                labelState: 'ରାଜ୍ୟ',
+                labelDistrict: 'ଜିଲ୍ଲା',
+                labelVillage: 'ଗାଁ',
+                labelPincode: 'ପିନ୍ କୋଡ୍',
+                labelLandArea: 'ଭୂମି କ୍ଷେତ୍ର',
+                labelSoilType: 'ମାଟି',
+                labelIrrigation: 'ସିଞ୍ଚନ',
+                labelCrop: 'ମୁଖ୍ୟ ଫସଲ',
+                labelExperience: 'ଚାଷ ଅଭିଜ୍ଞତା',
+                servicesTitle: '🌱 କିସାନସୀଡ୍ ସେବା',
+                serviceSeedTitle: 'ଠିକ୍ ବୀଜ ଖୋଜନ୍ତୁ',
+                serviceSeedDesc: 'ଆପଣଙ୍କ ଖେତ ପାଇଁ ବ୍ୟକ୍ତିଗତ ବୀଜ ସୁପାରିଶ ପାଆନ୍ତୁ।',
+                serviceSeedBtn: 'ବୀଜ ଖୋଜନ୍ତୁ →',
+                serviceVerifyTitle: 'ବୀଜ ଯାଞ୍ଚ କରନ୍ତୁ',
+                serviceVerifyDesc: 'ବୀଜ ବ୍ୟାଚ୍ ଏବଂ ପ୍ରମାଣପତ୍ର ସୂଚନା ଯାଞ୍ଚ କରନ୍ତୁ।',
+                serviceVerifyBtn: 'ଯାଞ୍ଚ କରନ୍ତୁ →',
+                serviceDoctorTitle: 'ପ୍ଲାଣ୍ଟ ଡାକ୍ତର',
+                serviceDoctorDesc: 'ଆପଣଙ୍କ ଫସଲ ପାଇଁ ନିକଟସ୍ଥ କୃଷି ବିଶେଷଜ୍ଞ ଖୋଜନ୍ତୁ।',
+                serviceDoctorBtn: 'ବିଶେଷଜ୍ଞ ଖୋଜନ୍ତୁ →',
+                serviceEduTitle: 'ବୀଜ ଶିକ୍ଷା',
+                serviceEduDesc: 'ଉନ୍ନତ, ସଂକର, ଜିଏମ୍ ଏବଂ ଜିନ୍-ସମ୍ପାଦିତ ବୀଜ ବିଷୟରେ ଜାଣନ୍ତୁ।',
+                serviceEduBtn: 'ଶିଖନ୍ତୁ →',
+                editProfileTitle: '✎ ଚାଷୀ ପ୍ରୋଫାଇଲ୍ ସମ୍ପାଦନ କରନ୍ତୁ',
+                saveBtn: '💾 ପ୍ରୋଫାଇଲ୍ ସାଇତାନ୍ତୁ',
+            },
+            ur: {
+                appName: 'کسان سیڈ',
+                tagline: 'صحیح بیج • صحیح علم • صحیح ماہر',
+                logout: 'لاگ آؤٹ',
+                menuDashboard: '🏠 ڈیش بورڈ',
+                menuFindSeed: '🌱 صحیح بیج تلاش کریں',
+                menuVerifySeed: '🔍 بیج کی تصدیق کریں',
+                menuPlantDoctor: '👨‍🌾 پلانٹ ڈاکٹر',
+                menuEducation: '📚 بیج کی تعلیم',
+                welcomePrefix: 'خوش آمدید،',
+                welcomeSub: 'آپ کا ذاتی کاشتکاری ڈیش بورڈ',
+                summaryCrop: 'اہم فصل',
+                summaryFarmArea: 'کھیت کا رقبہ',
+                summarySoil: 'مٹی کی قسم',
+                summaryIrrigation: 'آبپاشی',
+                profileTitle: '👨‍🌾 کسان کی تفصیلات',
+                editBtn: '✎ پروفائل ترمیم کریں',
+                labelName: 'پورا نام',
+                labelMobile: 'موبائل',
+                labelState: 'ریاست',
+                labelDistrict: 'ضلع',
+                labelVillage: 'گاؤں',
+                labelPincode: 'پن کوڈ',
+                labelLandArea: 'زمین کا رقبہ',
+                labelSoilType: 'مٹی',
+                labelIrrigation: 'آبپاشی',
+                labelCrop: 'اہم فصل',
+                labelExperience: 'کاشتکاری کا تجربہ',
+                servicesTitle: '🌱 کسان سیڈ خدمات',
+                serviceSeedTitle: 'صحیح بیج تلاش کریں',
+                serviceSeedDesc: 'اپنے کھیت کے لیے ذاتی بیج کی سفارشات حاصل کریں۔',
+                serviceSeedBtn: 'بیج تلاش کریں →',
+                serviceVerifyTitle: 'بیج کی تصدیق کریں',
+                serviceVerifyDesc: 'بیج بیچ اور سرٹیفیکیشن کی معلومات چیک کریں۔',
+                serviceVerifyBtn: 'تصدیق کریں →',
+                serviceDoctorTitle: 'پلانٹ ڈاکٹر',
+                serviceDoctorDesc: 'اپنی فصل کے لیے قریبی زرعی ماہر تلاش کریں۔',
+                serviceDoctorBtn: 'ماہر تلاش کریں →',
+                serviceEduTitle: 'بیج کی تعلیم',
+                serviceEduDesc: 'بہتر، ہائبرڈ، جی ایم اور جین-ایڈٹ شدہ بیجوں کے بارے میں جانیں۔',
+                serviceEduBtn: 'سیکھیں →',
+                editProfileTitle: '✎ کسان پروفائل ترمیم کریں',
+                saveBtn: '💾 پروفائل محفوظ کریں',
+            }
+        };
+
+        function getTranslation(lang, key) {
+            const t = translations[lang] || translations.en;
+            return t[key] || translations.en[key] || key;
+        }
+
+        function switchLanguage(lang) {
+            document.documentElement.lang = lang;
+
+            // Update all data-i18n elements
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                el.textContent = getTranslation(lang, key);
+            });
+
+            // Update language dropdown
+            document.getElementById('langSelect').value = lang;
+
+            // Save preference
+            localStorage.setItem('kisanLang', lang);
+        }
+
+        function loadSavedLanguage() {
+            const saved = localStorage.getItem('kisanLang');
+            if (saved && translations[saved]) {
+                switchLanguage(saved);
+            } else {
+                const browserLang = navigator.language.split('-')[0];
+                if (translations[browserLang]) {
+                    switchLanguage(browserLang);
+                } else {
+                    switchLanguage('en');
+                }
+            }
+        }
+
+        /* ═══════════════════════════════════════════
+           APP LOGIC
+           ═══════════════════════════════════════════ */
+
+        let farmer = JSON.parse(localStorage.getItem('kisanSeedFarmer'));
+
+        if (!farmer) {
+            alert('Please create a farmer account first.');
+            window.location.href = 'index.html';
+        } else {
+            // Populate dynamic data
+            displayFarmerData();
+        }
+
+        function displayFarmerData() {
+            document.getElementById('welcomeName').innerText = farmer.name;
+            document.getElementById('sideName').innerText = farmer.name;
+            document.getElementById('sideLocation').innerText = farmer.district + ', ' + farmer.state;
+
+            // Summary
+            document.getElementById('crop').innerText = farmer.crop || 'Not set';
+            document.getElementById('land').innerText = farmer.landArea + ' ' + farmer.landUnit;
+            document.getElementById('soil').innerText = farmer.soil || 'Not set';
+            document.getElementById('irrigation').innerText = farmer.irrigation;
+
+            // Profile details
+            document.getElementById('name').innerText = farmer.name;
+            document.getElementById('mobile').innerText = '+91 ' + farmer.mobile;
+            document.getElementById('state').innerText = farmer.state;
+            document.getElementById('district').innerText = farmer.district;
+            document.getElementById('village').innerText = farmer.village;
+            document.getElementById('pincode').innerText = farmer.pincode || 'Not provided';
+            document.getElementById('landArea').innerText = farmer.landArea + ' ' + farmer.landUnit;
+            document.getElementById('soilDetail').innerText = farmer.soil || 'Not set';
+            document.getElementById('irrigationDetail').innerText = farmer.irrigation;
+            document.getElementById('cropDetail').innerText = farmer.crop || 'Not set';
+            document.getElementById('experience').innerText = farmer.experience;
+        }
+
+        // ── Edit Profile Modal ──
+        function openEditModal() {
+            // Populate fields with current data
+            document.getElementById('editName').value = farmer.name;
+            document.getElementById('editMobile').value = farmer.mobile;
+            document.getElementById('editState').value = farmer.state;
+            document.getElementById('editDistrict').value = farmer.district;
+            document.getElementById('editVillage').value = farmer.village;
+            document.getElementById('editPincode').value = farmer.pincode || '';
+            document.getElementById('editLandArea').value = farmer.landArea;
+            document.getElementById('editLandUnit').value = farmer.landUnit;
+            document.getElementById('editSoil').value = farmer.soil || '';
+            document.getElementById('editIrrigation').value = farmer.irrigation;
+            document.getElementById('editCrop').value = farmer.crop || '';
+            document.getElementById('editExperience').value = farmer.experience;
+
+            document.getElementById('editModal').classList.add('active');
+        }
+
+        function closeEditModal() {
+            document.getElementById('editModal').classList.remove('active');
+        }
+
+        function saveProfile(e) {
+            e.preventDefault();
+
+            const updated = {
+                name: document.getElementById('editName').value.trim(),
+                mobile: document.getElementById('editMobile').value.trim(),
+                state: document.getElementById('editState').value,
+                district: document.getElementById('editDistrict').value.trim(),
+                village: document.getElementById('editVillage').value.trim(),
+                pincode: document.getElementById('editPincode').value.trim(),
+                landArea: document.getElementById('editLandArea').value,
+                landUnit: document.getElementById('editLandUnit').value,
+                soil: document.getElementById('editSoil').value,
+                irrigation: document.getElementById('editIrrigation').value,
+                crop: document.getElementById('editCrop').value,
+                experience: document.getElementById('editExperience').value,
+            };
+
+            // Validate mobile
+            if (!/^[0-9]{10}$/.test(updated.mobile)) {
+                alert('Please enter a valid 10-digit mobile number.');
+                return;
+            }
+
+            // Validate required fields
+            if (!updated.name || !updated.state || !updated.district || !updated.village ||
+                !updated.landArea || !updated.irrigation) {
+                alert('Please fill all required fields.');
+                return;
+            }
+
+            // Save
+            localStorage.setItem('kisanSeedFarmer', JSON.stringify(updated));
+            farmer = updated;
+            displayFarmerData();
+            closeEditModal();
+            alert('Profile updated successfully!');
+        }
+
+        // ── Close modal on overlay click ──
+        document.getElementById('editModal').addEventListener('click', function(e) {
+            if (e.target === this) closeEditModal();
+        });
+
+        // Service navigation
+        function findSeeds() { window.location.href = 'seed-recommendation.html'; }
+
+        function verifySeed() { window.location.href = 'seed-verification.html'; }
+
+        function plantDoctor() { window.location.href = 'plant-doctor.html'; }
+
+        function education() { window.location.href = 'seed-education.html'; }
+
+        function logout() {
+            localStorage.removeItem('kisanSeedFarmer');
+            window.location.href = 'index.html';
+        }
+
+        // Load language on page load
+        document.addEventListener('DOMContentLoaded', loadSavedLanguage);
+    </script>
+
+</body>
+
+</html>

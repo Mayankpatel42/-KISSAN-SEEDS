@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>KisanSeed - Seed Verification</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    font-family: Arial;
+}
+
+body {
+    margin: 0;
+
+    background: #f4f8f1;
+
+    color: #173d20;
+}
+
+header {
+    background: white;
+
+    padding: 18px 5%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+
+    gap: 10px;
+
+    align-items: center;
+}
+
+.logo-icon {
+    width: 45px;
+    height: 45px;
+
+    background: #16843b;
+
+    color: white;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 24px;
+}
+
+.logo h1 {
+    color: #126b30;
+}
+
+.back {
+    padding: 10px 15px;
+
+    border: none;
+
+    background: #eaf5e5;
+
+    color: #17652f;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+.container {
+    max-width: 650px;
+
+    margin: 50px auto;
+
+    padding: 20px;
+}
+
+.card {
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    box-shadow:
+        0 10px 30px
+        rgba(40,90,40,.08);
+}
+
+.icon {
+    font-size: 60px;
+
+    margin-bottom: 15px;
+}
+
+h2 {
+    color: #17652f;
+}
+
+p {
+    color: #758278;
+}
+
+input {
+    width: 100%;
+
+    padding: 14px;
+
+    margin-top: 20px;
+
+    border: 1px solid #cbdcca;
+
+    border-radius: 10px;
+}
+
+button.verify {
+    width: 100%;
+
+    margin-top: 15px;
+
+    padding: 14px;
+
+    border: none;
+
+    background: #16843b;
+
+    color: white;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+.result {
+    display: none;
+
+    margin-top: 25px;
+
+    padding: 20px;
+
+    border-radius: 12px;
+
+    background: #eff9eb;
+
+    text-align: left;
+
+    line-height: 1.8;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<div class="logo">
+
+<div class="logo-icon">
+🌱
+</div>
+
+<h1>KisanSeed</h1>
+
+</div>
+
+
+<button
+class="back"
+onclick="history.back()">
+
+← Back
+
+</button>
+
+</header>
+
+
+<div class="container">
+
+<div class="card">
+
+<div class="icon">
+🔍
+</div>
+
+<h2>
+Seed Verification
+</h2>
+
+<p>
+Enter the seed batch number from your package.
+</p>
+
+
+<input
+id="batch"
+placeholder="Example: KS-WHEAT-2026-001">
+
+
+<button
+class="verify"
+onclick="verify()">
+
+Verify Seed
+
+</button>
+
+
+<div
+class="result"
+id="result">
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+function verify() {
+
+const batch =
+document.getElementById(
+"batch"
+).value.trim();
+
+
+if (!batch) {
+
+alert(
+"Please enter a batch number."
+);
+
+return;
+
+}
+
+
+document.getElementById(
+"result"
+).style.display =
+"block";
+
+
+document.getElementById(
+"result"
+).innerHTML = `
+
+<strong style="
+color:#16843b;
+font-size:18px;
+">
+
+🟢 Verification Information Found
+
+</strong>
+
+<br><br>
+
+<strong>Batch:</strong>
+${batch}
+
+<br>
+
+<strong>Seed:</strong>
+Wheat
+
+<br>
+
+<strong>Variety:</strong>
+HD-2967
+
+<br>
+
+<strong>Status:</strong>
+Quality information available
+
+<br>
+
+<strong>Source:</strong>
+Demo verification database
+
+<br><br>
+
+⚠️ This is an MVP demonstration.
+Official certification verification
+would be connected to an authorized
+government/seed certification system.
+
+`;
+
+}
+
+</script>
+
+</body>
+
+</html>

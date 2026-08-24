@@ -1,0 +1,1734 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KisanSeed - Farmer Login</title>
+
+    <style>
+        /* ── RESET & BASE ── */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f4fbe9, #e7f5d8);
+            color: #173d20;
+        }
+
+        /* ── HEADER ── */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 5%;
+            background: white;
+            border-bottom: 1px solid #d9e8d1;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #16843b;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .logo h1 {
+            color: #126b30;
+            font-size: 24px;
+            line-height: 1.2;
+        }
+
+        .tagline {
+            font-size: 11px;
+            color: #52705a;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        .lang-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .lang-wrap label {
+            font-size: 13px;
+            color: #2a5a35;
+            font-weight: 600;
+            display: none;
+        }
+
+        .language-select {
+            padding: 8px 14px;
+            border-radius: 25px;
+            border: 1px solid #b8d3b1;
+            background: white;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            color: #1d4a2a;
+            outline: none;
+            min-width: 120px;
+        }
+
+        .language-select:focus {
+            border-color: #16843b;
+            box-shadow: 0 0 0 3px rgba(22, 132, 59, 0.15);
+        }
+
+        /* ── MAIN ── */
+        main {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 16px;
+        }
+
+        /* ── LOGIN CARD ── */
+        .login-card {
+            width: 100%;
+            max-width: 440px;
+            background: white;
+            padding: 32px 28px 36px;
+            border-radius: 24px;
+            box-shadow: 0 12px 40px rgba(27, 78, 34, 0.13);
+            text-align: center;
+        }
+
+        .app-logo {
+            width: 70px;
+            height: 70px;
+            background: #e2f4d9;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-size: 36px;
+        }
+
+        .login-card h2 {
+            color: #155b2c;
+            font-size: 26px;
+            margin-top: 2px;
+        }
+
+        .subtitle {
+            margin: 6px 0 22px;
+            color: #758579;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .phone-box {
+            display: flex;
+            border: 1px solid #cbdcca;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 12px;
+            background: white;
+        }
+
+        .phone-box .country {
+            padding: 14px 12px;
+            background: #f3f8f1;
+            border-right: 1px solid #d7e4d3;
+            font-weight: 600;
+            color: #1d4a2a;
+            font-size: 15px;
+        }
+
+        .phone-box input {
+            flex: 1;
+            border: none;
+            padding: 14px 12px;
+            outline: none;
+            font-size: 15px;
+            background: white;
+        }
+
+        .phone-box input::placeholder {
+            color: #a5b8a8;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 15px;
+            transition: transform 0.1s, box-shadow 0.2s;
+            margin-top: 10px;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        .btn.otp {
+            background: #16843b;
+            color: white;
+            box-shadow: 0 4px 12px rgba(22, 132, 59, 0.3);
+        }
+
+        .btn.otp:hover {
+            background: #137233;
+            box-shadow: 0 6px 16px rgba(22, 132, 59, 0.35);
+        }
+
+        .btn.google {
+            background: white;
+            border: 1px solid #d5dfd3;
+            color: #2d4d36;
+        }
+
+        .btn.google:hover {
+            background: #f8fbf7;
+            border-color: #b8ccb3;
+        }
+
+        .btn.create {
+            background: #eaf5e5;
+            color: #17652f;
+            border: 1px solid #d0e2c8;
+        }
+
+        .btn.create:hover {
+            background: #dff0d8;
+        }
+
+        .divider {
+            margin: 18px 0 10px;
+            color: #8b9b8e;
+            font-size: 13px;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 30%;
+            height: 1px;
+            background: #d7e4d3;
+        }
+
+        .divider::before {
+            left: 0;
+        }
+        .divider::after {
+            right: 0;
+        }
+
+        .language-box {
+            margin-top: 20px;
+            padding: 12px 10px;
+            border-radius: 30px;
+            background: #f4fbf0;
+            color: #17652f;
+            font-size: 14px;
+            font-weight: 500;
+            border: 1px dashed #b8d3b1;
+        }
+
+        /* ── MODAL ── */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            z-index: 100;
+            backdrop-filter: blur(3px);
+        }
+
+        .modal-content {
+            background: white;
+            width: 100%;
+            max-width: 660px;
+            max-height: 92vh;
+            overflow-y: auto;
+            padding: 28px 30px 34px;
+            border-radius: 22px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .modal-header h2 {
+            color: #17652f;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-header h2 span {
+            font-size: 28px;
+        }
+
+        .close {
+            font-size: 32px;
+            cursor: pointer;
+            color: #999;
+            line-height: 1;
+            transition: color 0.2s;
+            padding: 0 6px;
+        }
+
+        .close:hover {
+            color: #c0392b;
+        }
+
+        /* ── FORM ── */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: 700;
+            color: #2a5a35;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        label .label-icon {
+            font-size: 17px;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 11px 14px;
+            border: 1px solid #cbdcca;
+            border-radius: 10px;
+            outline: none;
+            background: white;
+            font-size: 15px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            width: 100%;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #16843b;
+            box-shadow: 0 0 0 3px rgba(22, 132, 59, 0.12);
+        }
+
+        .form-group input::placeholder {
+            color: #b0c2b3;
+            font-size: 14px;
+        }
+
+        .form-hint {
+            font-size: 12px;
+            color: #7a967f;
+            margin-top: 2px;
+            font-weight: 400;
+        }
+
+        .btn.register {
+            background: #16843b;
+            color: white;
+            margin-top: 22px;
+            font-size: 17px;
+            padding: 15px;
+            box-shadow: 0 4px 14px rgba(22, 132, 59, 0.3);
+        }
+
+        .btn.register:hover {
+            background: #137233;
+            box-shadow: 0 6px 20px rgba(22, 132, 59, 0.35);
+        }
+
+        /* ── SUCCESS ── */
+        .success {
+            display: none;
+            text-align: center;
+            padding: 10px 0 6px;
+        }
+
+        .success-icon {
+            font-size: 58px;
+            margin-bottom: 10px;
+        }
+
+        .success h2 {
+            color: #17652f;
+            font-size: 26px;
+        }
+
+        .success p {
+            color: #5a7a5f;
+            font-size: 15px;
+            margin: 6px 0 18px;
+        }
+
+        .profile-summary {
+            margin-top: 14px;
+            background: #f4faf1;
+            padding: 18px 22px;
+            border-radius: 14px;
+            text-align: left;
+            line-height: 2;
+            font-size: 15px;
+            border: 1px solid #d9e8d1;
+        }
+
+        .profile-summary strong {
+            color: #155b2c;
+            display: inline-block;
+            min-width: 110px;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 680px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-group.full {
+                grid-column: auto;
+            }
+            .login-card {
+                padding: 24px 18px 30px;
+            }
+            .modal-content {
+                padding: 22px 18px 26px;
+            }
+            header {
+                padding: 12px 4%;
+            }
+            .logo h1 {
+                font-size: 20px;
+            }
+            .tagline {
+                font-size: 10px;
+            }
+            .language-select {
+                min-width: 100px;
+                font-size: 13px;
+                padding: 6px 12px;
+            }
+            .modal-header h2 {
+                font-size: 20px;
+            }
+            .profile-summary strong {
+                min-width: 80px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .logo-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 18px;
+            }
+            .logo h1 {
+                font-size: 17px;
+            }
+            .login-card h2 {
+                font-size: 22px;
+            }
+            .btn {
+                font-size: 14px;
+                padding: 12px;
+            }
+            .phone-box input {
+                font-size: 14px;
+                padding: 12px 10px;
+            }
+            .phone-box .country {
+                padding: 12px 10px;
+                font-size: 14px;
+            }
+        }
+
+        /* scrollbar */
+        .modal-content::-webkit-scrollbar {
+            width: 5px;
+        }
+        .modal-content::-webkit-scrollbar-track {
+            background: #f0f5ed;
+            border-radius: 10px;
+        }
+        .modal-content::-webkit-scrollbar-thumb {
+            background: #b8d3b1;
+            border-radius: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- ═══════════════ HEADER ═══════════════ -->
+    <header>
+
+        <div class="logo">
+            <div class="logo-icon">🌱</div>
+            <div>
+                <h1 data-i18n="appName">KisanSeed</h1>
+                <div class="tagline" data-i18n="tagline">Right Seed • Right Knowledge • Right Expert</div>
+            </div>
+        </div>
+
+        <div class="lang-wrap">
+            <label for="langSelect">🌐</label>
+            <select class="language-select" id="langSelect" onchange="switchLanguage(this.value)">
+                <option value="hi">हिंदी</option>
+                <option value="en" selected>English</option>
+                <option value="mr">मराठी</option>
+                <option value="pa">ਪੰਜਾਬੀ</option>
+                <option value="gu">ગુજરાતી</option>
+                <option value="ta">தமிழ்</option>
+                <option value="te">తెలుగు</option>
+                <option value="kn">ಕನ್ನಡ</option>
+                <option value="ml">മലയാളം</option>
+                <option value="bn">বাংলা</option>
+                <option value="or">ଓଡ଼ିଆ</option>
+                <option value="ur">اردو</option>
+            </select>
+        </div>
+
+    </header>
+
+    <!-- ═══════════════ MAIN LOGIN ═══════════════ -->
+    <main>
+
+        <div class="login-card">
+
+            <div class="app-logo">🌱</div>
+            <h2 data-i18n="appName">KisanSeed</h2>
+            <p class="subtitle" data-i18n="loginSubtitle">Smart farming support for farmers</p>
+
+            <div class="phone-box">
+                <div class="country">+91</div>
+                <input id="loginMobile" type="tel" maxlength="10" placeholder="Enter mobile number"
+                data-i18n-placeholder="loginPlaceholder">
+            </div>
+
+            <button class="btn otp" onclick="sendOTP()">
+                <span data-i18n="sendOtp">📱 Send OTP</span>
+            </button>
+
+            <div class="divider" data-i18n="or">OR</div>
+
+            <button class="btn google" onclick="googleLogin()">
+                <span data-i18n="googleBtn">🔵 Continue with Google</span>
+            </button>
+
+            <button class="btn create" onclick="openRegistration()">
+                <span data-i18n="createAccount">👨‍🌾 Create New Account</span>
+            </button>
+
+            <div class="language-box" data-i18n="langBox">
+                🌐 Available in Indian Languages
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- ═══════════════ REGISTRATION MODAL ═══════════════ -->
+    <div class="modal" id="registrationModal">
+
+        <div class="modal-content">
+
+            <!-- HEADER -->
+            <div class="modal-header">
+                <h2>
+                    <span>👨‍🌾</span>
+                    <span data-i18n="regTitle">Farmer Registration</span>
+                </h2>
+                <span class="close" onclick="closeRegistration()">×</span>
+            </div>
+
+            <!-- FORM -->
+            <form id="farmerForm" onsubmit="registerFarmer(event)">
+
+                <div class="form-grid">
+
+                    <!-- Name -->
+                    <div class="form-group">
+                        <label>
+                            <span class="label-icon">👤</span>
+                            <span data-i18n="labelName">Your Name</span>
+                            <span style="color:#c0392b;">*</span>
+                        </label>
+                        <input id="farmerName" required placeholder="e.g. Ram Singh"
+                        data-i18n-placeholder="placeName">
+                    </div>
+
+                    <!-- Mobile -->
+                    <div class="form-group">
+                        <label>
+                            <span class="label-icon">📱</span>
+                            <span data-i18n="labelMobile">Mobile Number</span>
+                            <span style="color:#c0392b;">*</span>
+                        </label>
+                        <input id="farmerMobile" type="tel" maxlength="10" required placeholder="9876543210"
+                        data-i18n-placeholder="placeMobile">
+                    </div>
+
+                    <!-- State -->
+                    <div class="form-group">
+                        <label>
+                            <span class="label-icon">📍</span>
+                            <span data-i18n="labelState">State</span>
+                            <span style="color:#c0392b;">*</span>
+                        </label>
+                        <select id="state" required>
+                            <option value="" data-i18n="selectState">— Select State —</option>
+                            <option>Bihar</option>
+                            <option>Uttar Pradesh</option>
+                            <option>Maharashtra</option>
+                            <option>Punjab</option>
+                            <option>Haryana</option>
+                            <option>Rajasthan</option>
+                            <option>Gujarat</option>
+                            <option>Madhya Pradesh</option>
+                            <option>West Bengal</option>
+                            <option>Odisha</option>
+                            <option>Tamil Nadu</option>
+                            <option>Karnataka</option>
+                            <option>Telangana</option>
+                            <option>Andhra Pradesh</option>
+                            <option>Kerala</option>
+                        </select>
+                    </div>
+
+                    <!-- District -->
+                    <div class="form-group">
+                        <label>
+                            <span class="label-icon">🏛️</span>
+                            <span data-i18n="labelDistrict">District</span>
+                            <span style="color:#c0392b;">*</span>
+                        </label>
+                        <input id="district" required placeholder="e.g. Patna"
+                        data-i18n-placeholder="placeDistrict">
+                    </div>
+
+                    <!-- Village -->
+                    <div class="form-group">
+                        <label>
+                            <span class="label-icon">🏡</span>
+                            <span data-i18n="labelVillage">Village / Town</span>
+                            <span style="color:#c0392b;">*</span>
+                        </label>
+                        <input id="village" required placeholder="e.g. Rasulpur"
+                        data-i18n-placeholder="placeVillage">
+                    </div>
+
+                    <!-- PIN Code -->
+                    <div class="form-group">
+                        <label>
+                            <span class="label-icon">📮</span>
+                            <span data-i18n="labelPincode">PIN Code</span>
+                        </label>
+                        <input id="pincode" maxlength="6" placeholder="e.g. 800001"
+                        data-i18n-placeholder="placePincode">
+                    </div>
+
+                    <!-- Farm Size -->
+                    <div class="form-group">
+                        <label>
+                            <span class="label-icon">🌾</span>
+                            <span data-i18n="labelFarmSize">Farm Size</span>
+                            <span style="color:#c0392b;">*</span>
+                        </label>
+                        <div style="display:flex;gap:8px;">
+                            <input id="landArea" type="number" step="0.01" required placeholder="e.g. 2.5"
+                            data-i18n-placeholder="placeFarmSize" style="flex:2;">
+                            <select id="landUnit" style="flex:1;padding:11px 8px;border:1px solid #cbdcca;border-radius:10px;background:white;font-size:14px;">
+                                <option>Acre</option>
+                                <option>Hectare</option>
+                                <option>Bigha</option>
+                            </select>
+                        </div>
+                        <div class="form-hint" data-i18n="hintFarmSize">(acre / hectare / bigha)</div>
+                    </div>
+
+                    <!-- Soil Type -->
+                    <div class="form-group">
+                        <label>
+                            <span class="label-icon">🟫</span>
+                            <span data-i18n="labelSoil">Soil Type</span>
+                            <span style="color:#c0392b;">*</span>
+                        </label>
+                        <select id="soil" required>
+                            <option value="" data-i18n="selectSoil">— Select Soil —</option>
+                            <option data-i18n="soilAlluvial">Alluvial Soil</option>
+                            <option data-i18n="soilBlack">Black Soil</option>
+                            <option data-i18n="soilRed">Red Soil</option>
+                            <option data-i18n="soilLoamy">Loamy Soil</option>
+                            <option data-i18n="soilSandy">Sandy Soil</option>
+                            <option data-i18n="soilClay">Clay Soil</option>
+                            <option data-i18n="soilDontKnow">Don't Know</option>
+                        </select>
+                    </div>
+
+                    <!-- Water Source -->
+                    <div class="form-group">
+                        <label>
+                            <span class="label-icon">💧</span>
+                            <span data-i18n="labelWater">Water Source</span>
+                            <span style="color:#c0392b;">*</span>
+                        </label>
+                        <select id="irrigation" required>
+                            <option value="" data-i18n="selectWater">— Select —</option>
+                            <option data-i18n="waterFull">Fully Irrigated</option>
+                            <option data-i18n="waterPartial">Partially Irrigated</option>
+                            <option data-i18n="waterRainfed">Rainfed</option>
+                        </select>
+                    </div>
+
+                    <!-- Main Crop -->
+                    <div class="form-group full">
+                        <label>
+                            <span class="label-icon">🌿</span>
+                            <span data-i18n="labelCrop">What do you grow?</span>
+                            <span style="color:#c0392b;">*</span>
+                        </label>
+                        <select id="crop" required>
+                            <option value="" data-i18n="selectCrop">— Select Crop —</option>
+                            <option>Wheat</option>
+                            <option>Rice</option>
+                            <option>Maize</option>
+                            <option>Potato</option>
+                            <option>Tomato</option>
+                            <option>Cotton</option>
+                            <option>Sugarcane</option>
+                            <option>Pulses</option>
+                            <option>Oilseeds</option>
+                            <option>Vegetables</option>
+                            <option data-i18n="cropOther">Other</option>
+                        </select>
+                    </div>
+
+                    <!-- Experience -->
+                    <div class="form-group full">
+                        <label>
+                            <span class="label-icon">⏳</span>
+                            <span data-i18n="labelExperience">How long farming?</span>
+                        </label>
+                        <select id="experience">
+                            <option data-i18n="expLess">Less than 5 years</option>
+                            <option data-i18n="exp5to10">5–10 years</option>
+                            <option data-i18n="exp10to20">10–20 years</option>
+                            <option data-i18n="expMore">More than 20 years</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <button class="btn register" type="submit">
+                    <span data-i18n="regBtn">🌱 Create Farmer Profile</span>
+                </button>
+
+            </form>
+
+            <!-- SUCCESS -->
+            <div class="success" id="success">
+                <div class="success-icon">✅</div>
+                <h2 data-i18n="successTitle">Profile Created!</h2>
+                <p data-i18n="successMsg">Your KisanSeed farmer profile is ready.</p>
+                <div class="profile-summary" id="profileSummary"></div>
+                <button class="btn register" onclick="goToDashboard()">
+                    <span data-i18n="dashboardBtn">🌱 Continue to Dashboard</span>
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ═══════════════ JAVASCRIPT ═══════════════ -->
+    <script>
+        /* ═══════════════════════════════════════════
+           TRANSLATION SYSTEM
+           ═══════════════════════════════════════════ */
+
+        const translations = {
+            en: {
+                appName: 'KisanSeed',
+                tagline: 'Right Seed • Right Knowledge • Right Expert',
+                loginSubtitle: 'Smart farming support for farmers',
+                loginPlaceholder: 'Enter mobile number',
+                sendOtp: '📱 Send OTP',
+                or: 'OR',
+                googleBtn: '🔵 Continue with Google',
+                createAccount: '👨‍🌾 Create New Account',
+                langBox: '🌐 Available in Indian Languages',
+
+                regTitle: 'Farmer Registration',
+                labelName: 'Your Name',
+                labelMobile: 'Mobile Number',
+                labelState: 'State',
+                labelDistrict: 'District',
+                labelVillage: 'Village / Town',
+                labelPincode: 'PIN Code',
+                labelFarmSize: 'Farm Size',
+                labelSoil: 'Soil Type',
+                labelWater: 'Water Source',
+                labelCrop: 'What do you grow?',
+                labelExperience: 'How long farming?',
+
+                placeName: 'e.g. Ram Singh',
+                placeMobile: '9876543210',
+                placeDistrict: 'e.g. Patna',
+                placeVillage: 'e.g. Rasulpur',
+                placePincode: 'e.g. 800001',
+                placeFarmSize: 'e.g. 2.5',
+
+                selectState: '— Select State —',
+                selectSoil: '— Select Soil —',
+                selectWater: '— Select —',
+                selectCrop: '— Select Crop —',
+
+                soilAlluvial: 'Alluvial Soil',
+                soilBlack: 'Black Soil',
+                soilRed: 'Red Soil',
+                soilLoamy: 'Loamy Soil',
+                soilSandy: 'Sandy Soil',
+                soilClay: 'Clay Soil',
+                soilDontKnow: `Don't Know`,
+
+                waterFull: 'Fully Irrigated',
+                waterPartial: 'Partially Irrigated',
+                waterRainfed: 'Rainfed',
+
+                cropOther: 'Other',
+
+                expLess: 'Less than 5 years',
+                exp5to10: '5–10 years',
+                exp10to20: '10–20 years',
+                expMore: 'More than 20 years',
+
+                regBtn: '🌱 Create Farmer Profile',
+                successTitle: 'Profile Created!',
+                successMsg: 'Your KisanSeed farmer profile is ready.',
+                dashboardBtn: '🌱 Continue to Dashboard',
+
+                hintFarmSize: '(acre / hectare / bigha)',
+            },
+
+            hi: {
+                appName: 'किसानसीड',
+                tagline: 'सही बीज • सही ज्ञान • सही विशेषज्ञ',
+                loginSubtitle: 'किसानों के लिए स्मार्ट खेती सहायता',
+                loginPlaceholder: 'मोबाइल नंबर डालें',
+                sendOtp: '📱 ओटीपी भेजें',
+                or: 'या',
+                googleBtn: '🔵 Google से जारी रखें',
+                createAccount: '👨‍🌾 नया खाता बनाएं',
+                langBox: '🌐 भारतीय भाषाओं में उपलब्ध',
+
+                regTitle: 'किसान पंजीकरण',
+                labelName: 'आपका नाम',
+                labelMobile: 'मोबाइल नंबर',
+                labelState: 'राज्य',
+                labelDistrict: 'ज़िला',
+                labelVillage: 'गाँव / कस्बा',
+                labelPincode: 'पिन कोड',
+                labelFarmSize: 'खेत का आकार',
+                labelSoil: 'मिट्टी का प्रकार',
+                labelWater: 'पानी का स्रोत',
+                labelCrop: 'क्या उगाते हैं?',
+                labelExperience: 'कितने साल से खेती?',
+
+                placeName: 'जैसे राम सिंह',
+                placeMobile: '9876543210',
+                placeDistrict: 'जैसे पटना',
+                placeVillage: 'जैसे रसूलपुर',
+                placePincode: 'जैसे 800001',
+                placeFarmSize: 'जैसे 2.5',
+
+                selectState: '— राज्य चुनें —',
+                selectSoil: '— मिट्टी चुनें —',
+                selectWater: '— चुनें —',
+                selectCrop: '— फसल चुनें —',
+
+                soilAlluvial: 'जलोढ़ मिट्टी',
+                soilBlack: 'काली मिट्टी',
+                soilRed: 'लाल मिट्टी',
+                soilLoamy: 'दोमट मिट्टी',
+                soilSandy: 'बलुई मिट्टी',
+                soilClay: 'चिकनी मिट्टी',
+                soilDontKnow: 'पता नहीं',
+
+                waterFull: 'पूरी सिंचाई',
+                waterPartial: 'आंशिक सिंचाई',
+                waterRainfed: 'बारानी (बारिश पर निर्भर)',
+
+                cropOther: 'अन्य',
+
+                expLess: '5 साल से कम',
+                exp5to10: '5–10 साल',
+                exp10to20: '10–20 साल',
+                expMore: '20 साल से अधिक',
+
+                regBtn: '🌱 किसान प्रोफ़ाइल बनाएं',
+                successTitle: 'प्रोफ़ाइल बन गई!',
+                successMsg: 'आपकी किसानसीड किसान प्रोफ़ाइल तैयार है।',
+                dashboardBtn: '🌱 डैशबोर्ड पर जाएं',
+
+                hintFarmSize: '(एकड़ / हेक्टेयर / बीघा)',
+            },
+
+            mr: {
+                appName: 'किसानसीड',
+                tagline: 'योग्य बीज • योग्य ज्ञान • योग्य तज्ज्ञ',
+                loginSubtitle: 'शेतकऱ्यांसाठी स्मार्ट शेती मदत',
+                loginPlaceholder: 'मोबाइल क्रमांक टाका',
+                sendOtp: '📱 ओटीपी पाठवा',
+                or: 'किंवा',
+                googleBtn: '🔵 Google सह पुढे जा',
+                createAccount: '👨‍🌾 नवीन खाते तयार करा',
+                langBox: '🌐 भारतीय भाषांमध्ये उपलब्ध',
+
+                regTitle: 'शेतकरी नोंदणी',
+                labelName: 'तुमचे नाव',
+                labelMobile: 'मोबाइल क्रमांक',
+                labelState: 'राज्य',
+                labelDistrict: 'जिल्हा',
+                labelVillage: 'गाव / शहर',
+                labelPincode: 'पिन कोड',
+                labelFarmSize: 'शेताचा आकार',
+                labelSoil: 'मातीचा प्रकार',
+                labelWater: 'पाण्याचा स्रोत',
+                labelCrop: 'काय पिकवता?',
+                labelExperience: 'किती वर्षे शेती?',
+
+                placeName: 'उदा. राम सिंह',
+                placeMobile: '9876543210',
+                placeDistrict: 'उदा. पटना',
+                placeVillage: 'उदा. रसूलपूर',
+                placePincode: 'उदा. 800001',
+                placeFarmSize: 'उदा. 2.5',
+
+                selectState: '— राज्य निवडा —',
+                selectSoil: '— माती निवडा —',
+                selectWater: '— निवडा —',
+                selectCrop: '— पीक निवडा —',
+
+                soilAlluvial: 'गाळाची माती',
+                soilBlack: 'काळी माती',
+                soilRed: 'लाल माती',
+                soilLoamy: 'खोबरे माती',
+                soilSandy: 'वालुकामय माती',
+                soilClay: 'चिकणमाती',
+                soilDontKnow: 'माहिती नाही',
+
+                waterFull: 'पूर्ण सिंचन',
+                waterPartial: 'अंशतः सिंचन',
+                waterRainfed: 'पावसावर अवलंबून',
+
+                cropOther: 'इतर',
+
+                expLess: '5 वर्षांपेक्षा कमी',
+                exp5to10: '5–10 वर्षे',
+                exp10to20: '10–20 वर्षे',
+                expMore: '20 वर्षांपेक्षा अधिक',
+
+                regBtn: '🌱 शेतकरी प्रोफाइल तयार करा',
+                successTitle: 'प्रोफाइल तयार!',
+                successMsg: 'तुमची किसानसीड शेतकरी प्रोफाइल तयार आहे.',
+                dashboardBtn: '🌱 डॅशबोर्डवर जा',
+
+                hintFarmSize: '(एकर / हेक्टर / बीघा)',
+            },
+
+            pa: {
+                appName: 'ਕਿਸਾਨਸੀਡ',
+                tagline: 'ਸਹੀ ਬੀਜ • ਸਹੀ ਗਿਆਨ • ਸਹੀ ਮਾਹਿਰ',
+                loginSubtitle: 'ਕਿਸਾਨਾਂ ਲਈ ਸਮਾਰਟ ਖੇਤੀ ਸਹਾਇਤਾ',
+                loginPlaceholder: 'ਮੋਬਾਈਲ ਨੰਬਰ ਪਾਓ',
+                sendOtp: '📱 ਓਟੀਪੀ ਭੇਜੋ',
+                or: 'ਜਾਂ',
+                googleBtn: '🔵 Google ਨਾਲ ਜਾਰੀ ਰੱਖੋ',
+                createAccount: '👨‍🌾 ਨਵਾਂ ਖਾਤਾ ਬਣਾਓ',
+                langBox: '🌐 ਭਾਰਤੀ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਉਪਲਬਧ',
+
+                regTitle: 'ਕਿਸਾਨ ਰਜਿਸਟ੍ਰੇਸ਼ਨ',
+                labelName: 'ਤੁਹਾਡਾ ਨਾਮ',
+                labelMobile: 'ਮੋਬਾਈਲ ਨੰਬਰ',
+                labelState: 'ਰਾਜ',
+                labelDistrict: 'ਜ਼ਿਲ੍ਹਾ',
+                labelVillage: 'ਪਿੰਡ / ਕਸਬਾ',
+                labelPincode: 'ਪਿੰਨ ਕੋਡ',
+                labelFarmSize: 'ਖੇਤ ਦਾ ਆਕਾਰ',
+                labelSoil: 'ਮਿੱਟੀ ਦੀ ਕਿਸਮ',
+                labelWater: 'ਪਾਣੀ ਦਾ ਸਰੋਤ',
+                labelCrop: 'ਕੀ ਉਗਾਉਂਦੇ ਹੋ?',
+                labelExperience: 'ਕਿੰਨੇ ਸਾਲ ਖੇਤੀ?',
+
+                placeName: 'ਜਿਵੇਂ ਰਾਮ ਸਿੰਘ',
+                placeMobile: '9876543210',
+                placeDistrict: 'ਜਿਵੇਂ ਪਟਨਾ',
+                placeVillage: 'ਜਿਵੇਂ ਰਸੂਲਪੁਰ',
+                placePincode: 'ਜਿਵੇਂ 800001',
+                placeFarmSize: 'ਜਿਵੇਂ 2.5',
+
+                selectState: '— ਰਾਜ ਚੁਣੋ —',
+                selectSoil: '— ਮਿੱਟੀ ਚੁਣੋ —',
+                selectWater: '— ਚੁਣੋ —',
+                selectCrop: '— ਫ਼ਸਲ ਚੁਣੋ —',
+
+                soilAlluvial: 'ਕਾਹੀ ਮਿੱਟੀ',
+                soilBlack: 'ਕਾਲੀ ਮਿੱਟੀ',
+                soilRed: 'ਲਾਲ ਮਿੱਟੀ',
+                soilLoamy: 'ਦੋਮਟ ਮਿੱਟੀ',
+                soilSandy: 'ਰੇਤਲੀ ਮਿੱਟੀ',
+                soilClay: 'ਚਿਕਣੀ ਮਿੱਟੀ',
+                soilDontKnow: 'ਪਤਾ ਨਹੀਂ',
+
+                waterFull: 'ਪੂਰੀ ਸਿੰਚਾਈ',
+                waterPartial: 'ਅੰਸ਼ਕ ਸਿੰਚਾਈ',
+                waterRainfed: 'ਬਾਰਾਨੀ',
+
+                cropOther: 'ਹੋਰ',
+
+                expLess: '5 ਸਾਲ ਤੋਂ ਘੱਟ',
+                exp5to10: '5–10 ਸਾਲ',
+                exp10to20: '10–20 ਸਾਲ',
+                expMore: '20 ਸਾਲ ਤੋਂ ਵੱਧ',
+
+                regBtn: '🌱 ਕਿਸਾਨ ਪ੍ਰੋਫਾਈਲ ਬਣਾਓ',
+                successTitle: 'ਪ੍ਰੋਫਾਈਲ ਬਣ ਗਈ!',
+                successMsg: 'ਤੁਹਾਡੀ ਕਿਸਾਨਸੀਡ ਕਿਸਾਨ ਪ੍ਰੋਫਾਈਲ ਤਿਆਰ ਹੈ।',
+                dashboardBtn: '🌱 ਡੈਸ਼ਬੋਰਡ ਤੇ ਜਾਓ',
+
+                hintFarmSize: '(ਏਕੜ / ਹੈਕਟੇਅਰ / ਬੀਘਾ)',
+            },
+
+            gu: {
+                appName: 'કિસાનસીડ',
+                tagline: 'સાચું બીજ • સાચું જ્ઞાન • સાચો નિષ્ણાત',
+                loginSubtitle: 'ખેડૂતો માટે સ્માર્ટ ખેતી સહાય',
+                loginPlaceholder: 'મોબાઇલ નંબર દાખલ કરો',
+                sendOtp: '📱 ઓટીપી મોકલો',
+                or: 'અથવા',
+                googleBtn: '🔵 Google સાથે ચાલુ રાખો',
+                createAccount: '👨‍🌾 નવું ખાતું બનાવો',
+                langBox: '🌐 ભારતીય ભાષાઓમાં ઉપલબ્ધ',
+
+                regTitle: 'ખેડૂત નોંધણી',
+                labelName: 'તમારું નામ',
+                labelMobile: 'મોબાઇલ નંબર',
+                labelState: 'રાજ્ય',
+                labelDistrict: 'જિલ્લો',
+                labelVillage: 'ગામ / શહેર',
+                labelPincode: 'પિન કોડ',
+                labelFarmSize: 'ખેતરનું કદ',
+                labelSoil: 'માટીનો પ્રકાર',
+                labelWater: 'પાણીનો સ્ત્રોત',
+                labelCrop: 'શું ઉગાડો છો?',
+                labelExperience: 'કેટલા વર્ષ ખેતી?',
+
+                placeName: 'દા.ત. રામ સિંહ',
+                placeMobile: '9876543210',
+                placeDistrict: 'દા.ત. પટના',
+                placeVillage: 'દા.ત. રસૂલપુર',
+                placePincode: 'દા.ત. 800001',
+                placeFarmSize: 'દા.ત. 2.5',
+
+                selectState: '— રાજ્ય પસંદ કરો —',
+                selectSoil: '— માટી પસંદ કરો —',
+                selectWater: '— પસંદ કરો —',
+                selectCrop: '— પાક પસંદ કરો —',
+
+                soilAlluvial: 'જલોઢ માટી',
+                soilBlack: 'કાળી માટી',
+                soilRed: 'લાલ માટી',
+                soilLoamy: 'દોમટ માટી',
+                soilSandy: 'રેતાળ માટી',
+                soilClay: 'ચીકણી માટી',
+                soilDontKnow: 'ખબર નથી',
+
+                waterFull: 'સંપૂર્ણ સિંચાઈ',
+                waterPartial: 'અંશત સિંચાઈ',
+                waterRainfed: 'વરસાદ આધારિત',
+
+                cropOther: 'અન્ય',
+
+                expLess: '5 વર્ષથી ઓછું',
+                exp5to10: '5–10 વર્ષ',
+                exp10to20: '10–20 વર્ષ',
+                expMore: '20 વર્ષથી વધુ',
+
+                regBtn: '🌱 ખેડૂત પ્રોફાઇલ બનાવો',
+                successTitle: 'પ્રોફાઇલ બની!',
+                successMsg: 'તમારી કિસાનસીડ ખેડૂત પ્રોફાઇલ તૈયાર છે.',
+                dashboardBtn: '🌱 ડેશબોર્ડ પર જાઓ',
+
+                hintFarmSize: '(એકર / હેક્ટર / બીઘા)',
+            },
+
+            ta: {
+                appName: 'கிசான்சீட்',
+                tagline: 'சரியான விதை • சரியான அறிவு • சரியான நிபுணர்',
+                loginSubtitle: 'விவசாயிகளுக்கான ஸ்மார்ட் உழவு உதவி',
+                loginPlaceholder: 'மொபைல் எண்ணை உள்ளிடவும்',
+                sendOtp: '📱 OTP அனுப்பு',
+                or: 'அல்லது',
+                googleBtn: '🔵 Google உடன் தொடரவும்',
+                createAccount: '👨‍🌾 புதிய கணக்கு உருவாக்கு',
+                langBox: '🌐 இந்திய மொழிகளில் கிடைக்கும்',
+
+                regTitle: 'விவசாயி பதிவு',
+                labelName: 'உங்கள் பெயர்',
+                labelMobile: 'மொபைல் எண்',
+                labelState: 'மாநிலம்',
+                labelDistrict: 'மாவட்டம்',
+                labelVillage: 'கிராமம் / நகரம்',
+                labelPincode: 'பின் குறியீடு',
+                labelFarmSize: 'பண்ணை அளவு',
+                labelSoil: 'மண் வகை',
+                labelWater: 'நீர் ஆதாரம்',
+                labelCrop: 'என்ன பயிரிடுகிறீர்கள்?',
+                labelExperience: 'எத்தனை ஆண்டுகள் உழவு?',
+
+                placeName: 'எ.கா. ராம் சிங்',
+                placeMobile: '9876543210',
+                placeDistrict: 'எ.கா. பட்னா',
+                placeVillage: 'எ.கா. ரசூல்பூர்',
+                placePincode: 'எ.கா. 800001',
+                placeFarmSize: 'எ.கா. 2.5',
+
+                selectState: '— மாநிலம் தேர்ந்தெடுக்கவும் —',
+                selectSoil: '— மண் தேர்ந்தெடுக்கவும் —',
+                selectWater: '— தேர்ந்தெடுக்கவும் —',
+                selectCrop: '— பயிர் தேர்ந்தெடுக்கவும் —',
+
+                soilAlluvial: 'வண்டல் மண்',
+                soilBlack: 'கருப்பு மண்',
+                soilRed: 'சிவப்பு மண்',
+                soilLoamy: 'லோமி மண்',
+                soilSandy: 'மணல் மண்',
+                soilClay: 'களிமண்',
+                soilDontKnow: 'தெரியாது',
+
+                waterFull: 'முழு நீர்ப்பாசனம்',
+                waterPartial: 'பகுதி நீர்ப்பாசனம்',
+                waterRainfed: 'மழை சார்ந்த',
+
+                cropOther: 'மற்றவை',
+
+                expLess: '5 ஆண்டுகளுக்கும் குறைவானது',
+                exp5to10: '5–10 ஆண்டுகள்',
+                exp10to20: '10–20 ஆண்டுகள்',
+                expMore: '20 ஆண்டுகளுக்கும் மேல்',
+
+                regBtn: '🌱 விவசாயி சுயவிவரத்தை உருவாக்கு',
+                successTitle: 'சுயவிவரம் உருவாக்கப்பட்டது!',
+                successMsg: 'உங்கள் கிசான்சீட் விவசாயி சுயவிவரம் தயார்.',
+                dashboardBtn: '🌱 டாஷ்போர்டுக்கு செல்லவும்',
+
+                hintFarmSize: '(ஏக்கர் / ஹெக்டேர் / பிகா)',
+            },
+
+            te: {
+                appName: 'కిసాన్సీడ్',
+                tagline: 'సరైన విత్తనం • సరైన జ్ఞానం • సరైన నిపుణుడు',
+                loginSubtitle: 'రైతులకు స్మార్ట్ వ్యవసాయ సహాయం',
+                loginPlaceholder: 'మొబైల్ నంబర్ ఎంటర్ చేయండి',
+                sendOtp: '📱 OTP పంపండి',
+                or: 'లేదా',
+                googleBtn: '🔵 Google తో కొనసాగండి',
+                createAccount: '👨‍🌾 కొత్త ఖాతా సృష్టించండి',
+                langBox: '🌐 భారతీయ భాషలలో అందుబాటులో',
+
+                regTitle: 'రైతు నమోదు',
+                labelName: 'మీ పేరు',
+                labelMobile: 'మొబైల్ నంబర్',
+                labelState: 'రాష్ట్రం',
+                labelDistrict: 'జిల్లా',
+                labelVillage: 'గ్రామం / పట్టణం',
+                labelPincode: 'పిన్ కోడ్',
+                labelFarmSize: 'పొలం పరిమాణం',
+                labelSoil: 'నేల రకం',
+                labelWater: 'నీటి వనరు',
+                labelCrop: 'ఏమి పండిస్తారు?',
+                labelExperience: 'ఎన్ని సంవత్సరాలు వ్యవసాయం?',
+
+                placeName: 'ఉదా. రామ్ సింగ్',
+                placeMobile: '9876543210',
+                placeDistrict: 'ఉదా. పట్నా',
+                placeVillage: 'ఉదా. రసూల్పూర్',
+                placePincode: 'ఉదా. 800001',
+                placeFarmSize: 'ఉదా. 2.5',
+
+                selectState: '— రాష్ట్రం ఎంచుకోండి —',
+                selectSoil: '— నేల ఎంచుకోండి —',
+                selectWater: '— ఎంచుకోండి —',
+                selectCrop: '— పంట ఎంచుకోండి —',
+
+                soilAlluvial: 'ఒండ్రు నేల',
+                soilBlack: 'నల్ల నేల',
+                soilRed: 'ఎర్ర నేల',
+                soilLoamy: 'లోమీ నేల',
+                soilSandy: 'ఇసుక నేల',
+                soilClay: 'బంకమట్టి నేల',
+                soilDontKnow: 'తెలియదు',
+
+                waterFull: 'పూర్తి సేద్యం',
+                waterPartial: 'పాక్షిక సేద్యం',
+                waterRainfed: 'వర్షాధారిత',
+
+                cropOther: 'ఇతర',
+
+                expLess: '5 సంవత్సరాల కంటే తక్కువ',
+                exp5to10: '5–10 సంవత్సరాలు',
+                exp10to20: '10–20 సంవత్సరాలు',
+                expMore: '20 సంవత్సరాల కంటే ఎక్కువ',
+
+                regBtn: '🌱 రైతు ప్రొఫైల్ సృష్టించండి',
+                successTitle: 'ప్రొఫైల్ సృష్టించబడింది!',
+                successMsg: 'మీ కిసాన్సీడ్ రైతు ప్రొఫైల్ సిద్ధంగా ఉంది.',
+                dashboardBtn: '🌱 డాష్బోర్డ్‌కు వెళ్ళండి',
+
+                hintFarmSize: '(ఎకరం / హెక్టార్ / బిఘా)',
+            },
+
+            kn: {
+                appName: 'ಕಿಸಾನ್ಸೀಡ್',
+                tagline: 'ಸರಿಯಾದ ಬೀಜ • ಸರಿಯಾದ ಜ್ಞಾನ • ಸರಿಯಾದ ತಜ್ಞ',
+                loginSubtitle: 'ರೈತರಿಗೆ ಸ್ಮಾರ್ಟ್ ಕೃಷಿ ಬೆಂಬಲ',
+                loginPlaceholder: 'ಮೊಬೈಲ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ',
+                sendOtp: '📱 OTP ಕಳುಹಿಸಿ',
+                or: 'ಅಥವಾ',
+                googleBtn: '🔵 Google ನೊಂದಿಗೆ ಮುಂದುವರಿಸಿ',
+                createAccount: '👨‍🌾 ಹೊಸ ಖಾತೆ ರಚಿಸಿ',
+                langBox: '🌐 ಭಾರತೀಯ ಭಾಷೆಗಳಲ್ಲಿ ಲಭ್ಯವಿದೆ',
+
+                regTitle: 'ರೈತ ನೋಂದಣಿ',
+                labelName: 'ನಿಮ್ಮ ಹೆಸರು',
+                labelMobile: 'ಮೊಬೈಲ್ ಸಂಖ್ಯೆ',
+                labelState: 'ರಾಜ್ಯ',
+                labelDistrict: 'ಜಿಲ್ಲೆ',
+                labelVillage: 'ಗ್ರಾಮ / ಪಟ್ಟಣ',
+                labelPincode: 'ಪಿನ್ ಕೋಡ್',
+                labelFarmSize: 'ಹೊಲದ ಗಾತ್ರ',
+                labelSoil: 'ಮಣ್ಣಿನ ವಿಧ',
+                labelWater: 'ನೀರಿನ ಮೂಲ',
+                labelCrop: 'ಏನು ಬೆಳೆಯುತ್ತೀರಿ?',
+                labelExperience: 'ಎಷ್ಟು ವರ್ಷ ಕೃಷಿ?',
+
+                placeName: 'ಉದಾ. ರಾಮ್ ಸಿಂಗ್',
+                placeMobile: '9876543210',
+                placeDistrict: 'ಉದಾ. ಪಟ್ನಾ',
+                placeVillage: 'ಉದಾ. ರಸೂಲ್ಪುರ್',
+                placePincode: 'ಉದಾ. 800001',
+                placeFarmSize: 'ಉದಾ. 2.5',
+
+                selectState: '— ರಾಜ್ಯ ಆಯ್ಕೆಮಾಡಿ —',
+                selectSoil: '— ಮಣ್ಣು ಆಯ್ಕೆಮಾಡಿ —',
+                selectWater: '— ಆಯ್ಕೆಮಾಡಿ —',
+                selectCrop: '— ಬೆಳೆ ಆಯ್ಕೆಮಾಡಿ —',
+
+                soilAlluvial: 'ಜಲೋಢ ಮಣ್ಣು',
+                soilBlack: 'ಕಪ್ಪು ಮಣ್ಣು',
+                soilRed: 'ಕೆಂಪು ಮಣ್ಣು',
+                soilLoamy: 'ಲೋಮಿ ಮಣ್ಣು',
+                soilSandy: 'ಮರಳು ಮಣ್ಣು',
+                soilClay: 'ಜೇಡಿಮಣ್ಣು',
+                soilDontKnow: 'ಗೊತ್ತಿಲ್ಲ',
+
+                waterFull: 'ಪೂರ್ಣ ನೀರಾವರಿ',
+                waterPartial: 'ಭಾಗಶಃ ನೀರಾವರಿ',
+                waterRainfed: 'ಮಳೆ ಆಧಾರಿತ',
+
+                cropOther: 'ಇತರೆ',
+
+                expLess: '5 ವರ್ಷಗಳಿಗಿಂತ ಕಡಿಮೆ',
+                exp5to10: '5–10 ವರ್ಷಗಳು',
+                exp10to20: '10–20 ವರ್ಷಗಳು',
+                expMore: '20 ವರ್ಷಗಳಿಗಿಂತ ಹೆಚ್ಚು',
+
+                regBtn: '🌱 ರೈತ ಪ್ರೊಫೈಲ್ ರಚಿಸಿ',
+                successTitle: 'ಪ್ರೊಫೈಲ್ ರಚಿಸಲಾಗಿದೆ!',
+                successMsg: 'ನಿಮ್ಮ ಕಿಸಾನ್ಸೀಡ್ ರೈತ ಪ್ರೊಫೈಲ್ ಸಿದ್ಧವಾಗಿದೆ.',
+                dashboardBtn: '🌱 ಡ್ಯಾಶ್ಬೋರ್ಡ್‌ಗೆ ಹೋಗಿ',
+
+                hintFarmSize: '(ಎಕರೆ / ಹೆಕ್ಟೇರ್ / ಬಿಗಾ)',
+            },
+
+            ml: {
+                appName: 'കിസാൻസീഡ്',
+                tagline: 'ശരിയായ വിത്ത് • ശരിയായ അറിവ് • ശരിയായ വിദഗ്ധൻ',
+                loginSubtitle: 'കർഷകർക്കുള്ള സ്മാർട്ട് കൃഷി സഹായം',
+                loginPlaceholder: 'മൊബൈൽ നമ്പർ നൽകുക',
+                sendOtp: '📱 OTP അയയ്ക്കുക',
+                or: 'അല്ലെങ്കിൽ',
+                googleBtn: '🔵 Google-മായി തുടരുക',
+                createAccount: '👨‍🌾 പുതിയ അക്കൗണ്ട് സൃഷ്ടിക്കുക',
+                langBox: '🌐 ഇന്ത്യൻ ഭാഷകളിൽ ലഭ്യമാണ്',
+
+                regTitle: 'കർഷക രജിസ്ട്രേഷൻ',
+                labelName: 'നിങ്ങളുടെ പേര്',
+                labelMobile: 'മൊബൈൽ നമ്പർ',
+                labelState: 'സംസ്ഥാനം',
+                labelDistrict: 'ജില്ല',
+                labelVillage: 'ഗ്രാമം / പട്ടണം',
+                labelPincode: 'പിൻ കോഡ്',
+                labelFarmSize: 'ഫാം വലുപ്പം',
+                labelSoil: 'മണ്ണിന്റെ തരം',
+                labelWater: 'ജലസ്രോതസ്സ്',
+                labelCrop: 'എന്താണ് കൃഷി ചെയ്യുന്നത്?',
+                labelExperience: 'എത്ര വർഷം കൃഷി?',
+
+                placeName: 'ഉദാ. രാം സിംഗ്',
+                placeMobile: '9876543210',
+                placeDistrict: 'ഉദാ. പട്ന',
+                placeVillage: 'ഉദാ. രസൂൽപൂർ',
+                placePincode: 'ഉദാ. 800001',
+                placeFarmSize: 'ഉദാ. 2.5',
+
+                selectState: '— സംസ്ഥാനം തിരഞ്ഞെടുക്കുക —',
+                selectSoil: '— മണ്ണ് തിരഞ്ഞെടുക്കുക —',
+                selectWater: '— തിരഞ്ഞെടുക്കുക —',
+                selectCrop: '— വിള തിരഞ്ഞെടുക്കുക —',
+
+                soilAlluvial: 'എക്കൽ മണ്ണ്',
+                soilBlack: 'കറുത്ത മണ്ണ്',
+                soilRed: 'ചുവന്ന മണ്ണ്',
+                soilLoamy: 'ലോമി മണ്ണ്',
+                soilSandy: 'മണൽ മണ്ണ്',
+                soilClay: 'കളിമണ്ണ്',
+                soilDontKnow: 'അറിയില്ല',
+
+                waterFull: 'പൂർണ്ണ ജലസേചനം',
+                waterPartial: 'ഭാഗിക ജലസേചനം',
+                waterRainfed: 'മഴയെ ആശ്രയിച്ച്',
+
+                cropOther: 'മറ്റുള്ളവ',
+
+                expLess: '5 വർഷത്തിൽ താഴെ',
+                exp5to10: '5–10 വർഷം',
+                exp10to20: '10–20 വർഷം',
+                expMore: '20 വർഷത്തിൽ കൂടുതൽ',
+
+                regBtn: '🌱 കർഷക പ്രൊഫൈൽ സൃഷ്ടിക്കുക',
+                successTitle: 'പ്രൊഫൈൽ സൃഷ്ടിച്ചു!',
+                successMsg: 'നിങ്ങളുടെ കിസാൻസീഡ് കർഷക പ്രൊഫൈൽ തയ്യാറാണ്.',
+                dashboardBtn: '🌱 ഡാഷ്ബോർഡിലേക്ക് പോകുക',
+
+                hintFarmSize: '(ഏക്കർ / ഹെക്ടർ / ബിഘ)',
+            },
+
+            bn: {
+                appName: 'কিসানসীড',
+                tagline: 'সঠিক বীজ • সঠিক জ্ঞান • সঠিক বিশেষজ্ঞ',
+                loginSubtitle: 'কৃষকদের জন্য স্মার্ট চাষ সহায়তা',
+                loginPlaceholder: 'মোবাইল নম্বর দিন',
+                sendOtp: '📱 ওটিপি পাঠান',
+                or: 'বা',
+                googleBtn: '🔵 Google দিয়ে চালিয়ে যান',
+                createAccount: '👨‍🌾 নতুন অ্যাকাউন্ট তৈরি করুন',
+                langBox: '🌐 ভারতীয় ভাষায় উপলব্ধ',
+
+                regTitle: 'কৃষক নিবন্ধন',
+                labelName: 'আপনার নাম',
+                labelMobile: 'মোবাইল নম্বর',
+                labelState: 'রাজ্য',
+                labelDistrict: 'জেলা',
+                labelVillage: 'গ্রাম / শহর',
+                labelPincode: 'পিন কোড',
+                labelFarmSize: 'খামারের আকার',
+                labelSoil: 'মাটির ধরণ',
+                labelWater: 'জলের উৎস',
+                labelCrop: 'কী চাষ করেন?',
+                labelExperience: 'কত বছর ধরে চাষ?',
+
+                placeName: 'যেমন রাম সিং',
+                placeMobile: '9876543210',
+                placeDistrict: 'যেমন পাটনা',
+                placeVillage: 'যেমন রাসুলপুর',
+                placePincode: 'যেমন 800001',
+                placeFarmSize: 'যেমন 2.5',
+
+                selectState: '— রাজ্য নির্বাচন করুন —',
+                selectSoil: '— মাটি নির্বাচন করুন —',
+                selectWater: '— নির্বাচন করুন —',
+                selectCrop: '— ফসল নির্বাচন করুন —',
+
+                soilAlluvial: 'পলি মাটি',
+                soilBlack: 'কালো মাটি',
+                soilRed: 'লাল মাটি',
+                soilLoamy: 'দোআঁশ মাটি',
+                soilSandy: 'বালুকাময় মাটি',
+                soilClay: 'কাদামাটি',
+                soilDontKnow: 'জানি না',
+
+                waterFull: 'পূর্ণ সেচ',
+                waterPartial: 'আংশিক সেচ',
+                waterRainfed: 'বৃষ্টিনির্ভর',
+
+                cropOther: 'অন্যান্য',
+
+                expLess: '৫ বছরের কম',
+                exp5to10: '৫–১০ বছর',
+                exp10to20: '১০–২০ বছর',
+                expMore: '২০ বছরের বেশি',
+
+                regBtn: '🌱 কৃষক প্রোফাইল তৈরি করুন',
+                successTitle: 'প্রোফাইল তৈরি হয়েছে!',
+                successMsg: 'আপনার কিসানসীড কৃষক প্রোফাইল প্রস্তুত।',
+                dashboardBtn: '🌱 ড্যাশবোর্ডে যান',
+
+                hintFarmSize: '(একর / হেক্টর / বিঘা)',
+            },
+
+            or: {
+                appName: 'କିସାନସୀଡ୍',
+                tagline: 'ଠିକ୍ ବୀଜ • ଠିକ୍ ଜ୍ଞାନ • ଠିକ୍ ବିଶେଷଜ୍ଞ',
+                loginSubtitle: 'ଚାଷୀମାନଙ୍କ ପାଇଁ ସ୍ମାର୍ଟ ଚାଷ ସହାୟତା',
+                loginPlaceholder: 'ମୋବାଇଲ୍ ନମ୍ବର ଦିଅନ୍ତୁ',
+                sendOtp: '📱 OTP ପଠାନ୍ତୁ',
+                or: 'କିମ୍ବା',
+                googleBtn: '🔵 Google ସହିତ ଜାରି ରଖନ୍ତୁ',
+                createAccount: '👨‍🌾 ନୂଆ ଖାତା ଖୋଲନ୍ତୁ',
+                langBox: '🌐 ଭାରତୀୟ ଭାଷାରେ ଉପଲବ୍ଧ',
+
+                regTitle: 'ଚାଷୀ ପଞ୍ଜୀକରଣ',
+                labelName: 'ଆପଣଙ୍କ ନାମ',
+                labelMobile: 'ମୋବାଇଲ୍ ନମ୍ବର',
+                labelState: 'ରାଜ୍ୟ',
+                labelDistrict: 'ଜିଲ୍ଲା',
+                labelVillage: 'ଗାଁ / ସହର',
+                labelPincode: 'ପିନ୍ କୋଡ୍',
+                labelFarmSize: 'ଖେତର ଆକାର',
+                labelSoil: 'ମାଟିର ପ୍ରକାର',
+                labelWater: 'ପାଣିର ଉତ୍ସ',
+                labelCrop: 'କଣ ଚାଷ କରନ୍ତି?',
+                labelExperience: 'କେତେ ବର୍ଷ ଚାଷ?',
+
+                placeName: 'ଯଥା ରାମ ସିଂ',
+                placeMobile: '9876543210',
+                placeDistrict: 'ଯଥା ପଟନା',
+                placeVillage: 'ଯଥା ରସୂଲପୁର',
+                placePincode: 'ଯଥା 800001',
+                placeFarmSize: 'ଯଥା 2.5',
+
+                selectState: '— ରାଜ୍ୟ ଚୟନ କରନ୍ତୁ —',
+                selectSoil: '— ମାଟି ଚୟନ କରନ୍ତୁ —',
+                selectWater: '— ଚୟନ କରନ୍ତୁ —',
+                selectCrop: '— ଫସଲ ଚୟନ କରନ୍ତୁ —',
+
+                soilAlluvial: 'ପଲି ମାଟି',
+                soilBlack: 'କଳା ମାଟି',
+                soilRed: 'ନାଲି ମାଟି',
+                soilLoamy: 'ଦୋଆଁଶ ମାଟି',
+                soilSandy: 'ବାଲୁକା ମାଟି',
+                soilClay: 'ମାଟି',
+                soilDontKnow: 'ଜାଣି ନାହିଁ',
+
+                waterFull: 'ପୂର୍ଣ୍ଣ ସିଞ୍ଚନ',
+                waterPartial: 'ଆଂଶିକ ସିଞ୍ଚନ',
+                waterRainfed: 'ବର୍ଷା ନିର୍ଭର',
+
+                cropOther: 'ଅନ୍ୟ',
+
+                expLess: '୫ ବର୍ଷରୁ କମ୍',
+                exp5to10: '୫–୧୦ ବର୍ଷ',
+                exp10to20: '୧୦–୨୦ ବର୍ଷ',
+                expMore: '୨୦ ବର୍ଷରୁ ଅଧିକ',
+
+                regBtn: '🌱 ଚାଷୀ ପ୍ରୋଫାଇଲ୍ ତିଆରି କରନ୍ତୁ',
+                successTitle: 'ପ୍ରୋଫାଇଲ୍ ପ୍ରସ୍ତୁତ!',
+                successMsg: 'ଆପଣଙ୍କ କିସାନସୀଡ୍ ଚାଷୀ ପ୍ରୋଫାଇଲ୍ ପ୍ରସ୍ତୁତ।',
+                dashboardBtn: '🌱 ଡ୍ୟାଶବୋର୍ଡକୁ ଯାଆନ୍ତୁ',
+
+                hintFarmSize: '(ଏକର / ହେକ୍ଟର / ବିଘା)',
+            },
+
+            ur: {
+                appName: 'کسان سیڈ',
+                tagline: 'صحیح بیج • صحیح علم • صحیح ماہر',
+                loginSubtitle: 'کسانوں کے لیے سمارٹ کاشتکاری معاونت',
+                loginPlaceholder: 'موبائل نمبر درج کریں',
+                sendOtp: '📱 او ٹی پی بھیجیں',
+                or: 'یا',
+                googleBtn: '🔵 Google کے ساتھ جاری رکھیں',
+                createAccount: '👨‍🌾 نیا اکاؤنٹ بنائیں',
+                langBox: '🌐 ہندوستانی زبانوں میں دستیاب',
+
+                regTitle: 'کسان رجسٹریشن',
+                labelName: 'آپ کا نام',
+                labelMobile: 'موبائل نمبر',
+                labelState: 'ریاست',
+                labelDistrict: 'ضلع',
+                labelVillage: 'گاؤں / شہر',
+                labelPincode: 'پن کوڈ',
+                labelFarmSize: 'کھیت کا سائز',
+                labelSoil: 'مٹی کی قسم',
+                labelWater: 'پانی کا ذریعہ',
+                labelCrop: 'کیا اگاتے ہیں؟',
+                labelExperience: 'کتنی سال سے کاشتکاری؟',
+
+                placeName: 'مثال رام سنگھ',
+                placeMobile: '9876543210',
+                placeDistrict: 'مثال پٹنہ',
+                placeVillage: 'مثال رسول پور',
+                placePincode: 'مثال 800001',
+                placeFarmSize: 'مثال 2.5',
+
+                selectState: '— ریاست منتخب کریں —',
+                selectSoil: '— مٹی منتخب کریں —',
+                selectWater: '— منتخب کریں —',
+                selectCrop: '— فصل منتخب کریں —',
+
+                soilAlluvial: 'جلوئی مٹی',
+                soilBlack: 'کالی مٹی',
+                soilRed: 'سرخ مٹی',
+                soilLoamy: 'دومٹ مٹی',
+                soilSandy: 'ریتلی مٹی',
+                soilClay: 'چکنی مٹی',
+                soilDontKnow: 'معلوم نہیں',
+
+                waterFull: 'مکمل آبپاشی',
+                waterPartial: 'جزوی آبپاشی',
+                waterRainfed: 'بارش پر منحصر',
+
+                cropOther: 'دیگر',
+
+                expLess: '5 سال سے کم',
+                exp5to10: '5–10 سال',
+                exp10to20: '10–20 سال',
+                expMore: '20 سال سے زیادہ',
+
+                regBtn: '🌱 کسان پروفائل بنائیں',
+                successTitle: 'پروفائل بن گئی!',
+                successMsg: 'آپ کی کسان سیڈ کسان پروفائل تیار ہے۔',
+                dashboardBtn: '🌱 ڈیش بورڈ پر جائیں',
+
+                hintFarmSize: '(ایکڑ / ہیکٹر / بیگھا)',
+            },
+        };
+
+        /* ── fallback for missing keys ── */
+        function getTranslation(lang, key) {
+            const t = translations[lang] || translations.en;
+            return t[key] || translations.en[key] || key;
+        }
+
+        /* ── switch language ── */
+        function switchLanguage(lang) {
+            document.documentElement.lang = lang;
+
+            // update all data-i18n elements (textContent)
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                el.textContent = getTranslation(lang, key);
+            });
+
+            // update all data-i18n-placeholder elements
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                el.placeholder = getTranslation(lang, key);
+            });
+
+            // update select options that have data-i18n
+            document.querySelectorAll('select option[data-i18n]').forEach(opt => {
+                const key = opt.getAttribute('data-i18n');
+                opt.textContent = getTranslation(lang, key);
+            });
+
+            // update language select itself to show current
+            document.getElementById('langSelect').value = lang;
+
+            // store preference
+            localStorage.setItem('kisanLang', lang);
+        }
+
+        /* ── load saved language ── */
+        function loadSavedLanguage() {
+            const saved = localStorage.getItem('kisanLang');
+            if (saved && translations[saved]) {
+                switchLanguage(saved);
+            } else {
+                // default: try browser language, fallback en
+                const browserLang = navigator.language.split('-')[0];
+                if (translations[browserLang]) {
+                    switchLanguage(browserLang);
+                } else {
+                    switchLanguage('en');
+                }
+            }
+        }
+
+        /* ═══════════════════════════════════════════
+           APP FUNCTIONS
+           ═══════════════════════════════════════════ */
+
+        // ── Open Registration ──
+        function openRegistration() {
+            document.getElementById('registrationModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            // reset form and success
+            document.getElementById('farmerForm').style.display = 'block';
+            document.getElementById('success').style.display = 'none';
+            document.getElementById('farmerForm').reset();
+            // re-apply language to dynamic options
+            const lang = document.getElementById('langSelect').value;
+            document.querySelectorAll('#farmerForm select option[data-i18n]').forEach(opt => {
+                const key = opt.getAttribute('data-i18n');
+                opt.textContent = getTranslation(lang, key);
+            });
+        }
+
+        // ── Close Registration ──
+        function closeRegistration() {
+            document.getElementById('registrationModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // ── Register Farmer ──
+        function registerFarmer(event) {
+            event.preventDefault();
+
+            const farmer = {
+                name: document.getElementById('farmerName').value.trim(),
+                mobile: document.getElementById('farmerMobile').value.trim(),
+                state: document.getElementById('state').value,
+                district: document.getElementById('district').value.trim(),
+                village: document.getElementById('village').value.trim(),
+                pincode: document.getElementById('pincode').value.trim(),
+                landArea: document.getElementById('landArea').value,
+                landUnit: document.getElementById('landUnit').value,
+                soil: document.getElementById('soil').value,
+                irrigation: document.getElementById('irrigation').value,
+                crop: document.getElementById('crop').value,
+                experience: document.getElementById('experience').value,
+            };
+
+            // validate mobile
+            if (!/^[0-9]{10}$/.test(farmer.mobile)) {
+                alert('Please enter a valid 10-digit mobile number.');
+                return;
+            }
+
+            // validate required fields
+            if (!farmer.name || !farmer.state || !farmer.district || !farmer.village ||
+                !farmer.landArea || !farmer.soil || !farmer.irrigation || !farmer.crop) {
+                alert('Please fill all required fields.');
+                return;
+            }
+
+            // save
+            localStorage.setItem('kisanSeedFarmer', JSON.stringify(farmer));
+
+            // hide form, show success
+            document.getElementById('farmerForm').style.display = 'none';
+            document.getElementById('success').style.display = 'block';
+
+            // build summary
+            const lang = document.getElementById('langSelect').value;
+            document.getElementById('profileSummary').innerHTML = `
+                <strong>👨‍🌾 ${getTranslation(lang, 'labelName')}:</strong> ${farmer.name}<br>
+                <strong>📱 ${getTranslation(lang, 'labelMobile')}:</strong> +91 ${farmer.mobile}<br>
+                <strong>📍 ${getTranslation(lang, 'labelState')}:</strong> ${farmer.state}<br>
+                <strong>🏛️ ${getTranslation(lang, 'labelDistrict')}:</strong> ${farmer.district}<br>
+                <strong>🏡 ${getTranslation(lang, 'labelVillage')}:</strong> ${farmer.village}<br>
+                <strong>🌾 ${getTranslation(lang, 'labelFarmSize')}:</strong> ${farmer.landArea} ${farmer.landUnit}<br>
+                <strong>🟫 ${getTranslation(lang, 'labelSoil')}:</strong> ${farmer.soil}<br>
+                <strong>💧 ${getTranslation(lang, 'labelWater')}:</strong> ${farmer.irrigation}<br>
+                <strong>🌿 ${getTranslation(lang, 'labelCrop')}:</strong> ${farmer.crop}<br>
+                <strong>⏳ ${getTranslation(lang, 'labelExperience')}:</strong> ${farmer.experience}
+            `;
+        }
+
+        // ── Go to Dashboard ──
+        function goToDashboard() {
+            window.location.href = 'dashboard.html';
+        }
+
+        // ── Send OTP ──
+        function sendOTP() {
+            const mobile = document.getElementById('loginMobile').value.trim();
+
+            if (!/^[0-9]{10}$/.test(mobile)) {
+                alert('Please enter a valid 10-digit mobile number.');
+                return;
+            }
+
+            const farmer = JSON.parse(localStorage.getItem('kisanSeedFarmer'));
+
+            if (farmer && farmer.mobile === mobile) {
+                alert('✅ OTP verified successfully!');
+                window.location.href = 'dashboard.html';
+            } else {
+                alert('❌ No farmer profile found. Please create an account first.');
+            }
+        }
+
+        // ── Google Login ──
+        function googleLogin() {
+            alert('🔵 Google authentication will be connected in the production version.');
+        }
+
+        // ── Close modal on outside click ──
+        window.onclick = function(event) {
+            const modal = document.getElementById('registrationModal');
+            if (event.target === modal) {
+                closeRegistration();
+            }
+        };
+
+        // ── Load language on page load ──
+        document.addEventListener('DOMContentLoaded', loadSavedLanguage);
+    </script>
+
+</body>
+
+</html>

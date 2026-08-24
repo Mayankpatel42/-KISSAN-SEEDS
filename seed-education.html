@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KisanSeed - Seed Education</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #f4f8f1;
+            color: #173d20;
+        }
+
+        header {
+            background: white;
+            padding: 14px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            border-bottom: 1px solid #dce8d8;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: #16843b;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .logo h1 {
+            color: #126b30;
+            font-size: 24px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .language-select {
+            padding: 8px 14px;
+            border-radius: 25px;
+            border: 1px solid #b8d3b1;
+            background: white;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            color: #1d4a2a;
+            outline: none;
+            min-width: 110px;
+        }
+
+        .language-select:focus {
+            border-color: #16843b;
+            box-shadow: 0 0 0 3px rgba(22, 132, 59, 0.15);
+        }
+
+        .back {
+            padding: 10px 15px;
+            border: none;
+            background: #eaf5e5;
+            color: #17652f;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        .title {
+            margin-bottom: 30px;
+        }
+
+        .title h2 {
+            color: #17652f;
+            font-size: 30px;
+        }
+
+        .title p {
+            color: #758278;
+            margin-top: 6px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 5px 20px rgba(40, 90, 40, .07);
+        }
+
+        .card .icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .card h2 {
+            color: #17652f;
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            color: #68776b;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .card .note {
+            margin-top: 15px;
+            padding: 12px;
+            background: #f1f8ed;
+            border-radius: 9px;
+            font-size: 13px;
+            color: #2a5a35;
+            border-left: 4px solid #16843b;
+        }
+
+        /* Video section */
+        .video-section {
+            margin-top: 40px;
+        }
+
+        .video-section h2 {
+            color: #17652f;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .video-section .subtitle {
+            color: #758278;
+            margin-bottom: 20px;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s;
+        }
+
+        .video-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .video-thumb {
+            background: #d9e8d1;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            color: #126b30;
+        }
+
+        .video-info {
+            padding: 16px 18px 20px;
+        }
+
+        .video-info h3 {
+            font-size: 16px;
+            color: #173d20;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .video-info p {
+            font-size: 13px;
+            color: #6b7d6e;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .video-info .watch-btn {
+            display: inline-block;
+            padding: 8px 20px;
+            background: #16843b;
+            color: white;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            transition: background 0.2s;
+        }
+
+        .video-info .watch-btn:hover {
+            background: #137233;
+        }
+
+        @media(max-width:900px) {
+            .video-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media(max-width:700px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+            header {
+                padding: 12px 4%;
+            }
+            .logo h1 {
+                font-size: 20px;
+            }
+            .language-select {
+                min-width: 90px;
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+            .back {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">
+            <div class="logo-icon">🌱</div>
+            <h1 data-i18n="appName">KisanSeed</h1>
+        </div>
+
+        <div class="header-right">
+            <select class="language-select" id="langSelect" onchange="switchLanguage(this.value)">
+                <option value="hi">हिंदी</option>
+                <option value="en" selected>English</option>
+                <option value="mr">मराठी</option>
+                <option value="pa">ਪੰਜਾਬੀ</option>
+                <option value="gu">ગુજરાતી</option>
+                <option value="ta">தமிழ்</option>
+                <option value="te">తెలుగు</option>
+                <option value="kn">ಕನ್ನಡ</option>
+                <option value="ml">മലയാളം</option>
+                <option value="bn">বাংলা</option>
+                <option value="or">ଓଡ଼ିଆ</option>
+                <option value="ur">اردو</option>
+            </select>
+            <button class="back" onclick="history.back()" data-i18n="backBtn">← Back</button>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- Title -->
+        <div class="title">
+            <h2 data-i18n="pageTitle">📚 Seed Education</h2>
+            <p data-i18n="pageSubtitle">Understand different seed technologies before making a decision.</p>
+        </div>
+
+        <!-- Educational Cards -->
+        <div class="cards">
+
+            <div class="card">
+                <div class="icon">🌱</div>
+                <h2 data-i18n="card1Title">Improved Varieties</h2>
+                <p data-i18n="card1Desc">Improved varieties are developed through plant breeding to provide useful characteristics such as better yield, disease resistance, or suitability to particular environments.</p>
+                <div class="note" data-i18n="card1Note">💡 Always choose a variety suitable for your region and farming conditions.</div>
+            </div>
+
+            <div class="card">
+                <div class="icon">🌾</div>
+                <h2 data-i18n="card2Title">Hybrid Seeds</h2>
+                <p data-i18n="card2Desc">Hybrid seeds are produced by crossing selected parent plants to combine desirable characteristics.</p>
+                <div class="note" data-i18n="card2Note">💡 Hybrid performance can depend on crop, environment and management practices.</div>
+            </div>
+
+            <div class="card">
+                <div class="icon">🧬</div>
+                <h2 data-i18n="card3Title">GM Technology</h2>
+                <p data-i18n="card3Desc">Genetically modified crops involve introducing specific genetic changes using biotechnology. Their use and approval depend on crop, country and regulatory systems.</p>
+                <div class="note" data-i18n="card3Note">⚠️ KisanSeed provides neutral educational information rather than promoting a specific technology.</div>
+            </div>
+
+            <div class="card">
+                <div class="icon">🔬</div>
+                <h2 data-i18n="card4Title">Gene Editing</h2>
+                <p data-i18n="card4Desc">Gene-editing technologies can make targeted changes to an organism's genetic material. Different countries have different regulatory approaches.</p>
+                <div class="note" data-i18n="card4Note">💡 Farmers should rely on approved varieties and official agricultural guidance.</div>
+            </div>
+
+        </div>
+
+        <!-- Video Section -->
+        <div class="video-section">
+            <h2 data-i18n="videoTitle">🎥 Recommended Farming Videos</h2>
+            <p class="subtitle" data-i18n="videoSubtitle">Watch these videos to learn more about seed selection, farming techniques, and market prices.</p>
+
+            <div class="video-grid" id="videoGrid">
+                <!-- Videos will be dynamically inserted based on language -->
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        /* ═══════════════════════════════════════════
+           TRANSLATION SYSTEM
+           ═══════════════════════════════════════════ */
+
+        const translations = {
+            en: {
+                appName: 'KisanSeed',
+                backBtn: '← Back',
+                pageTitle: '📚 Seed Education',
+                pageSubtitle: 'Understand different seed technologies before making a decision.',
+                card1Title: 'Improved Varieties',
+                card1Desc: 'Improved varieties are developed through plant breeding to provide useful characteristics such as better yield, disease resistance, or suitability to particular environments.',
+                card1Note: '💡 Always choose a variety suitable for your region and farming conditions.',
+                card2Title: 'Hybrid Seeds',
+                card2Desc: 'Hybrid seeds are produced by crossing selected parent plants to combine desirable characteristics.',
+                card2Note: '💡 Hybrid performance can depend on crop, environment and management practices.',
+                card3Title: 'GM Technology',
+                card3Desc: 'Genetically modified crops involve introducing specific genetic changes using biotechnology. Their use and approval depend on crop, country and regulatory systems.',
+                card3Note: '⚠️ KisanSeed provides neutral educational information rather than promoting a specific technology.',
+                card4Title: 'Gene Editing',
+                card4Desc: 'Gene-editing technologies can make targeted changes to an organism\'s genetic material. Different countries have different regulatory approaches.',
+                card4Note: '💡 Farmers should rely on approved varieties and official agricultural guidance.',
+                videoTitle: '🎥 Recommended Farming Videos',
+                videoSubtitle: 'Watch these videos to learn more about seed selection, farming techniques, and market prices.',
+                // Video data (titles, descriptions) - will be used in JS
+                videoList: [{
+                    title: 'How to Choose the Right Seed for Your Farm',
+                    desc: 'Learn the key factors in selecting seeds that match your soil and climate.',
+                    link: 'https://www.youtube.com/watch?v=example1',
+                    icon: '🌾'
+                }, {
+                    title: 'Understanding Hybrid vs. GM Seeds',
+                    desc: 'A clear explanation of the differences between hybrid and genetically modified seeds.',
+                    link: 'https://www.youtube.com/watch?v=example2',
+                    icon: '🧬'
+                }, {
+                    title: 'Latest Crop Prices & Market Trends',
+                    desc: 'Stay updated with current market prices for major crops in India.',
+                    link: 'https://www.youtube.com/watch?v=example3',
+                    icon: '📈'
+                }, {
+                    title: 'Farming Tips for Better Yield',
+                    desc: 'Practical advice on irrigation, fertilization, and pest management.',
+                    link: 'https://www.youtube.com/watch?v=example4',
+                    icon: '🌱'
+                }, {
+                    title: 'Organic Farming & Seed Saving',
+                    desc: 'Explore sustainable farming practices and how to save your own seeds.',
+                    link: 'https://www.youtube.com/watch?v=example5',
+                    icon: '🌿'
+                }, {
+                    title: 'Government Schemes for Farmers',
+                    desc: 'Learn about subsidies, insurance, and support programs available to farmers.',
+                    link: 'https://www.youtube.com/watch?v=example6',
+                    icon: '🏛️'
+                }]
+            },
+            hi: {
+                appName: 'किसानसीड',
+                backBtn: '← पीछे',
+                pageTitle: '📚 बीज शिक्षा',
+                pageSubtitle: 'निर्णय लेने से पहले विभिन्न बीज प्रौद्योगिकियों को समझें।',
+                card1Title: 'उन्नत किस्में',
+                card1Desc: 'उन्नत किस्में पौधों के प्रजनन के माध्यम से विकसित की जाती हैं ताकि बेहतर उपज, रोग प्रतिरोधक क्षमता, या विशेष वातावरण के लिए उपयुक्तता जैसी उपयोगी विशेषताएँ प्रदान की जा सकें।',
+                card1Note: '💡 हमेशा अपने क्षेत्र और खेती की स्थितियों के लिए उपयुक्त किस्म चुनें।',
+                card2Title: 'संकर बीज',
+                card2Desc: 'संकर बीज वांछनीय विशेषताओं को संयोजित करने के लिए चयनित मूल पौधों को पार करके उत्पादित किए जाते हैं।',
+                card2Note: '💡 संकर प्रदर्शन फसल, वातावरण और प्रबंधन प्रथाओं पर निर्भर हो सकता है।',
+                card3Title: 'जीएम प्रौद्योगिकी',
+                card3Desc: 'आनुवंशिक रूप से संशोधित फसलों में जैव प्रौद्योगिकी का उपयोग करके विशिष्ट आनुवंशिक परिवर्तन शामिल होते हैं। इनका उपयोग और अनुमोदन फसल, देश और नियामक प्रणालियों पर निर्भर करता है।',
+                card3Note: '⚠️ किसानसीड किसी विशेष तकनीक को बढ़ावा देने के बजाय तटस्थ शैक्षिक जानकारी प्रदान करता है।',
+                card4Title: 'जीन संपादन',
+                card4Desc: 'जीन-संपादन प्रौद्योगिकियाँ किसी जीव की आनुवंशिक सामग्री में लक्षित परिवर्तन कर सकती हैं। विभिन्न देशों में अलग-अलग नियामक दृष्टिकोण हैं।',
+                card4Note: '💡 किसानों को अनुमोदित किस्मों और आधिकारिक कृषि मार्गदर्शन पर भरोसा करना चाहिए।',
+                videoTitle: '🎥 अनुशंसित खेती वीडियो',
+                videoSubtitle: 'बीज चयन, खेती तकनीक और बाजार मूल्यों के बारे में अधिक जानने के लिए इन वीडियो को देखें।',
+                videoList: [{
+                    title: 'अपने खेत के लिए सही बीज कैसे चुनें',
+                    desc: 'ऐसे बीजों का चयन करने के प्रमुख कारक जो आपकी मिट्टी और जलवायु के अनुकूल हों।',
+                    link: 'https://www.youtube.com/watch?v=example1',
+                    icon: '🌾'
+                }, {
+                    title: 'संकर बनाम जीएम बीज को समझना',
+                    desc: 'संकर और आनुवंशिक रूप से संशोधित बीजों के बीच अंतर की स्पष्ट व्याख्या।',
+                    link: 'https://www.youtube.com/watch?v=example2',
+                    icon: '🧬'
+                }, {
+                    title: 'नवीनतम फसल मूल्य और बाजार रुझान',
+                    desc: 'भारत में प्रमुख फसलों के वर्तमान बाजार मूल्यों से अपडेट रहें।',
+                    link: 'https://www.youtube.com/watch?v=example3',
+                    icon: '📈'
+                }, {
+                    title: 'बेहतर उपज के लिए खेती के टिप्स',
+                    desc: 'सिंचाई, उर्वरक और कीट प्रबंधन पर व्यावहारिक सलाह।',
+                    link: 'https://www.youtube.com/watch?v=example4',
+                    icon: '🌱'
+                }, {
+                    title: 'जैविक खेती और बीज संरक्षण',
+                    desc: 'टिकाऊ खेती के तरीकों और अपने स्वयं के बीजों को कैसे सहेजें, इसका अन्वेषण करें।',
+                    link: 'https://www.youtube.com/watch?v=example5',
+                    icon: '🌿'
+                }, {
+                    title: 'किसानों के लिए सरकारी योजनाएँ',
+                    desc: 'किसानों के लिए उपलब्ध सब्सिडी, बीमा और सहायता कार्यक्रमों के बारे में जानें।',
+                    link: 'https://www.youtube.com/watch?v=example6',
+                    icon: '🏛️'
+                }]
+            },
+            mr: {
+                appName: 'किसानसीड',
+                backBtn: '← मागे',
+                pageTitle: '📚 बीज शिक्षण',
+                pageSubtitle: 'निर्णय घेण्यापूर्वी विविध बीज तंत्रज्ञान समजून घ्या.',
+                card1Title: 'सुधारित प्रकार',
+                card1Desc: 'सुधारित प्रकार वनस्पति प्रजननाद्वारे विकसित केले जातात ज्यामुळे चांगले उत्पादन, रोग प्रतिकारशक्ती किंवा विशिष्ट वातावरणासाठी अनुकूलता यासारखी उपयुक्त वैशिष्ट्ये मिळतात.',
+                card1Note: '💡 नेहमी आपल्या प्रदेश आणि शेती परिस्थितीसाठी योग्य प्रकार निवडा.',
+                card2Title: 'संकर बीज',
+                card2Desc: 'संकर बीज इच्छित वैशिष्ट्ये एकत्र करण्यासाठी निवडलेल्या मूळ वनस्पतींच्या क्रॉसिंगद्वारे तयार केले जातात.',
+                card2Note: '💡 संकर कामगिरी पीक, वातावरण आणि व्यवस्थापन पद्धतींवर अवलंबून असू शकते.',
+                card3Title: 'जीएम तंत्रज्ञान',
+                card3Desc: 'अनुवांशिकरित्या सुधारित पिकांमध्ये जैवतंत्रज्ञानाचा वापर करून विशिष्ट अनुवांशिक बदल केले जातात. त्यांचा वापर आणि मान्यता पीक, देश आणि नियामक प्रणालींवर अवलंबून असते.',
+                card3Note: '⚠️ किसानसीड विशिष्ट तंत्रज्ञानाला प्रोत्साहन देण्याऐवजी तटस्थ शैक्षणिक माहिती प्रदान करते.',
+                card4Title: 'जीन संपादन',
+                card4Desc: 'जीन-संपादन तंत्रज्ञान एखाद्या जीवाच्या अनुवांशिक सामग्रीमध्ये लक्ष्यित बदल करू शकते. वेगवेगळ्या देशांमध्ये वेगवेगळे नियामक दृष्टिकोन आहेत.',
+                card4Note: '💡 शेतकऱ्यांनी मान्यताप्राप्त प्रकार आणि अधिकृत कृषी मार्गदर्शनावर अवलंबून राहावे.',
+                videoTitle: '🎥 शिफारस केलेले शेती व्हिडिओ',
+                videoSubtitle: 'बीज निवड, शेती तंत्रे आणि बाजारभावांबद्दल अधिक जाणून घेण्यासाठी हे व्हिडिओ पहा.',
+                videoList: [{
+                    title: 'आपल्या शेतासाठी योग्य बीज कसे निवडावे',
+                    desc: 'आपली माती आणि हवामानाशी जुळणारे बीज निवडण्याचे प्रमुख घटक जाणून घ्या.',
+                    link: 'https://www.youtube.com/watch?v=example1',
+                    icon: '🌾'
+                }, {
+                    title: 'संकर विरुद्ध जीएम बीज समजून घेणे',
+                    desc: 'संकर आणि अनुवांशिकरित्या सुधारित बीजांमधील फरकांचे स्पष्ट स्पष्टीकरण.',
+                    link: 'https://www.youtube.com/watch?v=example2',
+                    icon: '🧬'
+                }, {
+                    title: 'नवीनतम पीक किंमती आणि बाजार ट्रेंड',
+                    desc: 'भारतातील प्रमुख पिकांच्या सध्याच्या बाजार किमतींसह अद्ययावत रहा.',
+                    link: 'https://www.youtube.com/watch?v=example3',
+                    icon: '📈'
+                }, {
+                    title: 'चांगल्या उत्पादनासाठी शेती टिप्स',
+                    desc: 'सिंचन, खत आणि कीटक व्यवस्थापनावर व्यावहारिक सल्ला.',
+                    link: 'https://www.youtube.com/watch?v=example4',
+                    icon: '🌱'
+                }, {
+                    title: 'सेंद्रिय शेती आणि बीज संरक्षण',
+                    desc: 'शाश्वत शेती पद्धती आणि आपले स्वतःचे बीज कसे वाचवायचे ते एक्सप्लोर करा.',
+                    link: 'https://www.youtube.com/watch?v=example5',
+                    icon: '🌿'
+                }, {
+                    title: 'शेतकऱ्यांसाठी सरकारी योजना',
+                    desc: 'शेतकऱ्यांसाठी उपलब्ध अनुदान, विमा आणि समर्थन कार्यक्रमांबद्दल जाणून घ्या.',
+                    link: 'https://www.youtube.com/watch?v=example6',
+                    icon: '🏛️'
+                }]
+            },
+            pa: {
+                appName: 'ਕਿਸਾਨਸੀਡ',
+                backBtn: '← ਪਿੱਛੇ',
+                pageTitle: '📚 ਬੀਜ ਸਿੱਖਿਆ',
+                pageSubtitle: 'ਫੈਸਲਾ ਲੈਣ ਤੋਂ ਪਹਿਲਾਂ ਵੱਖ-ਵੱਖ ਬੀਜ ਤਕਨਾਲੋਜੀਆਂ ਨੂੰ ਸਮਝੋ।',
+                card1Title: 'ਸੁਧਾਰੀਆਂ ਕਿਸਮਾਂ',
+                card1Desc: 'ਸੁਧਾਰੀਆਂ ਕਿਸਮਾਂ ਪੌਦਿਆਂ ਦੇ ਪ੍ਰਜਨਨ ਰਾਹੀਂ ਵਿਕਸਤ ਕੀਤੀਆਂ ਜਾਂਦੀਆਂ ਹਨ ਤਾਂ ਜੋ ਬਿਹਤਰ ਉਪਜ, ਰੋਗ ਪ੍ਰਤੀਰੋਧ, ਜਾਂ ਖਾਸ ਵਾਤਾਵਰਣ ਲਈ ਅਨੁਕੂਲਤਾ ਵਰਗੀਆਂ ਲਾਭਦਾਇਕ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਪ੍ਰਦਾਨ ਕੀਤੀਆਂ ਜਾ ਸਕਣ।',
+                card1Note: '💡 ਹਮੇਸ਼ਾ ਆਪਣੇ ਖੇਤਰ ਅਤੇ ਖੇਤੀ ਹਾਲਾਤਾਂ ਲਈ ਢੁਕਵੀਂ ਕਿਸਮ ਚੁਣੋ।',
+                card2Title: 'ਹਾਈਬ੍ਰਿਡ ਬੀਜ',
+                card2Desc: 'ਹਾਈਬ੍ਰਿਡ ਬੀਜ ਚੁਣੇ ਗਏ ਮਾਤਾ-ਪਿਤਾ ਦੇ ਪੌਦਿਆਂ ਨੂੰ ਕ੍ਰਾਸ ਕਰਕੇ ਉਤਪੰਨ ਕੀਤੇ ਜਾਂਦੇ ਹਨ ਤਾਂ ਜੋ ਲੋੜੀਂਦੀਆਂ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਨੂੰ ਜੋੜਿਆ ਜਾ ਸਕੇ।',
+                card2Note: '💡 ਹਾਈਬ੍ਰਿਡ ਪ੍ਰਦਰਸ਼ਨ ਫ਼ਸਲ, ਵਾਤਾਵਰਣ ਅਤੇ ਪ੍ਰਬੰਧਨ ਅਭਿਆਸਾਂ 'ਤੇ ਨਿਰਭਰ ਹੋ ਸਕਦਾ ਹੈ।',
+                card3Title: 'ਜੀ.ਐਮ. ਤਕਨਾਲੋਜੀ',
+                card3Desc: 'ਜੈਨੇਟਿਕ ਤੌਰ 'ਤੇ ਸੋਧੀਆਂ ਫ਼ਸਲਾਂ ਵਿੱਚ ਬਾਇਓਟੈਕਨਾਲੋਜੀ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਖਾਸ ਜੈਨੇਟਿਕ ਤਬਦੀਲੀਆਂ ਸ਼ਾਮਲ ਹੁੰਦੀਆਂ ਹਨ। ਇਹਨਾਂ ਦੀ ਵਰਤੋਂ ਅਤੇ ਪ੍ਰਵਾਨਗੀ ਫ਼ਸਲ, ਦੇਸ਼ ਅਤੇ ਰੈਗੂਲੇਟਰੀ ਪ੍ਰਣਾਲੀਆਂ 'ਤੇ ਨਿਰਭਰ ਕਰਦੀ ਹੈ।',
+                card3Note: '⚠️ ਕਿਸਾਨਸੀਡ ਕਿਸੇ ਖਾਸ ਤਕਨਾਲੋਜੀ ਨੂੰ ਉਤਸ਼ਾਹਿਤ ਕਰਨ ਦੀ ਬਜਾਏ ਨਿਰਪੱਖ ਸਿੱਖਿਆਤਮਕ ਜਾਣਕਾਰੀ ਪ੍ਰਦਾਨ ਕਰਦਾ ਹੈ।',
+                card4Title: 'ਜੀਨ ਸੰਪਾਦਨ',
+                card4Desc: 'ਜੀਨ-ਸੰਪਾਦਨ ਤਕਨਾਲੋਜੀਆਂ ਕਿਸੇ ਜੀਵ ਦੀ ਜੈਨੇਟਿਕ ਸਮੱਗਰੀ ਵਿੱਚ ਟੀਚਾ ਤਬਦੀਲੀਆਂ ਕਰ ਸਕਦੀਆਂ ਹਨ। ਵੱਖ-ਵੱਖ ਦੇਸ਼ਾਂ ਵਿੱਚ ਵੱਖ-ਵੱਖ ਰੈਗੂਲੇਟਰੀ ਪਹੁੰਚ ਹਨ।',
+                card4Note: '💡 ਕਿਸਾਨਾਂ ਨੂੰ ਮਨਜ਼ੂਰਸ਼ੁਦਾ ਕਿਸਮਾਂ ਅਤੇ ਅਧਿਕਾਰਤ ਖੇਤੀਬਾੜੀ ਮਾਰਗਦਰਸ਼ਨ 'ਤੇ ਭਰੋਸਾ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ।',
+                videoTitle: '🎥 ਸਿਫ਼ਾਰਿਸ਼ ਕੀਤੇ ਖੇਤੀ ਵੀਡੀਓ',
+                videoSubtitle: 'ਬੀਜ ਚੋਣ, ਖੇਤੀ ਤਕਨੀਕਾਂ ਅਤੇ ਮਾਰਕੀਟ ਕੀਮਤਾਂ ਬਾਰੇ ਹੋਰ ਜਾਣਨ ਲਈ ਇਹ ਵੀਡੀਓ ਦੇਖੋ।',
+                videoList: [{
+                    title: 'ਆਪਣੇ ਖੇਤ ਲਈ ਸਹੀ ਬੀਜ ਕਿਵੇਂ ਚੁਣੀਏ',
+                    desc: 'ਅਜਿਹੇ ਬੀਜਾਂ ਦੀ ਚੋਣ ਕਰਨ ਦੇ ਮੁੱਖ ਕਾਰਕ ਜੋ ਤੁਹਾਡੀ ਮਿੱਟੀ ਅਤੇ ਮੌਸਮ ਨਾਲ ਮੇਲ ਖਾਂਦੇ ਹਨ।',
+                    link: 'https://www.youtube.com/watch?v=example1',
+                    icon: '🌾'
+                }, {
+                    title: 'ਹਾਈਬ੍ਰਿਡ ਬਨਾਮ ਜੀ.ਐਮ. ਬੀਜ ਸਮਝਣਾ',
+                    desc: 'ਹਾਈਬ੍ਰਿਡ ਅਤੇ ਜੈਨੇਟਿਕ ਤੌਰ 'ਤੇ ਸੋਧੇ ਹੋਏ ਬੀਜਾਂ ਵਿੱਚ ਅੰਤਰ ਦੀ ਸਪੱਸ਼ਟ ਵਿਆਖਿਆ।',
+                    link: 'https://www.youtube.com/watch?v=example2',
+                    icon: '🧬'
+                }, {
+                    title: 'ਨਵੀਨਤਮ ਫ਼ਸਲ ਕੀਮਤਾਂ ਅਤੇ ਮਾਰਕੀਟ ਰੁਝਾਨ',
+                    desc: 'ਭਾਰਤ ਵਿੱਚ ਮੁੱਖ ਫ਼ਸਲਾਂ ਦੀਆਂ ਮੌਜੂਦਾ ਮਾਰਕੀਟ ਕੀਮਤਾਂ ਨਾਲ ਅਪਡੇਟ ਰਹੋ।',
+                    link: 'https://www.youtube.com/watch?v=example3',
+                    icon: '📈'
+                }, {
+                    title: 'ਵਧੀਆ ਉਪਜ ਲਈ ਖੇਤੀ ਸੁਝਾਅ',
+                    desc: 'ਸਿੰਚਾਈ, ਖਾਦ ਅਤੇ ਕੀੜੇ ਪ੍ਰਬੰਧਨ 'ਤੇ ਵਿਹਾਰਕ ਸਲਾਹ।',
+                    link: 'https://www.youtube.com/watch?v=example4',
+                    icon: '🌱'
+                }, {
+                    title: 'ਜੈਵਿਕ ਖੇਤੀ ਅਤੇ ਬੀਜ ਸੰਭਾਲ',
+                    desc: 'ਟਿਕਾਊ ਖੇਤੀ ਅਭਿਆਸਾਂ ਅਤੇ ਆਪਣੇ ਖੁਦ ਦੇ ਬੀਜਾਂ ਨੂੰ ਕਿਵੇਂ ਬਚਾਉਣਾ ਹੈ ਬਾਰੇ ਖੋਜ ਕਰੋ।',
+                    link: 'https://www.youtube.com/watch?v=example5',
+                    icon: '🌿'
+                }, {
+                    title: 'ਕਿਸਾਨਾਂ ਲਈ ਸਰਕਾਰੀ ਯੋਜਨਾਵਾਂ',
+                    desc: 'ਕਿਸਾਨਾਂ ਲਈ ਉਪਲਬਧ ਸਬਸਿਡੀਆਂ, ਬੀਮਾ ਅਤੇ ਸਹਾਇਤਾ ਪ੍ਰੋਗਰਾਮਾਂ ਬਾਰੇ ਜਾਣੋ।',
+                    link: 'https://www.youtube.com/watch?v=example6',
+                    icon: '🏛️'
+                }]
+            },
+            gu: {
+                appName: 'કિસાનસીડ',
+                backBtn: '← પાછળ',
+                pageTitle: '📚 બીજ શિક્ષણ',
+                pageSubtitle: 'નિર્ણય લેતા પહેલા વિવિધ બીજ ટેકનોલોજીઓ સમજો.',
+                card1Title: 'સુધારેલી જાતો',
+                card1Desc: 'સુધારેલી જાતો વનસ્પતિ સંવર્ધન દ્વારા વિકસાવવામાં આવે છે જેથી સારી ઉપજ, રોગ પ્રતિકારકતા, અથવા ચોક્કસ વાતાવરણ માટે યોગ્યતા જેવી ઉપયોગી લાક્ષણિકતાઓ પ્રદાન કરી શકાય.',
+                card1Note: '💡 હંમેશા તમારા વિસ્તાર અને ખેતીની પરિસ્થિતિઓ માટે યોગ્ય જાત પસંદ કરો.',
+                card2Title: 'સંકર બીજ',
+                card2Desc: 'સંકર બીજ ઇચ્છિત લાક્ષણિકતાઓને સંયોજિત કરવા માટે પસંદ કરેલા મૂળ છોડને ક્રોસ કરીને ઉત્પન્ન કરવામાં આવે છે.',
+                card2Note: '💡 સંકર પ્રભાવ પાક, વાતાવરણ અને વ્યવસ્થાપન પદ્ધતિઓ પર નિર્ભર હોઈ શકે છે.',
+                card3Title: 'જીએમ ટેકનોલોજી',
+                card3Desc: 'આનુવંશિક રીતે સંશોધિત પાકોમાં બાયોટેકનોલોજીનો ઉપયોગ કરીને ચોક્કસ આનુવંશિક ફેરફારો શામેલ છે. તેમનો ઉપયોગ અને મંજૂરી પાક, દેશ અને નિયમનકારી પ્રણાલીઓ પર આધાર રાખે છે.',
+                card3Note: '⚠️ કિસાનસીડ કોઈ ચોક્કસ ટેકનોલોજીને પ્રોત્સાહન આપવાને બદલે તટસ્થ શૈક્ષણિક માહિતી પ્રદાન કરે છે.',
+                card4Title: 'જીન સંપાદન',
+                card4Desc: 'જીન-સંપાદન ટેકનોલોજીઓ કોઈપણ જીવની આનુવંશિક સામગ્રીમાં લક્ષિત ફેરફારો કરી શકે છે. વિવિધ દેશોમાં અલગ-અલગ નિયમનકારી અભિગમો છે.',
+                card4Note: '💡 ખેડૂતોએ મંજૂર જાતો અને સત્તાવાર કૃષિ માર્ગદર્શન પર આધાર રાખવો જોઈએ.',
+                videoTitle: '🎥 ભલામણ કરેલ ખેતી વિડિઓઝ',
+                videoSubtitle: 'બીજ પસંદગી, ખેતી તકનીકો અને બજાર કિંમતો વિશે વધુ જાણવા માટે આ વિડિઓઝ જુઓ.',
+                videoList: [{
+                    title: 'તમારા ખેતર માટે યોગ્ય બીજ કેવી રીતે પસંદ કરવું',
+                    desc: 'એવા બીજ પસંદ કરવાના મુખ્ય પરિબળો જે તમારી માટી અને આબોહવા સાથે મેળ ખાય છે.',
+                    link: 'https://www.youtube.com/watch?v=example1',
+                    icon: '🌾'
+                }, {
+                    title: 'સંકર વિરુદ્ધ જીએમ બીજ સમજવું',
+                    desc: 'સંકર અને આનુવંશિક રીતે સંશોધિત બીજ વચ્ચેના તફાવતોની સ્પષ્ટ સમજૂતી.',
+                    link: 'https://www.youtube.com/watch?v=example2',
+                    icon: '🧬'
+                }, {
+                    title: 'નવીનતમ પાક કિંમતો અને બજાર વલણો',
+                    desc: 'ભારતમાં મુખ્ય પાકોની વર્તમાન બજાર કિંમતો સાથે અપડેટ રહો.',
+                    link: 'https://www.youtube.com/watch?v=example3',
+                    icon: '📈'
+                }, {
+                    title: 'વધુ સારી ઉપજ માટે ખેતી ટિપ્સ',
+                    desc: 'સિંચાઈ, ખાતર અને જીવાત વ્યવસ્થાપન પર વ્યવહારુ સલાહ.',
+                    link: 'https://www.youtube.com/watch?v=example4',
+                    icon: '🌱'
+                }, {
+                    title: 'જૈવિક ખેતી અને બીજ બચાવ',
+                    desc: 'ટકાઉ ખેતી પદ્ધતિઓ અને તમારા પોતાના બીજ કેવી રીતે બચાવવા તે શોધો.',
+                    link: 'https://www.youtube.com/watch?v=example5',
+                    icon: '🌿'
+                }, {
+                    title: 'ખેડૂતો માટે સરકારી યોજનાઓ',
+                    desc: 'ખેડૂતો માટે ઉપલબ્ધ સબસિડી, વીમો અને સહાય કાર્યક્રમો વિશે જાણો.',
+                    link: 'https://www.youtube.com/watch?v=example6',
+                    icon: '🏛️'
+                }]
+            },
+            ta: {
+                appName: 'கிசான்சீட்',
+                backBtn: '← பின்',
+                pageTitle: '📚 விதை கல்வி',
+                pageSubtitle: 'முடிவெடுப்பதற்கு முன் வெவ்வேறு விதை தொழில்நுட்பங்களைப் புரிந்து கொள்ளுங்கள்.',
+                card1Title: 'மேம்படுத்தப்பட்ட வகைகள்',
+                card1Desc: 'மேம்படுத்தப்பட்ட வகைகள் தாவர இனப்பெருக்கம் மூலம் உருவாக்கப்படுகின்றன, இதனால் சிறந்த மகசூல், நோய் எதிர்ப்பு, அல்லது குறிப்பிட்ட சூழல்களுக்கு ஏற்ப போன்ற பயனுள்ள பண்புகளை வழங்குகின்றன.',
+                card1Note: '💡 எப்போதும் உங்கள் பிராந்தியத்திற்கும் விவசாய நிலைமைகளுக்கும் ஏற்ற வகையைத் தேர்வு செய்யவும்.',
+                card2Title: 'கலப்பின விதைகள்',
+                card2Desc: 'கலப்பின விதைகள் விரும்பத்தக்க பண்புகளை இணைக்க தேர்ந்தெடுக்கப்பட்ட பெற்றோர் தாவரங்களை குறுக்குவதன் மூலம் உற்பத்தி செய்யப்படுகின்றன.',
+                card2Note: '💡 கலப்பின செயல்திறன் பயிர், சூழல் மற்றும் மேலாண்மை நடைமுறைகளைப் பொறுத்தது.',
+                card3Title: 'ஜிஎம் தொழில்நுட்பம்',
+                card3Desc: 'மரபணு மாற்றப்பட்ட பயிர்கள் உயிரித் தொழில்நுட்பத்தைப் பயன்படுத்தி குறிப்பிட்ட மரபணு மாற்றங்களை அறிமுகப்படுத்துகின்றன. அவற்றின் பயன்பாடு மற்றும் ஒப்புதல் பயிர், நாடு மற்றும் ஒழுங்குமுறை அமைப்புகளைப் பொறுத்தது.',
+                card3Note: '⚠️ கிசான்சீட் ஒரு குறிப்பிட்ட தொழில்நுட்பத்தை ஊக்குவிப்பதற்கு பதிலாக நடுநிலையான கல்வித் தகவல்களை வழங்குகிறது.',
+                card4Title: 'ஜீன் எடிட்டிங்',
+                card4Desc: 'ஜீன்-எடிட்டிங் தொழில்நுட்பங்கள் ஒரு உயிரினத்தின் மரபணு பொருளில் இலக்கு மாற்றங்களைச் செய்ய முடியும். வெவ்வேறு நாடுகளில் வெவ்வேறு ஒழுங்குமுறை அணுகுமுறைகள் உள்ளன.',
+                card4Note: '💡 விவசாயிகள் அங்கீகரிக்கப்பட்ட வகைகள் மற்றும் அதிகாரப்பூர்வ விவசாய வழிகாட்டுதலை நம்ப வேண்டும்.',
+                videoTitle: '🎥 பரிந்துரைக்கப்பட்ட விவசாய வீடியோக்கள்',
+                videoSubtitle: 'விதை தேர்வு, விவசாய நுட்பங்கள் மற்றும் சந்தை விலைகள் பற்றி மேலும் அறிய இந்த வீடியோக்களைப் பாருங்கள்.',
+                videoList: [{
+                    title: 'உங்கள் பண்ணைக்கு சரியான விதையை எவ்வாறு தேர்வு செய்வது',
+                    desc: 'உங்கள் மண் மற்றும் காலநிலைக்கு பொருந்தக்கூடிய விதைகளைத் தேர்ந்தெடுப்பதற்கான முக்கிய காரணிகள்.',
+                    link: 'https://www.youtube.com/watch?v=example1',
+                    icon: '🌾'
+                }, {
+                    title: 'கலப்பின vs ஜிஎம் விதைகளைப் புரிந்து கொள்ளுதல்',
+                    desc: 'கலப்பின மற்றும் மரபணு மாற்றப்பட்ட விதைகளுக்கு இடையிலான வேறுபாடுகளின் தெளிவான விளக்கம்.',
+                    link: 'https://www.youtube.com/watch?v=example2',
+                    icon: '🧬'
+                }, {
+                    title: 'சமீபத்திய பயிர் விலைகள் மற்றும் சந்தை போக்குகள்',
+                    desc: 'இந்தியாவில் முக்கிய பயிர்களின் தற்போதைய சந்தை விலைகளுடன் புதுப்பித்த நிலையில் இருங்கள்.',
+                    link: 'https://www.youtube.com/watch?v=example3',
+                    icon: '📈'
+                }, {
+                    title: 'சிறந்த மகசூலுக்கான விவசாய குறிப்புகள்',
+                    desc: 'நீர்ப்பாசனம், உரமிடுதல் மற்றும் பூச்சி மேலாண்மை குறித்த நடைமுறை ஆலோசனை.',
+                    link: 'https://www.youtube.com/watch?v=example4',
+                    icon: '🌱'
+                }, {
+                    title: 'இயற்கை வேளாண்மை மற்றும் விதை பாதுகாப்பு',
+                    desc: 'நிலையான விவசாய முறைகள் மற்றும் உங்கள் சொந்த விதைகளை எவ்வாறு சேமிப்பது என்பதை ஆராயுங்கள்.',
+                    link: 'https://www.youtube.com/watch?v=example5',
+                    icon: '🌿'
+                }, {
+                    title: 'விவசாயிகளுக்கான அரசு திட்டங்கள்',
+                    desc: 'விவசாயிகளுக்குக் கிடைக்கும் மானியங்கள், காப்பீடு மற்றும் ஆதரவு திட்டங்கள் பற்றி அறிக.',
+                    link: 'https://www.youtube.com/watch?v=example6',
+                    icon: '🏛️'
+                }]
+            },
+            te: {
+                appName: 'కిసాన్సీడ్',
+                backBtn: '← వెనుక',
+                pageTitle: '📚 విత్తన విద్య',
+                pageSubtitle: 'నిర్ణయం తీసుకునే ముందు వివిధ విత్తన సాంకేతికతలను అర్థం చేసుకోండి.',
+                card1Title: 'మెరుగైన రకాలు',
+                card1Desc: 'మెరుగైన రకాలు మొక్కల పెంపకం ద్వారా అభివృద్ధి చేయబడతాయి, దీనివల్ల మెరుగైన దిగుబడి, వ్యాధి నిరోధకత, లేదా నిర్దిష్ట వాతావరణాలకు అనుకూలత వంటి ఉపయోగకరమైన లక్షణాలను అందిస్తాయి.',
+                card1Note: '💡 ఎల్లప్పుడూ మీ ప్రాంతానికి మరియు వ్యవసాయ పరిస్థితులకు అనువైన రకాన్ని ఎంచుకోండి.',
+                card2Title: 'సంకర విత్తనాలు',
+                card2Desc: 'సంకర విత్తనాలు కావాల్సిన లక్షణాలను కలపడానికి ఎంచుకున్న మాతృ మొక్కలను క్రాస్ చేయడం ద్వారా ఉత్పత్తి చేయబడతాయి.',
+                card2Note: '💡 సంకర పనితీరు పంట, వాతావరణం మరియు నిర్వహణ పద్ధతులపై ఆధారపడి ఉంటుంది.',
+                card3Title: 'జీఎం టెక్నాలజీ',
+                card3Desc: 'జన్యుపరంగా మార్పు చేసిన పంటలు బయోటెక్నాలజీని ఉపయోగించి నిర్దిష్ట జన్యు మార్పులను ప్రవేశపెడతాయి. వాటి ఉపయోగం మరియు ఆమోదం పంట, దేశం మరియు నియంత్రణ వ్యవస్థలపై ఆధారపడి ఉంటుంది.',
+                card3Note: '⚠️ కిసాన్సీడ్ నిర్దిష్ట సాంకేతికతను ప్రోత్సహించకుండా తటస్థ విద్యా సమాచారాన్ని అందిస్తుంది.',
+                card4Title: 'జీన్ ఎడిటింగ్',
+                card4Desc: 'జీన్-ఎడిటింగ్ టెక్నాలజీలు ఒక జీవి యొక్క జన్యు పదార్థంలో లక్ష్య మార్పులు చేయగలవు. వివిధ దేశాల్లో విభిన్న నియంత్రణ విధానాలు ఉన్నాయి.',
+                card4Note: '💡 రైతులు ఆమోదించబడిన రకాలు మరియు అధికారిక వ్యవసాయ మార్గదర్శకత్వంపై ఆధారపడాలి.',
+                videoTitle: '🎥 సిఫార్సు చేసిన వ్యవసాయ వీడియోలు',
+                videoSubtitle: 'విత్తన ఎంపిక, వ్యవసాయ పద్ధతులు మరియు మార్కెట్ ధరల గురించి మరింత తెలుసుకోవడానికి ఈ వీడియోలను చూడండి.',
+                videoList: [{
+                    title: 'మీ పొలం కోసం సరైన విత్తనాన్ని ఎలా ఎంచుకోవాలి',
+                    desc: 'మీ నేల మరియు వాతావరణానికి సరిపోయే విత్తనాలను ఎంచుకోవడంలో కీలక అంశాలు.',
+                    link: 'https://www.youtube.com/watch?v=example1',
+                    icon: '🌾'
+                }, {
+                    title: 'సంకర vs జీఎం విత్తనాలను అర్థం చేసుకోవడం',
+                    desc: 'సంకర మరియు జన్యుపరంగా మార్పు చేసిన విత్తనాల మధ్య తేడాల గురించి స్పష్టమైన వివరణ.',
+                    link: 'https://www.youtube.com/watch?v=example2',
+                    icon: '🧬'
+                }, {
+                    title: 'తాజా పంట ధరలు మరియు మార్కెట్ ట్రెండ్లు',
+                    desc: 'భారతదేశంలోని ప్రధాన పంటల ప్రస్తుత మార్కెట్ ధరలతో అప్డేట్ అవ్వండి.',
+                    link: 'https://www.youtube.com/watch?v=example3',
+                    icon: '📈'
+                }, {
+                    title: 'మెరుగైన దిగుబడి కోసం వ్యవసాయ చిట్కాలు',
+                    desc: 'నీటిపారుదల, ఎరువులు మరియు తెగులు నిర్వహణపై ఆచరణాత్మక సలహా.',
+                    link: 'https://www.youtube.com/watch?v=example4',
+                    icon: '🌱'
+                }, {
+                    title: 'సేంద్రీయ వ్యవసాయం మరియు విత్తన పరిరక్షణ',
+                    desc: 'స్థిరమైన వ్యవసాయ పద్ధతులు మరియు మీ స్వంత విత్తనాలను ఎలా ఆదా చేయాలో అన్వేషించండి.',
+                    link: 'https://www.youtube.com/watch?v=example5',
+                    icon: '🌿'
+                }, {
+                    title: 'రైతుల కోసం ప్రభుత్వ పథకాలు',
+                    desc: 'రైతులకు అందుబాటులో ఉన్న సబ్సిడీలు, బీమా మరియు సహాయ కార్యక్రమాల గురించి తెలుసుకోండి.',
+                    link: 'https://www.youtube.com/watch?v=example6',
+                    icon: '🏛️'
+                }]
+            },
+            kn: {
+                appName: 'ಕಿಸಾನ್ಸೀಡ್',
+                backBtn: '← ಹಿಂದೆ',
+                pageTitle: '📚 ಬೀಜ ಶಿಕ್ಷಣ',
+                pageSubtitle: 'ನಿರ್ಧಾರ ತೆಗೆದುಕೊಳ್ಳುವ ಮೊದಲು ವಿವಿಧ ಬೀಜ ತಂತ್ರಜ್ಞಾನಗಳನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳಿ.',
+                card1Title: 'ಸುಧಾರಿತ ಪ್ರಭೇದಗಳು',
+                card1Desc: 'ಸುಧಾರಿತ ಪ್ರಭೇದಗಳು ಸಸ್ಯ ಸಂತಾನೋತ್ಪತ್ತಿ ಮೂಲಕ ಅಭಿವೃದ್ಧಿಪಡಿಸಲಾಗುತ್ತದೆ, ಇದರಿಂದ ಉತ್ತಮ ಇಳುವರಿ, ರೋಗ ನಿರೋಧಕತೆ, ಅಥವಾ ನಿರ್ದಿಷ್ಟ ಪರಿಸರಗಳಿಗೆ ಸೂಕ್ತತೆಯಂತಹ ಉಪಯುಕ್ತ ಗುಣಲಕ್ಷಣಗಳನ್ನು ಒದಗಿಸುತ್ತವೆ.',
+                card1Note: '💡 ಯಾವಾಗಲೂ ನಿಮ್ಮ ಪ್ರದೇಶ ಮತ್ತು ಬೇಸಾಯ ಪರಿಸ್ಥಿತಿಗಳಿಗೆ ಸೂಕ್ತವಾದ ಪ್ರಭೇದವನ್ನು ಆರಿಸಿ.',
+                card2Title: 'ಸಂಕರ ಬೀಜಗಳು',
+                card2Desc: 'ಸಂಕರ ಬೀಜಗಳು ಅಪೇಕ್ಷಣೀಯ ಗುಣಲಕ್ಷಣಗಳನ್ನು ಸಂಯೋಜಿಸಲು ಆಯ್ಕೆ ಮಾಡಿದ ಮೂಲ ಸಸ್ಯಗಳನ್ನು ಅಡ್ಡ ಹಾಕುವ ಮೂಲಕ ಉತ್ಪಾದಿಸಲಾಗುತ್ತದೆ.',
+                card2Note: '💡 ಸಂಕರ ಕಾರ್ಯಕ್ಷಮತೆ ಬೆಳೆ, ಪರಿಸರ ಮತ್ತು ನಿರ್ವಹಣಾ ಅಭ್ಯಾಸಗಳನ್ನು ಅವಲಂಬಿಸಿರುತ್ತದೆ.',
+                card3Title: 'ಜಿಎಂ ತಂತ್ರಜ್ಞಾನ',
+                card3Desc: 'ಆನುವಂಶಿಕವಾಗಿ ಮಾರ್ಪಡಿಸಿದ ಬೆಳೆಗಳು ಜೈವಿಕ ತಂತ್ರಜ್ಞಾನವನ್ನು ಬಳಸಿಕೊಂಡು ನಿರ್ದಿಷ್ಟ ಆನುವಂಶಿಕ ಬದಲಾವಣೆಗಳನ್ನು ಪರಿಚಯಿಸುತ್ತವೆ. ಅವುಗಳ ಬಳಕೆ ಮತ್ತು ಅನುಮೋದನೆಯು ಬೆಳೆ, ದೇಶ ಮತ್ತು ನಿಯಂತ್ರಕ ವ್ಯವಸ್ಥೆಗಳನ್ನು ಅವಲಂಬಿಸಿರುತ್ತದೆ.',
+                card3Note: '⚠️ ಕಿಸಾನ್ಸೀಡ್ ನಿರ್ದಿಷ್ಟ ತಂತ್ರಜ್ಞಾನವನ್ನು ಪ್ರೋತ್ಸಾಹಿಸುವ ಬದಲು ತಟಸ್ಥ ಶೈಕ್ಷಣಿಕ ಮಾಹಿತಿಯನ್ನು ಒದಗಿಸುತ್ತದೆ.',
+                card4Title: 'ಜೀನ್ ಎಡಿಟಿಂಗ್',
+                card4Desc: 'ಜೀನ್-ಎಡಿಟಿಂಗ್ ತಂತ್ರಜ್ಞಾನಗಳು ಜೀವಿಯ ಆನುವಂಶಿಕ ವಸ್ತುವಿನಲ್ಲಿ ಲಕ್ಷ್ಯಿತ ಬದಲಾವಣೆಗಳನ್ನು ಮಾಡಬಹುದು. ವಿವಿಧ ದೇಶಗಳಲ್ಲಿ ವಿಭಿನ್ನ ನಿಯಂತ್ರಕ ವಿಧಾನಗಳಿವೆ.',
+                card4Note: '💡 ರೈತರು ಅನುಮೋದಿತ ಪ್ರಭೇದಗಳು ಮತ್ತು ಅಧಿಕೃತ ಕೃಷಿ ಮಾರ್ಗದರ್ಶನವನ್ನು ಅವಲಂಬಿಸಬೇಕು.',
+                videoTitle: '🎥 ಶಿಫಾರಸು ಮಾಡಿದ ಬೇಸಾಯ ವೀಡಿಯೊಗಳು',
+                videoSubtitle: 'ಬೀಜ ಆಯ್ಕೆ, ಬೇಸಾಯ ತಂತ್ರಗಳು ಮತ್ತು ಮಾರುಕಟ್ಟೆ ಬೆಲೆಗಳ ಬಗ್ಗೆ ಹೆಚ್ಚು ತಿಳಿದುಕೊಳ್ಳಲು ಈ ವೀಡಿಯೊಗಳನ್ನು ವೀಕ್ಷಿಸಿ.',
+                videoList: [{
+                    title: 'ನಿಮ್ಮ ಹೊಲಕ್ಕೆ ಸರಿಯಾದ ಬೀಜವನ್ನು ಹೇಗೆ ಆರಿಸುವುದು',
+                    desc: 'ನಿಮ್ಮ ಮಣ್ಣು ಮತ್ತು ಹವಾಮಾನಕ್ಕೆ ಹೊಂದಿಕೊಳ್ಳುವ ಬೀಜಗಳನ್ನು ಆಯ್ಕೆ ಮಾಡುವ ಪ್ರಮುಖ ಅಂಶಗಳು.',
+                    link: 'https://www.youtube.com/watch?v=example1',
+                    icon: '🌾'
+                }, {
+                    title: 'ಸಂಕರ vs ಜಿಎಂ ಬೀಜಗಳನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳುವುದು',
+                    desc: 'ಸಂಕರ ಮತ್ತು ಆನುವಂಶಿಕವಾಗಿ ಮಾರ್ಪಡಿಸಿದ ಬೀಜಗಳ ನಡುವಿನ ವ್ಯತ್ಯಾಸಗಳ ಸ್ಪಷ್ಟ ವಿವರಣೆ.',
+                    link: 'https://www.youtube.com/watch?v=example2',
+                    icon: '🧬'
+                }, {
+                    title: 'ಇತ್ತೀಚಿನ ಬೆಳೆ ಬೆಲೆಗಳು ಮತ್ತು ಮಾರುಕಟ್ಟೆ ಪ್ರವೃತ್ತಿಗಳು',
+                    desc: 'ಭಾರತದಲ್ಲಿ ಪ್ರಮುಖ ಬೆಳೆಗಳ ಪ್ರಸ್ತುತ ಮಾರುಕಟ್ಟೆ ಬೆಲೆಗಳೊಂದಿಗೆ ನವೀಕೃತವಾಗಿರಿ.',
+                    link: 'https://www.youtube.com/watch?v=example3',
+                    icon: '📈'
+                }, {
+                    title: 'ಉತ್ತಮ ಇಳುವರಿಗಾಗಿ ಬೇಸಾಯ ಸಲಹೆಗಳು',
+                    desc: 'ನೀರಾವರಿ, ಗೊಬ್ಬರ ಮತ್ತು ಕೀಟ ನಿರ್ವಹಣೆ ಕುರಿತು ಪ್ರಾಯೋಗಿಕ ಸಲಹೆ.',
+                    link: 'https://www.youtube.com/watch?v=example4',
+                    icon: '🌱'
+                }, {
+                    title: 'ಸಾವಯವ ಬೇಸಾಯ ಮತ್ತು ಬೀಜ ಸಂರಕ್ಷಣೆ',
+                    desc: 'ಸುಸ್ಥಿರ ಬೇಸಾಯ ವಿಧಾನಗಳು ಮತ್ತು ನಿಮ್ಮ ಸ್ವಂತ ಬೀಜಗಳನ್ನು ಹೇಗೆ ಉಳಿಸುವುದು ಎಂಬುದನ್ನು ಅನ್ವೇಷಿಸಿ.',
+                    link: 'https://www.youtube.com/watch?v=example5',
+                    icon: '🌿'
+                }, {
+                    title: 'ರೈತರಿಗೆ ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು',
+                    desc: 'ರೈತರಿಗೆ ಲಭ್ಯವಿರುವ ಸಬ್ಸಿಡಿಗಳು, ವಿಮೆ ಮತ್ತು ಬೆಂಬಲ ಕಾರ್ಯಕ್ರಮಗಳ ಬಗ್ಗೆ ತಿಳಿಯಿರಿ.',
+                    link: 'https://www.youtube.com/watch?v=example6',
+                    icon: '🏛️'
+                }]
+            },
+            ml: {
+                appName: 'കിസാൻസീഡ്',
+                backBtn: '← മുമ്പ്',
+                pageTitle: '📚 വിത്ത് വിദ്യാഭ്യാസം',
+                pageSubtitle: 'തീരുമാനമെടുക്കുന്നതിന് മുമ്പ് വ്യത്യസ്ത വിത്ത് സാങ്കേതികവിദ്യകൾ മനസ്സിലാക്കുക.',
+                card1Title: 'മെച്ചപ്പെടുത്തിയ ഇനങ്ങൾ',
+                card1Desc: 'മെച്ചപ്പെട്ട വിളവ്, രോഗ പ്രതിരോധം, അല്ലെങ്കിൽ പ്രത്യേക പരിസ്ഥിതികൾക്ക് അനുയോജ്യത തുടങ്ങിയ ഉപയോഗപ്രദമായ സവിശേഷതകൾ നൽകുന്നതിന് സസ്യപ്രജനനത്തിലൂടെ മെച്ചപ്പെടുത്തിയ ഇനങ്ങൾ വികസിപ്പിച്ചെടുക്കുന്നു.',
+                card1Note: '💡 നിങ്ങളുടെ പ്രദേശത്തിനും കാർഷിക സാഹചര്യങ്ങൾക്കും അനുയോജ്യമായ ഇനം എല്ലായ്പ്പോഴും തിരഞ്ഞെടുക്കുക.',
+                card2Title: 'ഹൈബ്രിഡ് വിത്തുകൾ',
+                card2Desc: 'ആവശ്യമുള്ള സ്വഭാവസവിശേഷതകൾ സംയോജിപ്പിക്കുന്നതിന് തിരഞ്ഞെടുത്ത മാതൃ സസ്യങ്ങളെ ക്രോസ് ചെയ്താണ് ഹൈബ്രിഡ് വിത്തുകൾ ഉത്പാദിപ്പിക്കുന്നത്.',
+                card2Note: '💡 ഹൈബ്രിഡ് പ്രകടനം വിള, പരിസ്ഥിതി, കൈകാര്യ രീതികൾ എന്നിവയെ ആശ്രയിച്ചിരിക്കും.',
+                card3Title: 'ജിഎം സാങ്കേതികവിദ്യ',
+                card3Desc: 'ജനിതകമാറ്റം വരുത്തിയ വിളകൾ ബയോടെക്നോളജി ഉപയോഗിച്ച് നിർദ്ദിഷ്ട ജനിതക മാറ്റങ്ങൾ അവതരിപ്പിക്കുന്നു. അവയുടെ ഉപയോഗവും അംഗീകാരവും വിള, രാജ്യം, നിയന്ത്രണ സംവിധാനങ്ങൾ എന്നിവയെ ആശ്രയിച്ചിരിക്കുന്നു.',
+                card3Note: '⚠️ ഒരു പ്രത്യേക സാങ്കേതികവിദ്യയെ പ്രോത്സാഹിപ്പിക്കുന്നതിന് പകരം നിഷ്പക്ഷ വിദ്യാഭ്യാസ വിവരങ്ങൾ നൽകുന്നു.',
+                card4Title: 'ജീൻ എഡിറ്റിംഗ്',
+                card4Desc: 'ജീൻ-എഡിറ്റിംഗ് സാങ്കേതികവിദ്യകൾക്ക് ഒരു ജീവിയുടെ ജനിതക വസ്തുക്കളിൽ ടാർഗെറ്റുചെയ്ത മാറ്റങ്ങൾ വരുത്താൻ കഴിയും. വ്യത്യസ്ത രാജ്യങ്ങൾക്ക് വ്യത്യസ്ത നിയന്ത്രണ സമീപനങ്ങളുണ്ട്.',
+                card4Note: '💡 കർഷകർ അംഗീകൃത ഇനങ്ങളെയും ഔദ്യോഗിക കാർഷിക മാർഗ്ഗനിർദ്ദേശങ്ങളെയും ആശ്രയിക്കണം.',
+                videoTitle: '🎥 ശുപാർശ ചെയ്ത കാർഷിക വീഡിയോകൾ',
+                videoSubtitle: 'വിത്ത് തിരഞ്ഞെടുപ്പ്, കൃഷി രീതികൾ, വിപണി വിലകൾ എന്നിവയെക്കുറിച്ച് കൂടുതലറിയാൻ ഈ വീഡിയോകൾ കാണുക.',
+                videoList: [{
+                    title: 'നിങ്ങളുടെ ഫാമിന് അനുയോജ്യമായ വിത്ത് എങ്ങനെ തിരഞ്ഞെടുക്കാം',
+                    desc: 'നിങ്ങളുടെ മണ്ണിനും കാലാവസ്ഥയ്ക്കും അനുയോജ്യമായ വിത്തുകൾ തിരഞ്ഞെടുക്കുന്നതിനുള്ള പ്രധാന ഘടകങ്ങൾ.',
+                    link: 'https://www.youtube.com/watch?v=example1',
+                    icon: '🌾'
+                }, {
+                    title: 'ഹൈബ്രിഡ് vs ജിഎം വിത്തുകൾ മനസ്സിലാക്കുക',
+                    desc: 'ഹൈബ്രിഡും ജനിതകമാറ്റം വരുത്തിയ വിത്തുകളും തമ്മിലുള്ള വ്യത്യാസങ്ങളുടെ വ്യക്തമായ വിശദീകരണം.',
+                    link: 'https://www.youtube.com/watch?v=example2',
+                    icon: '🧬'
+                }, {
+                    title: 'ഏറ്റവും പുതിയ വിള വിലകളും വിപണി പ്രവണതകളും',
+                    desc: 'ഇന്ത്യയിലെ പ്രധാന വിളകളുടെ ഇപ്പോഴത്തെ വിപണി വിലകളുമായി അപ്ഡേറ്റ് ചെയ്യുക.',
+                    link: 'https://www.youtube.com/watch?v=example3',
+                    icon: '📈'
+                }, {
+                    title: 'മികച്ച വിളവിനുള്ള കൃഷി ടിപ്പുകൾ',
+                    desc: 'ജലസേചനം, വളപ്രയോഗം, കീടനിയന്ത്രണം എന്നിവയെക്കുറിച്ചുള്ള പ്രായോഗിക ഉപദേശം.',
+                    link: 'https://www.youtube.com/watch?v=example4',
+                    icon: '🌱'
+                }, {
+                    title: 'ജൈവ കൃഷിയും വിത്ത് സംരക്ഷണവും',
+                    desc: 'സുസ്ഥിര കാർഷിക രീതികളും നിങ്ങളുടെ സ്വന്തം വിത്തുകൾ എങ്ങനെ സംരക്ഷിക്കാമെന്നും പര്യവേക്ഷണം ചെയ്യുക.',
+                    link: 'https://www.youtube.com/watch?v=example5',
+                    icon: '🌿'
+                }, {
+                    title: 'കർഷകർക്കുള്ള സർക്കാർ പദ്ധതികൾ',
+                    desc: 'കർഷകർക്ക് ലഭ്യമായ സബ്സിഡികൾ, ഇൻഷുറൻസ്, പിന്തുണ പദ്ധതികൾ എന്നിവയെക്കുറിച്ച് അറിയുക.',
+                    link: 'https://www.youtube.com/watch?v=example6',
+                    icon: '🏛️'
+                }]
+            },
+            bn: {
+                appName: 'কিসানসীড',
+                backBtn: '← পেছনে',
+                pageTitle: '📚 বীজ শিক্ষা',
+                pageSubtitle: 'সিদ্ধান্ত নেওয়ার আগে বিভিন্ন বীজ প্রযুক্তি বুঝুন।',
+                card1Title: 'উন্নত জাত',
+                card1Desc: 'উন্নত জাতগুলি উদ্ভিদ প্রজননের মাধ্যমে তৈরি করা হয় যাতে ভাল ফলন, রোগ প্রতিরোধ ক্ষমতা, বা নির্দিষ্ট পরিবেশের জন্য উপযুক্ততার মতো দরকারী বৈশিষ্ট্য প্রদান করা যায়।',
+                card1Note: '💡 সর্বদা আপনার অঞ্চল এবং চাষাবাদের অবস্থার জন্য উপযুক্ত জাত নির্বাচন করুন।',
+                card2Title: 'হাইব্রিড বীজ',
+                card2Desc: 'হাইব্রিড বীজ নির্বাচিত পিতৃ উদ্ভিদকে ক্রস করে উৎপাদন করা হয় যাতে কাঙ্ক্ষিত বৈশিষ্ট্য একত্রিত করা যায়।',
+                card2Note: '💡 হাইব্রিড কর্মক্ষমতা ফসল, পরিবেশ এবং ব্যবস্থাপনা অনুশীলনের উপর নির্ভর করতে পারে।',
+                card3Title: 'জিএম প্রযুক্তি',
+                card3Desc: 'জেনেটিকালি পরিবর্তিত ফসলগুলি বায়োটেকনোলজি ব্যবহার করে নির্দিষ্ট জেনেটিক পরিবর্তন প্রবর্তন করে। তাদের ব্যবহার এবং অনুমোদন ফসল, দেশ এবং নিয়ন্ত্রক ব্যবস্থার উপর নির্ভর করে।',
+                card3Note: '⚠️ কিসানসীড কোনো নির্দিষ্ট প্রযুক্তিকে প্রচার করার পরিবর্তে নিরপেক্ষ শিক্ষামূলক তথ্য প্রদান করে।',
+                card4Title: 'জিন এডিটিং',
+                card4Desc: 'জিন-এডিটিং প্রযুক্তি একটি জীবের জেনেটিক উপাদানে লক্ষ্যযুক্ত পরিবর্তন করতে পারে। বিভিন্ন দেশে বিভিন্ন নিয়ন্ত্রক পদ্ধতি রয়েছে।',
+                card4Note: '💡 কৃষকদের অনুমোদিত জাত এবং সরকারি কৃষি নির্দেশনার উপর নির্ভর করা উচিত।',
+                videoTitle: '🎥 প্রস্তাবিত কৃষি ভিডিও',
+                videoSubtitle: 'বীজ নির্বাচন, চাষাবাদ কৌশল এবং বাজার মূল্য সম্পর্কে আরও জানতে এই ভিডিওগুলি দেখুন।',
+                videoList: [{
+                    title: 'আপনার খামারের জন্য সঠিক বীজ কীভাবে চয়ন করবেন',
+                    desc: 'আপনার মাটি এবং জলবায়ুর সাথে সামঞ্জস্যপূর্ণ বীজ নির্বাচনের মূল বিষয়গুলি।',
+                    link: 'https://www.youtube.com/watch?v=example1',
+                    icon: '🌾'
+                }, {
+                    title: 'হাইব্রিড বনাম জিএম বীজ বোঝা',
+                    desc: 'হাইব্রিড এবং জেনেটিকালি পরিবর্তিত বীজের মধ্যে পার্থক্যের স্পষ্ট ব্যাখ্যা।',
+                    link: 'https://www.youtube.com/watch?v=example2',
+                    icon: '🧬'
+                }, {
+                    title: 'সর্বশেষ ফসলের দাম এবং বাজার প্রবণতা',
+                    desc: 'ভারতে প্রধান ফসলের বর্তমান বাজার দামের সাথে আপডেট থাকুন।',
+                    link: 'https://www.youtube.com/watch?v=example3',
+                    icon: '📈'
+                }, {
+                    title: 'ভাল ফলনের জন্য চাষাবাদের টিপস',
+                    desc: 'সেচ, সার এবং কীটপতঙ্গ ব্যবস্থাপনা সম্পর্কে ব্যবহারিক পরামর্শ।',
+                    link: 'https://www.youtube.com/watch?v=example4',
+                    icon: '🌱'
+                }, {
+                    title: 'জৈব চাষ এবং বীজ সংরক্ষণ',
+                    desc: 'টেকসই চাষ পদ্ধতি এবং কীভাবে আপনার নিজের বীজ সংরক্ষণ করবেন তা অন্বেষণ করুন।',
+                    link: 'https://www.youtube.com/watch?v=example5',
+                    icon: '🌿'
+                }, {
+                    title: 'কৃষকদের জন্য সরকারি প্রকল্প',
+                    desc: 'কৃষকদের জন্য উপলব্ধ ভর্তুকি, বীমা এবং সহায়তা কর্মসূচি সম্পর্কে জানুন।',
+                    link: 'https://www.youtube.com/watch?v=example6',
+                    icon: '🏛️'
+                }]
+            },
+            or: {
+                appName: 'କିସାନସୀଡ୍',
+                backBtn: '← ପଛକୁ',
+                pageTitle: '📚 ବୀଜ ଶିକ୍ଷା',
+                pageSubtitle: 'ନିଷ୍ପତ୍ତି ନେବା ପୂର୍ବରୁ ବିଭିନ୍ନ ବୀଜ ପ୍ରଯୁକ୍ତିବିଦ୍ୟା ବୁଝନ୍ତୁ।',
+                card1Title: 'ଉନ୍ନତ ପ୍ରଜାତି',
+                card1Desc: 'ଉନ୍ନତ ପ୍ରଜାତି ଉଦ୍ଭିଦ ପ୍ରଜନନ ମାଧ୍ୟମରେ ବିକଶିତ ହୁଏ ଯାହାଦ୍ୱାରା ଉତ୍ତମ ଫଳନ, ରୋଗ ପ୍ରତିରୋଧକତା, କିମ୍ବା ନିର୍ଦ୍ଦିଷ୍ଟ ପରିବେଶ ପାଇଁ ଉପଯୁକ୍ତତା ଭଳି ଉପଯୋଗୀ ଗୁଣ ପ୍ରଦାନ କରାଯାଏ।',
+                card1Note: '💡 ସବୁବେଳେ ଆପଣଙ୍କ ଅଞ୍ଚଳ ଏବଂ ଚାଷ ପରିସ୍ଥିତି ପାଇଁ ଉପଯୁକ୍ତ ପ୍ରଜାତି ଚୟନ କରନ୍ତୁ।',
+                card2Title: 'ହାଇବ୍ରିଡ୍ ବୀଜ',
+                card2Desc: 'ହାଇବ୍ରିଡ୍ ବୀଜ ମନୋନୀତ ମୂଳ ଉଦ୍ଭିଦମାନଙ୍କୁ କ୍ରସ୍ କରି ଉତ୍ପାଦନ କରାଯାଏ ଯାହାଦ୍ୱାରା ଇଚ୍ଛିତ ଗୁଣଗୁଡ଼ିକୁ ମିଶାଯାଇପାରେ।',
+                card2Note: '💡 ହାଇବ୍ରିଡ୍ ପ୍ରଦର୍ଶନ ଫସଲ, ପରିବେଶ ଏବଂ ପରିଚାଳନା ଅଭ୍ୟାସ ଉପରେ ନିର୍ଭର କରିପାରେ।',
+                card3Title: 'ଜିଏମ୍ ପ୍ରଯୁକ୍ତିବିଦ୍ୟା',
+                card3Desc: 'ଜେନେଟିକ୍ ସଂଶୋଧିତ ଫସଲଗୁଡ଼ିକ ଜୈବପ୍ରଯୁକ୍ତିବିଦ୍ୟା ବ୍ୟବହାର କରି ନିର୍ଦ୍ଦିଷ୍ଟ ଜେନେଟିକ୍ ପରିବର୍ତ୍ତନ ଆଣିଥାଏ। ସେମାନଙ୍କର ବ୍ୟବହାର ଏବଂ ଅନୁମୋଦନ ଫସଲ, ଦେଶ ଏବଂ ନିୟାମକ ବ୍ୟବସ୍ଥା ଉପରେ ନିର୍ଭର କରେ।',
+                card3Note: '⚠️ କିସାନସୀଡ୍ କୌଣସି ନିର୍ଦ୍ଦିଷ୍ଟ ପ୍ରଯୁକ୍ତିବିଦ୍ୟାକୁ ପ୍ରୋତ୍ସାହିତ କରିବା ପରିବର୍ତ୍ତେ ନିରପେକ୍ଷ ଶୈକ୍ଷିକ ସୂଚନା ପ୍ରଦାନ କରେ।',
+                card4Title: 'ଜିନ୍ ସମ୍ପାଦନ',
+                card4Desc: 'ଜିନ୍-ସମ୍ପାଦନ ପ୍ରଯୁକ୍ତିବିଦ୍ୟା ଏକ ଜୀବର ଜେନେଟିକ୍ ପଦାର୍ଥରେ ଲକ୍ଷ୍ୟବଦ୍ଧ ପରିବର୍ତ୍ତନ କରିପାରେ। ବିଭିନ୍ନ ଦେଶରେ ଭିନ୍ନ ଭିନ୍ନ ନିୟାମକ ଦୃଷ୍ଟିକୋଣ ଅଛି।',
+                card4Note: '💡 ଚାଷୀମାନେ ଅନୁମୋଦିତ ପ୍ରଜାତି ଏବଂ ଅଧିକୃତ କୃଷି ମାର୍ଗଦର୍ଶନ ଉପରେ ନିର୍ଭର କରିବା ଉଚିତ୍।',
+                videoTitle: '🎥 ସୁପାରିଶ କରାଯାଇଥିବା ଚାଷ ଭିଡିଓ',
+                videoSubtitle: 'ବୀଜ ଚୟନ, ଚାଷ କୌଶଳ ଏବଂ ବଜାର ମୂଲ୍ୟ ବିଷୟରେ ଅଧିକ ଜାଣିବା ପାଇଁ ଏହି ଭିଡିଓଗୁଡ଼ିକ ଦେଖନ୍ତୁ।',
+                videoList: [{
+                    title: 'ଆପଣଙ୍କ ଖେତ ପାଇଁ ସଠିକ୍ ବୀଜ କିପରି ଚୟନ କରିବେ',
+                    desc: 'ଆପଣଙ୍କ ମାଟି ଏବଂ ଜଳବାୟୁ ସହିତ ମେଳ ଖାଉଥିବା ବୀଜ ଚୟନ କରିବାର ପ୍ରମୁଖ କାରଣଗୁଡ଼ିକ।',
+                    link: 'https://www.youtube.com/watch?v=example1',
+                    icon: '🌾'
+                }, {
+                    title: 'ହାଇବ୍ରିଡ୍ vs ଜିଏମ୍ ବୀଜ ବୁଝିବା',
+                    desc: 'ହାଇବ୍ରିଡ୍ ଏବଂ ଜେନେଟିକ୍ ସଂଶୋଧିତ ବୀଜ ମଧ୍ୟରେ ପାର୍ଥକ୍ୟର ସ୍ପଷ୍ଟ ବ୍ୟାଖ୍ୟା।',
+                    link: 'https://www.youtube.com/watch?v=example2',
+                    icon: '🧬'
+                }, {
+                    title: 'ସର୍ବଶେଷ ଫସଲ ମୂଲ୍ୟ ଏବଂ ବଜାର ପ୍ରବୃତ୍ତି',
+                    desc: 'ଭାରତରେ ପ୍ରମୁଖ ଫସଲଗୁଡ଼ିକର ବର୍ତ୍ତମାନର ବଜାର ମୂଲ୍ୟ ସହିତ ଅପଡେଟ୍ ରୁହନ୍ତୁ।',
+                    link: 'https://www.youtube.com/watch?v=example3',
+                    icon: '📈'
+                }, {
+                    title: 'ଉତ୍ତମ ଫଳନ ପାଇଁ ଚାଷ ଟିପ୍ସ',
+                    desc: 'ସିଞ୍ଚନ, ସାର ଏବଂ ପୋକ ନିୟନ୍ତ୍ରଣ ଉପରେ ବ୍ୟବହାରିକ ପରାମର୍ଶ।',
+                    link: 'https://www.youtube.com/watch?v=example4',
+                    icon: '🌱'
+                }, {
+                    title: 'ଜୈବିକ ଚାଷ ଏବଂ ବୀଜ ସଂରକ୍ଷଣ',
+                    desc: 'ସ୍ଥାୟୀ ଚାଷ ପଦ୍ଧତି ଏବଂ ଆପଣଙ୍କ ନିଜ ବୀଜକୁ କିପରି ସଂରକ୍ଷଣ କରିବେ ଅନୁସନ୍ଧାନ କରନ୍ତୁ।',
+                    link: 'https://www.youtube.com/watch?v=example5',
+                    icon: '🌿'
+                }, {
+                    title: 'ଚାଷୀମାନଙ୍କ ପାଇଁ ସରକାରୀ ଯୋଜନା',
+                    desc: 'ଚାଷୀମାନଙ୍କ ପାଇଁ ଉପଲବ୍ଧ ସବ୍ସିଡି, ବୀମା ଏବଂ ସହାୟତା କାର୍ଯ୍ୟକ୍ରମ ବିଷୟରେ ଜାଣନ୍ତୁ।',
+                    link: 'https://www.youtube.com/watch?v=example6',
+                    icon: '🏛️'
+                }]
+            },
+            ur: {
+                appName: 'کسان سیڈ',
+                backBtn: '← پیچھے',
+                pageTitle: '📚 بیج کی تعلیم',
+                pageSubtitle: 'فیصلہ کرنے سے پہلے مختلف بیج ٹیکنالوجیز کو سمجھیں۔',
+                card1Title: 'بہتر اقسام',
+                card1Desc: 'بہتر اقسام پودوں کی افزائش کے ذریعے تیار کی جاتی ہیں تاکہ بہتر پیداوار، بیماریوں کے خلاف مزاحمت، یا مخصوص ماحول کے لیے موزونیت جیسی مفید خصوصیات فراہم کی جا سکیں۔',
+                card1Note: '💡 ہمیشہ اپنے علاقے اور کاشتکاری کے حالات کے لیے موزوں قسم کا انتخاب کریں۔',
+                card2Title: 'ہائبرڈ بیج',
+                card2Desc: 'ہائبرڈ بیج منتخب شدہ والدین کے پودوں کو کراس کرکے تیار کیے جاتے ہیں تاکہ مطلوبہ خصوصیات کو یکجا کیا جا سکے۔',
+                card2Note: '💡 ہائبرڈ کارکردگی کا انحصار فصل، ماحول اور انتظامی طریقوں پر ہو سکتا ہے۔',
+                card3Title: 'جی ایم ٹیکنالوجی',
+                card3Desc: 'جینیاتی طور پر تبدیل شدہ فصلیں بائیو ٹیکنالوجی کا استعمال کرتے ہوئے مخصوص جینیاتی تبدیلیاں متعارف کراتی ہیں۔ ان کا استعمال اور منظوری فصل، ملک اور ریگولیٹری نظاموں پر منحصر ہے۔',
+                card3Note: '⚠️ کسان سیڈ کسی خاص ٹیکنالوجی کو فروغ دینے کے بجائے غیر جانبدارانہ تعلیمی معلومات فراہم کرتا ہے۔',
+                card4Title: 'جین ایڈیٹنگ',
+                card4Desc: 'جین-ایڈیٹنگ ٹیکنالوجیز کسی جاندار کے جینیاتی مادے میں ہدفی تبدیلیاں کر سکتی ہیں۔ مختلف ممالک میں مختلف ریگولیٹری نقطہ نظر ہیں۔',
+                card4Note: '💡 کسانوں کو منظور شدہ اقسام اور سرکاری زرعی رہنمائی پر بھروسہ کرنا چاہیے۔',
+                videoTitle: '🎥 تجویز کردہ کاشتکاری ویڈیوز',
+                videoSubtitle: 'بیج کا انتخاب، کاشتکاری کی تکنیک اور مارکیٹ کی قیمتوں کے بارے میں مزید جاننے کے لیے یہ ویڈیوز دیکھیں۔',
+                videoList: [{
+                    title: 'اپنے کھیت کے لیے صحیح بیج کا انتخاب کیسے کریں',
+                    desc: 'ایسے بیجوں کا انتخاب کرنے کے اہم عوامل جو آپ کی مٹی اور آب و ہوا سے مماثل ہوں۔',
+                    link: 'https://www.youtube.com/watch?v=example1',
+                    icon: '🌾'
+                }, {
+                    title: 'ہائبرڈ بمقابلہ جی ایم بیج کو سمجھنا',
+                    desc: 'ہائبرڈ اور جینیاتی طور پر تبدیل شدہ بیجوں کے درمیان فرق کی واضح وضاحت۔',
+                    link: 'https://www.youtube.com/watch?v=example2',
+                    icon: '🧬'
+                }, {
+                    title: 'تازہ ترین فصل کی قیمتیں اور مارکیٹ کے رجحانات',
+                    desc: 'بھارت میں اہم فصلوں کی موجودہ مارکیٹ قیمتوں کے ساتھ اپ ڈیٹ رہیں۔',
+                    link: 'https://www.youtube.com/watch?v=example3',
+                    icon: '📈'
+                }, {
+                    title: 'بہتر پیداوار کے لیے کاشتکاری کے مشورے',
+                    desc: 'آبپاشی، فرٹیلائزیشن اور کیڑوں کے انتظام پر عملی مشورے۔',
+                    link: 'https://www.youtube.com/watch?v=example4',
+                    icon: '🌱'
+                }, {
+                    title: 'نامیاتی کاشتکاری اور بیج کا تحفظ',
+                    desc: 'پائیدار کاشتکاری کے طریقوں اور اپنے بیجوں کو کیسے بچایا جائے دریافت کریں۔',
+                    link: 'https://www.youtube.com/watch?v=example5',
+                    icon: '🌿'
+                }, {
+                    title: 'کسانوں کے لیے سرکاری اسکیمیں',
+                    desc: 'کسانوں کے لیے دستیاب سبسڈیز، انشورنس اور سپورٹ پروگراموں کے بارے میں جانیں۔',
+                    link: 'https://www.youtube.com/watch?v=example6',
+                    icon: '🏛️'
+                }]
+            }
+        };
+
+        /* ── Language Functions ── */
+        function getTranslation(lang, key) {
+            const t = translations[lang] || translations.en;
+            return t[key] || translations.en[key] || key;
+        }
+
+        function switchLanguage(lang) {
+            document.documentElement.lang = lang;
+
+            // Update all data-i18n elements
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                el.textContent = getTranslation(lang, key);
+            });
+
+            // Update language dropdown
+            document.getElementById('langSelect').value = lang;
+
+            // Update video grid
+            renderVideos(lang);
+
+            // Save preference
+            localStorage.setItem('kisanLang', lang);
+        }
+
+        function loadSavedLanguage() {
+            const saved = localStorage.getItem('kisanLang');
+            if (saved && translations[saved]) {
+                switchLanguage(saved);
+            } else {
+                const browserLang = navigator.language.split('-')[0];
+                if (translations[browserLang]) {
+                    switchLanguage(browserLang);
+                } else {
+                    switchLanguage('en');
+                }
+            }
+        }
+
+        /* ── Render Videos ── */
+        function renderVideos(lang) {
+            const videoGrid = document.getElementById('videoGrid');
+            const videoList = getTranslation(lang, 'videoList');
+
+            // videoList is an array of objects; we need to parse it safely
+            // Since it's a string from translation, we need to get the actual array
+            // We stored it as an array in the translation object, but getTranslation returns the value.
+            // For simplicity, we'll fetch from translations[lang].videoList directly.
+            const langData = translations[lang] || translations.en;
+            const videos = langData.videoList || translations.en.videoList;
+
+            videoGrid.innerHTML = '';
+            videos.forEach(video => {
+                videoGrid.innerHTML += `
+                    <div class="video-card">
+                        <div class="video-thumb">${video.icon}</div>
+                        <div class="video-info">
+                            <h3>${video.title}</h3>
+                            <p>${video.desc}</p>
+                            <a href="${video.link}" target="_blank" class="watch-btn" data-i18n="watchBtn">▶ Watch on YouTube</a>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Translate the "Watch on YouTube" button text
+            document.querySelectorAll('[data-i18n="watchBtn"]').forEach(el => {
+                el.textContent = getTranslation(lang, 'watchBtn') || '▶ Watch on YouTube';
+            });
+        }
+
+        // Add watchBtn translation to all languages (if missing, add)
+        // We'll add a default fallback in the function above.
+
+        // Update translations object to include watchBtn for all languages
+        // We'll do it dynamically
+        Object.keys(translations).forEach(lang => {
+            if (!translations[lang].watchBtn) {
+                translations[lang].watchBtn = '▶ Watch on YouTube';
+            }
+        });
+
+        // Override en watchBtn
+        translations.en.watchBtn = '▶ Watch on YouTube';
+        translations.hi.watchBtn = '▶ YouTube पर देखें';
+        translations.mr.watchBtn = '▶ YouTube वर पहा';
+        translations.pa.watchBtn = '▶ YouTube ਤੇ ਦੇਖੋ';
+        translations.gu.watchBtn = '▶ YouTube પર જુઓ';
+        translations.ta.watchBtn = '▶ YouTube இல் பார்க்கவும்';
+        translations.te.watchBtn = '▶ YouTube లో చూడండి';
+        translations.kn.watchBtn = '▶ YouTube ನಲ್ಲಿ ವೀಕ್ಷಿಸಿ';
+        translations.ml.watchBtn = '▶ YouTube-ൽ കാണുക';
+        translations.bn.watchBtn = '▶ YouTube এ দেখুন';
+        translations.or.watchBtn = '▶ YouTube ରେ ଦେଖନ୍ତୁ';
+        translations.ur.watchBtn = '▶ YouTube پر دیکھیں';
+
+        // Load language on page load
+        document.addEventListener('DOMContentLoaded', loadSavedLanguage);
+    </script>
+
+</body>
+
+</html>
